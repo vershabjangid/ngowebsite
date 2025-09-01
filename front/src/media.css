@@ -1,0 +1,495 @@
+@media screen and (max-height:400px) {
+    .home_banner {
+        height: auto;
+    }
+}
+
+
+@media screen and (max-height:563px) {
+    .login_main {
+        height: auto;
+    }
+
+
+    .login_profile_banner {
+        height: 100%;
+    }
+}
+
+@media screen and (min-width:1600px) {
+    .main {
+        width: 1600px;
+    }
+}
+
+
+@media screen and (max-width:1150px) {
+
+
+    .dashboard_status_cards_section>div {
+        width: 45% !important;
+        margin: 20px 10px;
+    }
+}
+
+
+@media screen and (max-width:1056px) {
+    .login_banner {
+        display: none;
+    }
+
+    .login_right {
+        width: 100% !important;
+    }
+
+    .login_profile_banner {
+        display: none;
+    }
+}
+@media screen and (max-width:1290px) {
+.home_management_card{
+width: 330px;
+}
+}
+
+
+@media screen and (max-width:1060px) {
+.home_management_card{
+width: 350px;
+}
+
+.home_gallery_cards{
+    width: 49%;
+}
+
+.home_gallery_cards>section{
+    width: 100%;
+}
+
+.donation_form_section{
+    width: 97%;
+}
+}
+
+
+
+
+@media screen and (max-width:1100px) {
+    .home_about_us {
+        flex-direction: column;
+    }
+
+    .home_about_us>section {
+        width: 100%;
+    }
+
+    .about_content_left {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about_content_left>section {
+        width: 100%;
+    }
+
+
+    .about_content_right {
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+
+    .about_content_right>section {
+        width: 100%;
+    }
+
+    .home_our_goals_section{
+        flex-direction: column;
+    }
+
+    .home_our_goals_section>section{
+        width: 100%;
+        margin-top: 10px;
+        height: auto;
+    }
+
+    .home_our_goals_content_section>p{
+        margin-top: 20px;
+    }
+
+
+        .home_our_goals_content_section>section>li{
+       font-size: 15px;
+    }
+}
+
+@media screen and (max-width:1032px) {
+    footer>section {
+        margin: 0px auto 50px auto;
+    }
+}
+
+@media screen and (max-width:960px) {
+    .gallery_card_section {
+        flex-wrap: wrap;
+        text-align: start;
+    }
+
+    .gallery_card_section_reverse {
+        flex-wrap: wrap-reverse;
+        text-align: start !important;
+    }
+
+    .gallery_heading {
+        text-align: start;
+        font-size: 18px;
+        margin: 15px 15px 5px 0px;
+    }
+
+    .gallery_paragraph {
+        text-align: start;
+        font-size: 13px;
+        margin: 0;
+    }
+
+    .gallery_card_image {
+        width: 100%;
+        height: auto;
+    }
+
+    .slider_main{
+        height: auto;
+    }
+
+    .Slide_home{
+        height: 500px;
+    }
+
+    .Slide_home>section{
+        height:500px;
+    }
+
+    .Slide_home_overlay{
+        height: 100% !important;
+        padding: 0;
+    }
+
+    .Slider_content_section>section>h1{
+          text-align: start;
+        font-size: 30px;
+        margin:10px 0px;
+        margin-top: 15px;
+    }
+
+     .Slider_content_section>section>p{
+        text-align: start;
+        font-size: 15px;
+    }
+
+    .slider_btn_section{
+justify-content:start ;
+    }
+
+    .slider_btn{
+        font-size: 12px;
+       padding: 8px;
+    }
+}
+
+@media screen and (max-width:920px) {
+    .menubar {
+        display: block;
+        margin-left: 10px;
+    }
+
+    .register_header_btn {
+        display: none !important;
+    }
+
+    .header_heading {
+        font-size: 25px;
+    }
+
+    .header_sub_heading {
+        font-size: 15px;
+    }
+
+    .megamenu {
+        display: block;
+    }
+
+    .megamenu_heading {
+        font-size: 11px;
+    }
+
+    .megamenu_sub_heading {
+        font-size: 8px;
+    }
+
+    .banner_menubar {
+        display: none;
+    }
+
+    .contact_section {
+        flex-direction: column;
+    }
+
+    .contact_section>section {
+        width: 100%;
+    }
+
+    .desktop_megamenu {
+        display: none;
+    }
+
+    .user_admin_sidebar {
+        display: none;
+    }
+
+
+    .donation_form_section{
+        flex-direction: column;
+    }
+.donation_form_section>section{
+width: 100%;
+}
+
+.about_inner_section{
+    flex-direction: column;
+}
+
+.about_inner_section>section{
+    width: 100%;
+    height: auto;
+}
+}
+
+
+
+@media screen and (max-width:680px) {
+
+    .header_heading {
+        font-size: 20px;
+    }
+
+    .header_sub_heading {
+        font-size: 12px;
+    }
+
+    .otp_section {
+        width: 100%;
+    }
+
+    .otp_inputs {
+        width: 60px;
+        height: 60px;
+    }
+
+    .register_subheading {
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width:600px) {
+
+    .header_heading {
+        font-size: 18px;
+    }
+
+    .header_sub_heading {
+        font-size: 11px;
+    }
+
+    /* .Logo_section {
+        width: 60px;
+    } */
+
+    .head_login_btn {
+        font-size: 12px;
+        display: none;
+    }
+
+    .quick_links_btn {
+        display: none;
+    }
+
+    .bottom_quick_Links {
+        display: block;
+    }
+
+
+    .footer_company_label{
+        padding-top: 30px !important;
+        padding-bottom: 140px !important;
+    }
+
+    .donate_now_btn{
+        bottom: 75px !important;
+    }
+
+    .home_heading {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .home_logo_section {
+        width: 100px;
+    }
+
+    .home_heading {
+        font-size: 30px;
+    }
+
+    .home_sub_heading {
+        font-size: 20px;
+    }
+
+    .about_banner_slides {
+        height: auto;
+    }
+
+    .about_banner_slides>section {
+        padding: 20px 10px;
+    }
+
+    .home_gallery_cards{
+    width: 100%;
+}
+}
+
+@media screen and (max-width:530px) {
+
+    .home_banner_slides {
+        height: auto;
+    }
+
+    .dashboard_status_cards_section>div {
+        width: 100% !important;
+        margin: 20px 10px;
+    }
+
+    .useradmin_content_section {
+        padding: 10px;
+    }
+}
+
+
+
+@media screen and (max-height:498px) {
+    .payment_overlay>section {
+        height: 100%;
+    }
+}
+
+
+@media screen and (max-width:498px) {
+    .payment_overlay>section {
+        height: 100%;
+    }
+}
+
+@media screen and (max-width:470px) {
+    .home_logo_section {
+        width: 70px;
+    }
+
+    .home_heading {
+        width: 100%;
+        font-size: 25px;
+    }
+
+    .home_sub_heading {
+        font-size: 15px;
+    }
+
+    footer>section {
+        width: 100%;
+    }
+
+     .donation_form_section{
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .login_banner {
+        display: none;
+    }
+
+    .login_right {
+        width: 100% !important;
+    }
+
+    .login_right>div {
+        width: 100% !important;
+    }
+}
+
+
+@media screen and (max-width:430px) {
+
+    .header_heading {
+        font-size: 12px;
+    }
+
+    .header_sub_heading {
+        font-size: 8px;
+    }
+}
+
+
+
+@media screen and (max-width:400px) {
+    .home_banner {
+        height: auto;
+    }
+
+    .home_banner>section {
+        padding: 30px 10px;
+    }
+
+    .megamenu {
+        width: 100%;
+    }
+
+    .megamenu_btn {
+        width: 90%;
+    }
+
+    .home_heading {
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .megamenu {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .home_management_card{
+width: 95%
+}
+
+.home_management_profile_section{
+    padding: 5px;
+}
+
+.donation_value_section>div{
+    width: 49%;
+}
+
+}
+
+
+@media screen and (max-width:460px) {
+.donation_label_section{
+    flex-direction: column;
+}
+
+.donation_label_section>section{
+    width: 99%;
+    margin-top: 10px;
+}
+}

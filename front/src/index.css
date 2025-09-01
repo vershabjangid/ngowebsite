@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", "system-ui", sans-serif;
+  scroll-behavior: smooth !important;
+}
+
+.home_banner {
+  /* background-image: url("./images/5157430_32406.jpg"); */
+  background-size: cover;
+  background-position: start;
+}
+
+.slider_inner {
+  width: 100% !important;
+}
+
+.admin_side_options:hover {
+  background-color: #d5e9ff;
+  color: #1385ff;
+  transition: 0.5s;
+}
+
+.admin_sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #1385ff;
+  border: 0;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+
+
+.login_banner {
+  background-image: url("../src/images/Frame\ 46\ \(1\).svg");
+  background-size: cover;
+}
+
+.login_profile_banner {
+  background-image: url("../src/images/Frame\ 46\ \(1\).svg");
+  background-size: cover;
+}
+
+.login_right::-webkit-scrollbar {
+  display: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.home_about_image {
+  box-shadow: 0px 0px 15px 1px #0000008f;
+  transition: all ease 1s;
+}
+
+.home_about_image:hover {
+  box-shadow: 0px 0px 15px 1px #1385ff8f;
+  transition: all ease 1s;
+  transform: scale(1.1);
+  border-radius: 20px;
+}
+
+
+.heading_hoverline {
+  transition: all ease 1s;
+  width: 150px;
+}
+
+.home_management_profile_section {
+  background: linear-gradient(20deg, white, #bbdcfe, white);
+}
+
+.home_management_card {
+  transition: 1s;
+
+}
+
+.home_management_card:hover {
+  box-shadow: 0px 0px 15px 1px #1385ff8f;
+  transform: scale(1.05);
+  border-radius: 20px;
+}
+
+.home_goals_options::-webkit-scrollbar {
+  display: none;
+}
+
+.desktop_megamenu::-webkit-scrollbar {
+  display: none;
+}
+
+
+.useradmin_content_section::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboard_status_cards_section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+.id_card {
+  background-image: url("../src/images/ombre-blue-curve-light-blue-background-vector.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.user_admin_sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.payment_overlay>section>section::-webkit-scrollbar {
+  display: none !important;
+}
+
+.payment_overlay_inner ::-webkit-scrollbar {
+  display: none !important;
+}
+
+.profile_banner {
+  background-image: url("../src/images/29085460_1938.jpg");
+  background-size: cover;
+}
+
+
+.Slide_home {
+  height: 100%;
+}
+
+.slick-next {
+  background-color: black !important;
+  border-radius: 50%;
+  padding: 0 !important;
+  margin: 0 !important;
+  right: 100px !important;
+  position: absolute !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.slick-arrow {
+  background-color: #1385ff !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.slick-prev:before {
+  content: 'url(../../../images/)' !important;
+}
+
+.slick-prev {
+  background-color: black !important;
+  color: black !important;
+  border-radius: 50%;
+  padding: 0 !important;
+  margin: 0 !important;
+  left: 100px !important;
+  position: absolute !important;
+  z-index: 9999;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+
+input[type="range"] {
+  appearance: none;
+  height: 6px;
+  background: #1385ff;
+}
+
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #1385ff;
+}
+
+
+.donation_section {
+  background: linear-gradient(20deg, white, #bbdcfe, white);
+}
