@@ -6,18 +6,20 @@ import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
 import { useFormik } from 'formik'
 import { FaInfo } from 'react-icons/fa6'
+import { Loader } from '../../../../../common/Loader'
 
 
 export function DashViewAboutParagraphSection() {
     let [imgurl, setimgurl] = useState([])
     let [aboutdata, setaboutdata] = useState([])
-
+    let [loader, setloader] = useState(false)
     let viewdata = () => {
         try {
             apiurl.get('/admin/view-about-paragraph-section')
                 .then((res) => {
                     setaboutdata(res.data.viewdata)
                     setimgurl(res.data.imgurl)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -30,6 +32,7 @@ export function DashViewAboutParagraphSection() {
 
     useEffect(() => {
         viewdata()
+        setloader(true)
     }, [])
 
     // /update-about-banner
@@ -45,9 +48,16 @@ export function DashViewAboutParagraphSection() {
             About_Image: "",
 
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             formik.values._id = updatemodaldata._id
             updatedata(formik.values)
+            setloader(true)
+            resetForm({
+                _id: "",
+                About_Heading: "",
+                About_Description: "",
+                About_Image: ""
+            })
         }
     })
 
@@ -66,11 +76,12 @@ export function DashViewAboutParagraphSection() {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
                         viewdata()
-                        setupdatemodal(false)
                     }
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setupdatemodal(false)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -87,6 +98,7 @@ export function DashViewAboutParagraphSection() {
 
 
     let deletedata = (value) => {
+        setloader(true)
         try {
             apiurl.delete('/admin/delete-about-paragraph-section', {
                 data: value,
@@ -98,11 +110,12 @@ export function DashViewAboutParagraphSection() {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
                         viewdata()
-                        setdeletemodal(false)
                     }
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setdeletemodal(false)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -115,158 +128,190 @@ export function DashViewAboutParagraphSection() {
     return (
         <>
             {
-                updatemodal ?
-                    <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
-                        <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
-                            <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Update About Paragraph</h3>
-                            </div>
-                            <div>
-                                <form onSubmit={formik.handleSubmit}>
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homebannerheading">
-                                                About Paragraph Heading
-                                            </label>
-
-                                            <input maxLength={100} defaultValue={updatemodaldata.About_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Heading', e.target.value)} />
-                                        </div>
-
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homebannerdescription">
-                                                About Paragraph Description
-                                            </label>
-                                            <input maxLength={300} id='homebannerdescription' defaultValue={updatemodaldata.About_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Description', e.target.value)} />
-                                        </div>
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homeimage">
-                                                About Image
-                                            </label>
-
-                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Image', e.target.files[0])} />
-                                        </div>
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-end mt-[20px]'>
-                                        <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                            Submit
-                                        </button>
-
-                                        <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setupdatemodal(false)}>
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </section>
-                    </section>
+                loader ?
+                    <Loader />
                     :
-                    null
-            }
+                    <>
+                        {
+                            updatemodal ?
+                                <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
+                                    <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
+                                        <div className=' border-b-[1px] border-[black] pb-1'>
+                                            <h3 className='text-[25px] font-[600]'>Update About Paragraph</h3>
+                                        </div>
+                                        <div>
+                                            <form onSubmit={formik.handleSubmit}>
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="aboutparagraphrheading">
+                                                            About Paragraph Heading
+                                                        </label>
 
-
-            {
-                deletemodal ?
-                    <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
-                        <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
-                            <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Delete Slide</h3>
-                            </div>
-                            <div className='py-4'>
-                                <p>Are you sure to delete a slide?</p>
-                            </div>
-                            <div>
-                                <div className='w-[100%] flex justify-end mt-[20px]'>
-                                    <button type='submit' className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => deletedata(deletemodaldata)}>
-                                        Delete
-                                    </button>
-
-                                    <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setdeletemodal(false)}>
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-                    </section>
-                    :
-                    null
-            }
-
-            <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
-                <AdminSidebar />
-                <section className='w-[100%] h-[100%]'>
-                    <AdminHeader />
-
-                    <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
-                        <section className='w-[100%] px-3'>
-                            <div className='text-[25px] flex items-center'>
-                                <FaInfo />
-                                <h1 className='font-[600] ms-2'>
-                                    About Us
-                                </h1>
-                            </div>
-                            <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Paragraph Section</span></p>
-                            </div>
-                        </section>
-
-                        <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey] mb-[20px]'> About Paragraph Section</p>
-
-                            {
-                                aboutdata.length === 0 ?
-                                    <div className='text-center font-[600] text-[grey]'>
-                                        No Data Found
-                                    </div>
-
-                                    :
-                                    aboutdata.map((items, index) => {
-                                        return (
-                                            <section className='mb-[50px]' key={index}>
-                                                <section className=''>
-
-                                                    <section key={index} className='home_about_us w-[100%] py-[20px] px-[20px] flex'>
-                                                        <section className='w-[30%] flex justify-center items-center'>
-                                                            <section className='w-[300px]'>
-                                                                <img src={imgurl + items.About_Image} alt="" className='w-[100%]' />
-                                                            </section>
-                                                        </section>
-                                                        <section className='w-[70%] uppercase'>
-                                                            <h2 className='home_heading text-[30px] font-[700]'>
-                                                                {items.About_Heading}
-                                                            </h2>
-                                                            <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
-                                                                {items.About_Description}
-                                                            </p>
-                                                        </section>
-                                                    </section>
-
-
-                                                    <div>
-                                                        <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
-                                                            Update
-                                                        </button>
-
-                                                        <button className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white] ms-2' onClick={() => setdeletemodal(true) || setdeletemodaldata(items)}>
-                                                            Delete
-                                                        </button>
+                                                        <input id='aboutparagraphrheading' autoComplete='true' maxLength={100} defaultValue={updatemodaldata.About_Heading} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Heading', e.target.value)} />
                                                     </div>
-                                                </section>
 
-                                            </section>
-                                        )
-                                    })
-                            }
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="aboutparagraphdescription">
+                                                            About Paragraph Description
+                                                        </label>
+                                                        <input id='aboutparagraphdescription' autoComplete='true' maxLength={300} defaultValue={updatemodaldata.About_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Description', e.target.value)} />
+                                                    </div>
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="aboutimage">
+                                                            About Image
+                                                        </label>
+
+                                                        <input id='aboutimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Image', e.target.files[0])} />
+                                                    </div>
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-end mt-[20px]'>
+                                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                                        Submit
+                                                    </button>
+
+                                                    <div className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setupdatemodal(false)}>
+                                                        Cancel
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </section>
+                                </section>
+                                :
+                                null
+                        }
+
+
+                        {
+                            deletemodal ?
+                                <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
+                                    <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
+                                        <div className=' border-b-[1px] border-[black] pb-1'>
+                                            <h3 className='text-[25px] font-[600]'>Delete Slide</h3>
+                                        </div>
+                                        <div className='py-4'>
+                                            <p>Are you sure to delete a slide?</p>
+                                        </div>
+                                        <div>
+                                            <div className='w-[100%] flex justify-end mt-[20px]'>
+                                                <button type='submit' className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => deletedata(deletemodaldata)}>
+                                                    Delete
+                                                </button>
+
+                                                <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setdeletemodal(false)}>
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </section>
+                                :
+                                null
+                        }
+
+                        <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
+                            <AdminSidebar />
+                            <section className='w-[100%] h-[100%]'>
+                                <AdminHeader />
+
+                                <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
+                                    <section className='w-[100%] px-3'>
+                                        <div className='text-[25px] flex items-center'>
+                                            <FaInfo />
+                                            <h1 className='font-[600] ms-2'>
+                                                About Us
+                                            </h1>
+                                        </div>
+                                        <div className='font-[500] text-[15px]'>
+                                            <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Paragraph Section</span></p>
+                                        </div>
+                                    </section>
+
+                                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                                        <p className='font-[600] text-[grey] mb-[20px]'> About Paragraph Section</p>
+
+                                        {
+                                            aboutdata.length === 0 ?
+                                                <div className='text-center font-[600] text-[grey]'>
+                                                    No Data Found
+                                                </div>
+
+                                                :
+                                                aboutdata.map((items, index) => {
+                                                    return (
+                                                        <section className='mb-[50px]' key={index}>
+                                                            {
+                                                                items.About_Image || items.About_Image !== null ?
+                                                                    <section className=''>
+
+                                                                        <section key={index} className='home_about_us w-[100%] py-[20px] px-[20px] flex'>
+                                                                            <section className='w-[30%] flex justify-center items-center'>
+                                                                                <section className='w-[300px]'>
+                                                                                    <img src={imgurl + items.About_Image} alt="" className='w-[100%]' />
+                                                                                </section>
+                                                                            </section>
+                                                                            <section className='w-[70%] uppercase'>
+                                                                                <h2 className='home_heading text-[30px] font-[700]'>
+                                                                                    {items.About_Heading}
+                                                                                </h2>
+                                                                                <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
+                                                                                    {items.About_Description}
+                                                                                </p>
+                                                                            </section>
+                                                                        </section>
+
+
+                                                                        <div>
+                                                                            <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
+                                                                                Update
+                                                                            </button>
+
+                                                                            <button className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white] ms-2' onClick={() => setdeletemodal(true) || setdeletemodaldata(items)}>
+                                                                                Delete
+                                                                            </button>
+                                                                        </div>
+                                                                    </section> :
+                                                                    <section className=''>
+                                                                        <section key={index} className='home_about_us w-[100%] py-[20px] px-[20px] flex'>
+                                                                            <section className='w-[100%] uppercase'>
+                                                                                <h2 className='home_heading text-[30px] font-[700]'>
+                                                                                    {items.About_Heading}
+                                                                                </h2>
+                                                                                <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
+                                                                                    {items.About_Description}
+                                                                                </p>
+                                                                            </section>
+                                                                        </section>
+
+
+                                                                        <div>
+                                                                            <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
+                                                                                Update
+                                                                            </button>
+
+                                                                            <button className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white] ms-2' onClick={() => setdeletemodal(true) || setdeletemodaldata(items)}>
+                                                                                Delete
+                                                                            </button>
+                                                                        </div>
+                                                                    </section>
+                                                            }
+                                                        </section>
+                                                    )
+                                                })
+                                        }
+                                    </section>
+                                </section>
+                            </section>
                         </section>
-                    </section>
-                </section>
-            </section>
+                    </>
+            }
             <Toaster />
         </>
     )

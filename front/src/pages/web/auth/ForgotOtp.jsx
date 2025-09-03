@@ -3,15 +3,16 @@ import { Logo } from '../../../common/Logo'
 import { useLocation, useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { apiurl } from '../../../apiurl/Apiurl'
+import { Loader } from '../../../common/Loader'
 
 
 export function ForgotOtp() {
     let [seconds, setseconds] = useState(60)
     let location = useLocation()
     let email = location.state
-
     let [otp, setotp] = useState(new Array(4).fill(''))
     let inputrefs = useRef([])
+    let [loader, setloader] = useState(false)
 
     useEffect(() => {
         if (seconds === 0) return;
@@ -26,6 +27,8 @@ export function ForgotOtp() {
     useEffect(() => {
         firstfocus()
     }, [])
+
+
     let firstfocus = () => {
         if (inputrefs.current[0]) {
             inputrefs.current[0].focus()
@@ -34,7 +37,6 @@ export function ForgotOtp() {
 
 
 
-    let [loader, setloader] = useState(false)
 
 
     let notificationsuccess = (success) => toast.success(success)
@@ -89,16 +91,14 @@ export function ForgotOtp() {
                     if (res.data.Status === 1) {
                         document.cookie = `forgottoken=${res.data.Token}`
                         notificationsuccess(res.data.Message)
-                        console.log(res.data.Token)
                         setotp(["", "", "", ""])
-                        setloader(false)
                         navigate("/change-password", { state: email })
                     }
                     else {
                         notificationerror(res.data.Message)
                         setotp(["", "", "", ""])
-                        setloader(false)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -113,6 +113,7 @@ export function ForgotOtp() {
 
 
     let resendotp = () => {
+        setloader(true)
         try {
             let finaldata = {
                 Email: email
@@ -122,12 +123,11 @@ export function ForgotOtp() {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
                         setseconds(60)
-                        setloader(false)
                     }
                     else {
                         notificationerror(res.data.Message)
-                        setloader(false)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -139,57 +139,63 @@ export function ForgotOtp() {
     }
     return (
         <>
-            <section className='login_main w-[100%] h-[100vh] flex p-2'>
-                <section className='login_banner w-[50%] bg-white rounded-[10px]'>
-                </section>
-                <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
-                    <div className='w-[80%]'>
-                        <div className='w-[100%]'>
-                            <div className='w-[160px] mb-4  m-auto'>
-                                <Logo />
-                            </div>
-                            <h1 className='text-[30px] font-[600] text-center'>OTP VERIFICATION</h1>
-                            <p className='register_subheading text-center mt-2 text-[17px] font-[600]'>We've sent a 4-digit code to your email <br /> ( {email} ). Please enter it below to verify</p>
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='login_main w-[100%] h-[100vh] flex p-2'>
+                        <section className='login_banner w-[50%] bg-white rounded-[10px]'>
+                        </section>
+                        <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
+                            <div className='w-[80%]'>
+                                <div className='w-[100%]'>
+                                    <div className='w-[160px] mb-4  m-auto'>
+                                        <Logo />
+                                    </div>
+                                    <h1 className='text-[30px] font-[600] text-center'>OTP VERIFICATION</h1>
+                                    <p className='register_subheading text-center mt-2 text-[17px] font-[600]'>We've sent a 4-digit code to your email <br /> ( {email} ). Please enter it below to verify</p>
 
-                        </div>
-
-                        <section className='register_form mt-5 flex justify-center'>
-                            <div className=' w-[100%] flex items-center justify-center flex-col'>
-                                <div className='w-[80%] flex justify-between'>
-                                    {
-                                        otp.map((items, index) => {
-                                            return (
-                                                <div key={index} className='  mt-[15px] flex'>
-                                                    <input
-                                                        type={"text"}
-                                                        maxLength={1}
-                                                        autoComplete="true"
-                                                        ref={(el) => inputrefs.current[index] = el}
-                                                        onChange={(e) => handlechange(e, index)}
-                                                        onKeyDown={(e) => handlekeydown(e, index)}
-                                                        value={otp[index]}
-                                                        className='otp_inputs w-[80px] h-[80px] border-[2px] mt-1 border-[orange] p-3 rounded-[12px] text-[14px] text-center'
-                                                    />
-                                                </div>
-
-                                            )
-                                        })
-                                    }
                                 </div>
 
-                                <div className='w-[80%] mt-[20px]'>
-                                    <button type='submit' onClick={() => insertdata(otp)} className='w-[100%] bg-[black] text-[white] text-[18px] font-[500] py-3 rounded-[10px]'>VERIFY</button>
-                                </div>
+                                <section className='register_form mt-5 flex justify-center'>
+                                    <div className=' w-[100%] flex items-center justify-center flex-col'>
+                                        <div className='w-[80%] flex justify-between'>
+                                            {
+                                                otp.map((items, index) => {
+                                                    return (
+                                                        <div key={index} className=' mt-[15px] flex'>
+                                                            <input
+                                                                type={"text"}
+                                                                maxLength={1}
+                                                                autoComplete="true"
+                                                                ref={(el) => inputrefs.current[index] = el}
+                                                                onChange={(e) => handlechange(e, index)}
+                                                                onKeyDown={(e) => handlekeydown(e, index)}
+                                                                id={`otpinput${index}`}
+                                                                value={otp[index]}
+                                                                className='otp_inputs w-[80px] h-[80px] border-[2px] mt-1 border-[orange] p-3 rounded-[12px] text-[14px] text-center'
+                                                            />
+                                                        </div>
 
-                                <div className='register_bottom_content w-[80%] mt-[20px] text-center flex justify-center items-center text-[15px]'>
-                                    <p className='font-[600] text-[grey]'>00 :</p>&nbsp;<p className=' font-[600]'>{seconds === 0 ? <p className=' cursor-pointer' onClick={() => resendotp()}>Resend</p> : seconds}</p>
-                                </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+
+                                        <div className='w-[80%] mt-[20px]'>
+                                            <button type='submit' onClick={() => insertdata(otp)} className='w-[100%] bg-[black] text-[white] text-[18px] font-[500] py-3 rounded-[10px]'>VERIFY</button>
+                                        </div>
+
+                                        <div className='register_bottom_content w-[80%] mt-[20px] text-center flex justify-center items-center text-[15px]'>
+                                            <p className='font-[600] text-[grey]'>00 :</p>&nbsp;<span className=' font-[600]'>{seconds === 0 ? <p className=' cursor-pointer' onClick={() => resendotp()}>Resend</p> : seconds}</span>
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
                         </section>
-                    </div>
-                </section>
-                <Toaster />
-            </section>
+                        <Toaster />
+                    </section>
+            }
         </>
     )
 }

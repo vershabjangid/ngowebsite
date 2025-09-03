@@ -1,19 +1,27 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 export function DashAddAboutBanner() {
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             About_Banner_Heading: "",
             About_Banner_Description: "",
             About_Banner_Image: ""
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                About_Banner_Heading: "",
+                About_Banner_Description: "",
+                About_Banner_Image: ""
+            })
         }
     })
 
@@ -34,6 +42,7 @@ export function DashAddAboutBanner() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
         }
         catch (error) {
@@ -43,55 +52,59 @@ export function DashAddAboutBanner() {
 
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'> About Banner Section</p>
+            {
+                loader ?
+                    <Loader /> :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'> About Banner Section</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Banner Heading
-                                </label>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutbannerheading">
+                                            About Banner Heading
+                                        </label>
 
-                                <input maxLength={100} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Heading', e.target.value)} />
+                                        <input id='aboutbannerheading' autoComplete='true' maxLength={100} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Heading', e.target.value)} />
 
-                            </div>
+                                    </div>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Banner Paragraph
-                                </label>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutbannerparagraph">
+                                            About Banner Paragraph
+                                        </label>
 
-                                <input maxLength={300} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Description', e.target.value)} />
+                                        <input id='aboutbannerparagraph' autoComplete='true' maxLength={300} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Description', e.target.value)} />
 
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Banner Image
-                                </label>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutbannerimage">
+                                            About Banner Image
+                                        </label>
 
-                                <input type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Image', e.target.files[0])} />
-                            </div>
-                        </div>
+                                        <input id='aboutbannerimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Image', e.target.files[0])} />
+                                    </div>
+                                </div>
 
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
 
-                            <Link to={"/view-about-banner"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                                    <Link to={"/view-about-banner"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
 
         </>

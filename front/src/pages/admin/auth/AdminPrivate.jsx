@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { apiurl, getCookie } from '../../../apiurl/Apiurl';
 import { Navigate, Outlet } from 'react-router-dom';
+import { Loader } from '../../../common/Loader';
 
 export function AdminPrivate() {
+
+    let [loader, setloader] = useState(false)
     let checksession = () => {
         try {
             apiurl.post('/admin/check-admin-session')
@@ -13,7 +16,9 @@ export function AdminPrivate() {
                     else {
                         document.cookie = 'admintoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                         window.location.reload()
+
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -26,13 +31,28 @@ export function AdminPrivate() {
 
     useEffect(() => {
         checksession()
+        setloader(true)
     }, [])
 
 
     if (getCookie('admintoken') !== undefined && getCookie('admintoken') !== null) {
-        return <Outlet />
+        return (
+            <>
+                {
+                    loader ? <Loader /> :
+                        <Outlet />
+                }
+            </>
+        )
     }
     else {
-        return <Navigate to={"/admin-login"} />
+        return (
+            <>
+                {
+                    loader ? <Loader /> :
+                        <Navigate to={"/admin-login"} />
+                }
+            </>
+        )
     }
 }

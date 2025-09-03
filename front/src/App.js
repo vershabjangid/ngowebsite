@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Home } from './pages/web/pages/Home';
 import { AdminLogin } from './pages/admin/auth/AdminLogin';
-import { Dashboard } from './pages/admin/pages/Dashboard';
 import { AdminPrivate } from './pages/admin/auth/AdminPrivate';
 import { DashHome } from './pages/admin/pages/DashHome';
 import { DashViewHomeBanner } from './pages/admin/pages/dashboard home/view/DashViewHomeBanner';
@@ -77,6 +76,7 @@ import { Profile } from './pages/web/pages/userpanel/Profile';
 import { WebDashboardTransactions } from './pages/webadmin/pages/WebDashboardTransactions';
 import { WebDashboardMembershipTransactions } from './pages/webadmin/pages/WebDashboardMembershipTransactions';
 import { Receipt } from './pages/web/pages/userpanel/Receipt';
+import { MembershipReceipt } from './pages/web/pages/userpanel/MembershipReceipt';
 
 function App() {
   return (
@@ -110,6 +110,7 @@ function App() {
             <Route path="/membership-transactions" element={<ViewMembershipTransactions />} />
             <Route path="/profile" element={<Profile />} />
             <Route path='/receipt' element={<Receipt />} />
+            <Route path='/membership-receipt' element={<MembershipReceipt />} />
           </Route>
         </Route>
 

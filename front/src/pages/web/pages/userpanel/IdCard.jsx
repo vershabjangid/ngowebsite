@@ -6,16 +6,14 @@ import { UserContext } from '../Context/UserDataContext'
 import { Logo } from '../../../../common/Logo'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { useReactToPrint } from 'react-to-print'
-import { useNavigate } from 'react-router-dom'
 
 export function IdCard() {
     let { user } = useContext(UserContext)
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
-
     return (
         <>
-            <section className='w-[100%] h-[100vh] border-[1px] border-[red] bg-[#f3f1f1]'>
+            <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                 <Header />
                 <section className='flex h-[calc(100%-90px)] border-t-[1px] overflow-y-scroll'>
                     <Sidebar />

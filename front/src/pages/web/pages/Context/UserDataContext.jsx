@@ -2,13 +2,13 @@ import React, { createContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { apiurl, getCookie } from '../../../../apiurl/Apiurl'
+import { Loader } from '../../../../common/Loader';
 export const UserContext = createContext();
 
 export function UserDataContext(props) {
     let notificationerror = (error) => toast.error(error)
-
     let navigate = useNavigate()
-
+    let [loader, setloader] = useState(false)
     const [user, setUser] = useState({ Id: null });
 
     let fetch = async () => {
@@ -41,7 +41,7 @@ export function UserDataContext(props) {
                     notificationerror(res.userdatas.Message)
                     navigate('/membership')
                 }
-
+                setloader(false)
             })
             .catch((error) => {
                 console.log(error)
@@ -51,13 +51,20 @@ export function UserDataContext(props) {
 
     useEffect(() => {
         finalfetch()
+        setloader(true)
     }, [])
 
     return (
         <>
             <UserContext.Provider value={{ user }}>
-                {props.children}
-                <Outlet />
+                {
+                    loader ?
+                        <Loader /> :
+                        <>
+                            {props.children}
+                            < Outlet />
+                        </>
+                }
             </UserContext.Provider>
         </>
     )

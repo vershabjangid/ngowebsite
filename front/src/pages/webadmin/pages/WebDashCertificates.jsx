@@ -26,7 +26,6 @@ export function WebDashCertificates() {
                         </section>
 
                         <DashAddCertificate />
-                        {/*  <DashSendPersonalNotice /> */}
                     </section>
                 </section>
             </section>

@@ -36,7 +36,7 @@ export function QuickLinks() {
                                 </li>
 
                                 <li className=''>
-                                    <Link to={"/certificate"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
+                                    <Link to={"/certificates"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                         Certificate
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={certificate} alt="" />

@@ -4,16 +4,23 @@ import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 
 export function DashAddAboutParagraph() {
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             About_Section_Id: "",
             About_Paragraph: ""
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                About_Section_Id: "",
+                About_Paragraph: ""
+            })
         }
     })
 
@@ -34,6 +41,7 @@ export function DashAddAboutParagraph() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
         }
         catch (error) {
@@ -49,6 +57,7 @@ export function DashAddAboutParagraph() {
             apiurl.get('/admin/view-about-paragraph-section')
                 .then((res) => {
                     setaboutdata(res.data.viewdata)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -61,60 +70,65 @@ export function DashAddAboutParagraph() {
 
     useEffect(() => {
         viewdata()
+        setloader(true)
     }, [])
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'>Add About Paragraph</p>
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'>Add About Paragraph</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Choose Paragraph Section
-                                </label>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutparagraphsection">
+                                            Choose Paragraph Section
+                                        </label>
 
-                                <select type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Section_Id', e.target.value)} >
-                                    <option value="">Choose Option</option>
-                                    {
-                                        aboutdata.length === 0 ?
-                                            null :
-                                            aboutdata.map((items, index) => {
-                                                return (
-                                                    <option key={index} value={items._id}>{items.About_Heading}</option>
-                                                )
-                                            })
-                                    }
-                                </select>
+                                        <select id='aboutparagraphsection' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Section_Id', e.target.value)} >
+                                            <option value="">Choose Option</option>
+                                            {
+                                                aboutdata.length === 0 ?
+                                                    null :
+                                                    aboutdata.map((items, index) => {
+                                                        return (
+                                                            <option key={index} value={items._id}>{items.About_Heading}</option>
+                                                        )
+                                                    })
+                                            }
+                                        </select>
 
-                            </div>
+                                    </div>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Paragraph
-                                </label>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutparagraph">
+                                            About Paragraph
+                                        </label>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Paragraph', e.target.value)} />
-
-                            </div>
-                        </div>
-
+                                        <input autoComplete='true' id='aboutparagraph' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Paragraph', e.target.value)} />
+                                    </div>
+                                </div>
 
 
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
 
-                            <Link to={"/view-all-about-paragraph"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
+
+                                    <Link to={"/view-all-about-paragraph"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
         </>
     )

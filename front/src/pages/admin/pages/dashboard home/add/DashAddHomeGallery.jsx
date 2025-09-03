@@ -1,12 +1,16 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 export function DashAddHomeGallery() {
+
+    let [loader, setloader] = useState(false)
+
     let formik = useFormik({
         initialValues: {
             Home_Gallery_Heading: "",
@@ -19,8 +23,13 @@ export function DashAddHomeGallery() {
         }),
 
 
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                Home_Gallery_Heading: "",
+                Home_Gallery_Description: ""
+            })
         }
     })
 
@@ -41,6 +50,7 @@ export function DashAddHomeGallery() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -52,48 +62,52 @@ export function DashAddHomeGallery() {
     }
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'> Home Gallery Section</p>
-                <p className='my-[20px] text-[15px]'>This section allows you to add a heading and a short paragraph to highlight your galley. Use it to share your moments.</p>
+            {
+                loader ?
+                    <Loader /> :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'> Home Gallery Section</p>
+                        <p className='my-[20px] text-[15px]'>This section allows you to add a heading and a short paragraph to highlight your galley. Use it to share your moments.</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Home Gallery Heading
-                                </label>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="homegalleryheading">
+                                            Home Gallery Heading
+                                        </label>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Gallery_Heading', e.target.value)} />
-                                <div className='text-[#ff6780]'>
-                                    {formik.errors.Home_Gallery_Heading}
+                                        <input id='homegalleryheading' autoComplete='true' max={100} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Gallery_Heading', e.target.value)} />
+                                        <div className='text-[#ff6780]'>
+                                            {formik.errors.Home_Gallery_Heading}
+                                        </div>
+                                    </div>
+
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="homegallerydescription">
+                                            Home Gallery Description
+                                        </label>
+
+                                        <input id='homegallerydescription' autoComplete='true' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Gallery_Description', e.target.value)} />
+                                        <div className='text-[#ff6780]'>
+                                            {formik.errors.Home_Gallery_Description}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Home Gallery Description
-                                </label>
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Gallery_Description', e.target.value)} />
-                                <div className='text-[#ff6780]'>
-                                    {formik.errors.Home_Gallery_Description}
+                                    <Link to={"/view-home-gallery"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
-
-                            <Link to={"/view-home-gallery"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
         </>
     )

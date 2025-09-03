@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Logo } from '../../../common/Logo'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
@@ -6,13 +6,14 @@ import toast, { Toaster } from 'react-hot-toast'
 import { apiurl } from '../../../apiurl/Apiurl'
 import * as Yup from 'yup'
 import { FaEye, FaEyeSlash } from 'react-icons/fa6'
+import { Loader } from '../../../common/Loader'
 
 export function Login() {
 
     let labelname = ["Email Address", "Password"]
     let inputname = ["Email", "Password"]
     let inputtype = ["email", "password"]
-    // let [loader, setloader] = useState(false)
+    let [loader, setloader] = useState(false)
     let [eye, seteye] = useState(false)
 
 
@@ -27,9 +28,12 @@ export function Login() {
             Password: Yup.string().required("Password is required")
         }),
         onSubmit: (values, { resetForm }) => {
-            // setloader(true)
+            setloader(true)
             insertdata(formik.values)
-
+            resetForm({
+                Email: "",
+                Password: ""
+            })
         }
     })
 
@@ -42,19 +46,17 @@ export function Login() {
                 .then((res) => {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
-                        // setloader(false)
                         document.cookie = `logintoken=${res.data.Token}`
                         navigate('/user-dashboard')
                     }
                     else if (res.data.Status === 2) {
                         notificationsuccess(res.data.Message)
-                        // setloader(false)
                         navigate(`/otp-verification`, { state: value.Email })
                     }
                     else {
                         notificationerror(res.data.Message)
-                        // setloader(false)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -64,75 +66,85 @@ export function Login() {
             console.log(error)
         }
     }
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <>
-            <section className='login_main w-[100%] h-[100vh] flex p-2'>
-                <section className='login_banner w-[50%] bg-white rounded-[10px]'>
-                </section>
-                <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
-                    <div className='w-[80%]'>
-                        <div className='w-[100%]'>
-                            <div className='w-[160px] mb-4 m-auto'>
-                                <Logo />
-                            </div>
-                            <h1 className='text-[30px] font-[600] text-center'>Sign In</h1>
-                            <p className='text-center mb-[40px]'>Please enter your details to Sign In</p>
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='login_main w-[100%] h-[100vh] flex p-2'>
+                        <section className='login_banner w-[50%] bg-white rounded-[10px]'>
+                        </section>
+                        <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
+                            <div className='w-[80%]'>
+                                <div className='w-[100%]'>
+                                    <div className='w-[160px] mb-4 m-auto'>
+                                        <Logo />
+                                    </div>
+                                    <h1 className='text-[30px] font-[600] text-center'>Sign In</h1>
+                                    <p className='text-center mb-[40px]'>Please enter your details to Sign In</p>
 
-                        </div>
-                        <form action="" className='w-[100%]' onSubmit={formik.handleSubmit}>
-                            {
-                                inputname.map((items, index) => {
-                                    return (
-                                        <div key={index} className='register_form_section w-[100%] mt-[15px]'>
-                                            <label className='text-[15px] font-[600]'>{labelname[index]}</label>
-                                            {
-                                                inputtype[index] === "password" ?
-                                                    <section className='relative'>
-                                                        <input type={eye ? "text" : inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 pe-[50px] rounded-[10px] text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
-                                                        <div className='absolute top-[50%] text-[20px] translate-y-[-50%] right-[20px]'>
-                                                            {
-                                                                eye ? <FaEyeSlash onClick={() => seteye(false)} className=' cursor-pointer' />
-                                                                    :
-                                                                    <FaEye onClick={() => seteye(true)} className=' cursor-pointer' />
-                                                            }
-                                                        </div>
-                                                    </section>
-                                                    :
-                                                    <input type={inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
-                                            }
-                                            <div className='text-[red] mt-[5px]'>
-                                                {
-                                                    inputname[index] === "Email" ?
-                                                        formik.errors.Email :
-                                                        inputname[index] === "Password" ?
-                                                            formik.errors.Password :
-                                                            null
-                                                }
-                                            </div>
-                                        </div>
+                                </div>
+                                <form action="" className='w-[100%]' onSubmit={formik.handleSubmit}>
+                                    {
+                                        inputname.map((items, index) => {
+                                            return (
+                                                <div key={index} className='register_form_section w-[100%] mt-[15px]'>
+                                                    <label className='text-[15px] font-[600]' htmlFor={items}>{labelname[index]}</label>
+                                                    {
+                                                        inputtype[index] === "password" ?
+                                                            <section className='relative'>
+                                                                <input id={items} type={eye ? "text" : inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 pe-[50px] rounded-[10px] text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                                <div className='absolute top-[50%] text-[20px] translate-y-[-50%] right-[20px]'>
+                                                                    {
+                                                                        eye ? <FaEyeSlash onClick={() => seteye(false)} className=' cursor-pointer' />
+                                                                            :
+                                                                            <FaEye onClick={() => seteye(true)} className=' cursor-pointer' />
+                                                                    }
+                                                                </div>
+                                                            </section>
+                                                            :
+                                                            <input id={items} type={inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                    }
+                                                    <div className='text-[red] mt-[5px]'>
+                                                        {
+                                                            inputname[index] === "Email" ?
+                                                                formik.errors.Email :
+                                                                inputname[index] === "Password" ?
+                                                                    formik.errors.Password :
+                                                                    null
+                                                        }
+                                                    </div>
+                                                </div>
 
-                                    )
-                                })
-                            }
+                                            )
+                                        })
+                                    }
 
-                            <div className='text-end my-6'>
-                                <Link to={"/forgot-password"} className='font-[500] text-end'>
-                                    Forgot Password?
-                                </Link>
+                                    <div className='text-end my-6'>
+                                        <Link to={"/forgot-password"} className='font-[500] text-end'>
+                                            Forgot Password?
+                                        </Link>
+                                    </div>
+                                    <div className='mt-[15px]'>
+                                        <button type='submit' className='border-[1px] border-[black] w-[100%] p-1 py-2 mt-1 rounded-[10px] text-white bg-[black] font-[600]'>
+                                            Sign In
+                                        </button>
+                                    </div>
+                                </form>
+                                <p className='mt-4 text-center font-[500]'>
+                                    Doesn't have an account? <Link to={"/sign-up"} className='font-[600]'>Sign Up</Link>
+                                </p>
                             </div>
-                            <div className='mt-[15px]'>
-                                <button className='border-[1px] border-[black] w-[100%] p-1 py-2 mt-1 rounded-[10px] text-white bg-[black] font-[600]'>
-                                    Sign In
-                                </button>
-                            </div>
-                        </form>
-                        <p className='mt-4 text-center font-[500]'>
-                            Doesn't have an account? <Link to={"/sign-up"} className='font-[600]'>Sign Up</Link>
-                        </p>
-                    </div>
-                </section>
-                <Toaster />
-            </section>
+                        </section>
+                        <Toaster />
+                    </section>
+            }
         </>
     )
 }

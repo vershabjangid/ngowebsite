@@ -1,7 +1,6 @@
 import React from 'react'
 import { Logo } from './Logo'
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa6'
-import { FaYoutube } from 'react-icons/fa'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { ContactInfo } from './ContactInfo'

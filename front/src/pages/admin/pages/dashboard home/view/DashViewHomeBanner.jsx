@@ -6,17 +6,19 @@ import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { useFormik } from 'formik'
 import { toFormData } from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
+import { Loader } from '../../../../../common/Loader'
 export function DashViewHomeBanner() {
 
     let [bannerdata, setbannerdata] = useState([])
     let [imgurl, setimgurl] = useState([])
-
+    let [loader, setloader] = useState(false)
     let viewdata = () => {
         try {
             apiurl.get('/admin/view-home-banner')
                 .then((res) => {
                     setbannerdata(res.data.viewdata)
                     setimgurl(res.data.imgurl)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -29,6 +31,7 @@ export function DashViewHomeBanner() {
 
     useEffect(() => {
         viewdata()
+        setloader(true)
     }, [])
 
     // /update-home-banner
@@ -45,9 +48,15 @@ export function DashViewHomeBanner() {
             Home_Banner_Description: "",
             Home_Banner_Image: ""
         },
-        onSubmit: () => {
+        onSubmit: (values, { resetForm }) => {
             formik.values._id = updatemodaldata._id
             updatedata(formik.values)
+            resetForm({
+                _id: "",
+                Home_Banner_Heading: "",
+                Home_Banner_Description: "",
+                Home_Banner_Image: ""
+            })
         }
     })
 
@@ -56,6 +65,7 @@ export function DashViewHomeBanner() {
     let notificationsuccess = (success) => toast.success(success)
 
     let updatedata = (value) => {
+        setloader(true)
         try {
             apiurl.put('/admin/update-home-banner', toFormData(value), {
                 headers: {
@@ -66,11 +76,12 @@ export function DashViewHomeBanner() {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
                         viewdata()
-                        setupdatemodal(false)
                     }
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setupdatemodal(false)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -82,6 +93,7 @@ export function DashViewHomeBanner() {
     }
 
     let deletedata = (value) => {
+        setloader(true)
         try {
             apiurl.delete('/admin/delete-home-banner', {
                 data: value,
@@ -98,6 +110,7 @@ export function DashViewHomeBanner() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -110,168 +123,168 @@ export function DashViewHomeBanner() {
     return (
         <>
             {
-                updatemodal ?
-                    <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
-                        <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
-                            <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Update Slide</h3>
-                            </div>
-                            <div>
-                                <form onSubmit={formik.handleSubmit}>
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homebannerheading">
-                                                Home Banner Heading
-                                            </label>
-
-                                            <input maxLength={100} defaultValue={updatemodaldata.Home_Banner_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Banner_Heading', e.target.value)} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Banner_Heading}
-                                            </div>
+                loader ?
+                    <Loader /> :
+                    <>
+                        {
+                            updatemodal ?
+                                <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
+                                    <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
+                                        <div className=' border-b-[1px] border-[black] pb-1'>
+                                            <h3 className='text-[25px] font-[600]'>Update Home Slide</h3>
                                         </div>
-
-                                    </div>
-
-
-
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homebannerdescription">
-                                                Home Banner Description
-                                            </label>
-                                            <input id='homebannerdescription' defaultValue={updatemodaldata.Home_Banner_Description} maxLength={300} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Banner_Description', e.target.value)} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Banner_Description}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homeimage">
-                                                Home Banner Image
-                                            </label>
-
-                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Banner_Image', e.target.files[0])} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Banner_Image}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-end mt-[20px]'>
-                                        <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                            Submit
-                                        </button>
-
-                                        <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setupdatemodal(false)}>
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </section>
-                    </section>
-                    :
-                    null
-            }
-
-
-
-            {
-                deletemodal ?
-                    <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
-                        <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
-                            <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Delete Slide</h3>
-                            </div>
-                            <div className='py-4'>
-                                <p>Are you sure to delete a slide?</p>
-                            </div>
-                            <div>
-                                <div className='w-[100%] flex justify-end mt-[20px]'>
-                                    <button type='submit' className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => deletedata(deletemodaldata)}>
-                                        Delete
-                                    </button>
-
-                                    <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setdeletemodal(false)}>
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-                    </section>
-                    :
-                    null
-            }
-            <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
-                <AdminSidebar />
-                <section className='w-[100%] h-[100%]'>
-                    <AdminHeader />
-
-                    <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
-                        <section className='w-[100%] px-3'>
-                            <div className='text-[25px] flex items-center'>
-                                <FaHome />
-                                <h1 className='font-[600] ms-2'>
-                                    Home Banner Slides
-                                </h1>
-                            </div>
-                            <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>Home</span> / <span className='text-[#1385ff]'> Home Banner Slides</span></p>
-                            </div>
-                        </section>
-
-                        <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey] mb-[20px]'> Home Banner Slides</p>
-
-                            {
-                                bannerdata.length === 0 ?
-                                    <div className='text-center font-[600] text-[grey]'>
-                                        No Data Found
-                                    </div>
-
-                                    :
-                                    bannerdata.map((items, index) => {
-                                        return (
-
-                                            <section key={index} className='mb-[50px]'>
-                                                <section className=''>
+                                        <div>
+                                            <form onSubmit={formik.handleSubmit}>
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
                                                     <div className='w-[100%]'>
-                                                        <img src={imgurl + items.Home_Banner_Image} alt="" />
+                                                        <label className='font-[600]' htmlFor="homebannerheading">
+                                                            Home Banner Heading
+                                                        </label>
+
+                                                        <input autoComplete='true' maxLength={100} defaultValue={updatemodaldata.Home_Banner_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Banner_Heading', e.target.value)} />
+                                                        <div className='text-[#ff6780]'>
+                                                            {formik.errors.Home_Banner_Heading}
+                                                        </div>
                                                     </div>
 
-                                                    <div className='w-[100%] text-[black] my-2'>
-                                                        <p className='text-[30px] font-[700]'>
-                                                            {items.Home_Banner_Heading}
-                                                        </p>
-                                                        <p>{items.Home_Banner_Description}</p>
+                                                </div>
+
+
+
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="homebannerdescription">
+                                                            Home Banner Description
+                                                        </label>
+                                                        <input autoComplete='true' id='homebannerdescription' defaultValue={updatemodaldata.Home_Banner_Description} maxLength={300} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Banner_Description', e.target.value)} />
+                                                        <div className='text-[#ff6780]'>
+                                                            {formik.errors.Home_Banner_Description}
+                                                        </div>
                                                     </div>
+                                                </div>
 
-                                                    <div>
-                                                        <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
-                                                            Update
-                                                        </button>
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="homeimage">
+                                                            Home Banner Image
+                                                        </label>
 
-                                                        <button className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white] ms-2' onClick={() => setdeletemodal(true) || setdeletemodaldata(items)}>
-                                                            Delete
-                                                        </button>
+                                                        <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Banner_Image', e.target.files[0])} />
+                                                        <div className='text-[#ff6780]'>
+                                                            {formik.errors.Home_Banner_Image}
+                                                        </div>
                                                     </div>
-                                                </section>
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-end mt-[20px]'>
+                                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                                        Submit
+                                                    </button>
+
+                                                    <div className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setupdatemodal(false)}>
+                                                        Cancel
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </section>
+                                </section>
+                                :
+                                null
+                        }
 
 
-                                            </section>
 
-                                        )
-                                    })
-                            }
+                        {
+                            deletemodal ?
+                                <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
+                                    <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
+                                        <div className=' border-b-[1px] border-[black] pb-1'>
+                                            <h3 className='text-[25px] font-[600]'>Delete Slide</h3>
+                                        </div>
+                                        <div className='py-4'>
+                                            <p>Are you sure to delete a slide?</p>
+                                        </div>
+                                        <div>
+                                            <div className='w-[100%] flex justify-end mt-[20px]'>
+                                                <button type='submit' className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => deletedata(deletemodaldata)}>
+                                                    Delete
+                                                </button>
 
+                                                <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setdeletemodal(false)}>
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </section>
+                                :
+                                null
+                        }
+                        <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
+                            <AdminSidebar />
+                            <section className='w-[100%] h-[100%]'>
+                                <AdminHeader />
 
+                                <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
+                                    <section className='w-[100%] px-3'>
+                                        <div className='text-[25px] flex items-center'>
+                                            <FaHome />
+                                            <h1 className='font-[600] ms-2'>
+                                                Home Banner Slides
+                                            </h1>
+                                        </div>
+                                        <div className='font-[500] text-[15px]'>
+                                            <p>Dashboard / <span className='text-[#000000]'>Home</span> / <span className='text-[#1385ff]'> Home Banner Slides</span></p>
+                                        </div>
+                                    </section>
 
+                                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                                        <p className='font-[600] text-[grey] mb-[20px]'> Home Banner Slides</p>
+
+                                        {
+                                            bannerdata.length === 0 ?
+                                                <div className='text-center font-[600] text-[grey]'>
+                                                    No Data Found
+                                                </div>
+
+                                                :
+                                                bannerdata.map((items, index) => {
+                                                    return (
+
+                                                        <section key={index} className='mb-[50px]'>
+                                                            <section className=''>
+                                                                <div className='w-[100%]'>
+                                                                    <img src={imgurl + items.Home_Banner_Image} alt="" />
+                                                                </div>
+
+                                                                <div className='w-[100%] text-[black] my-2'>
+                                                                    <p className='text-[30px] font-[700]'>
+                                                                        {items.Home_Banner_Heading}
+                                                                    </p>
+                                                                    <p>{items.Home_Banner_Description}</p>
+                                                                </div>
+
+                                                                <div>
+                                                                    <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
+                                                                        Update
+                                                                    </button>
+
+                                                                    <button className='bg-[#ff1313] px-[20px] py-[10px] rounded-[30px] text-[white] ms-2' onClick={() => setdeletemodal(true) || setdeletemodaldata(items)}>
+                                                                        Delete
+                                                                    </button>
+                                                                </div>
+                                                            </section>
+                                                        </section>
+                                                    )
+                                                })
+                                        }
+                                    </section>
+                                </section>
+                            </section>
                         </section>
-                    </section>
-                </section>
-            </section>
+                    </>
+            }
             <Toaster />
         </>
     )

@@ -1,11 +1,13 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 export function DashAddNews() {
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             News_Heading: "",
@@ -13,8 +15,15 @@ export function DashAddNews() {
             News_Image: "",
             News_Additional_Links: ""
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                News_Heading: "",
+                News_Description: "",
+                News_Image: "",
+                News_Additional_Links: ""
+            })
         }
     })
 
@@ -35,6 +44,7 @@ export function DashAddNews() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
         }
         catch (error) {
@@ -43,63 +53,67 @@ export function DashAddNews() {
     }
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'> News Section</p>
+            {
+                loader ?
+                    <Loader /> :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'> News Section</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    News Heading
-                                </label>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="newsheading">
+                                            News Heading
+                                        </label>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Heading', e.target.value)} />
-                            </div>
-
-
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    News Image
-                                </label>
-
-                                <input type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Image', e.target.files[0])} />
-                            </div>
-
-                        </div>
-
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    News Paragraph
-                                </label>
-                                <textarea type="text" className='w-[100%] h-[200px] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Description', e.target.value)} />
-
-                            </div>
+                                        <input id='newsheading' autoComplete='true' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Heading', e.target.value)} />
+                                    </div>
 
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Additional Links
-                                </label>
-                                <input type="url" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Additional_Links', e.target.value)} />
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="newsimage">
+                                            News Image
+                                        </label>
 
-                            </div>
-                        </div>
+                                        <input id='newsimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Image', e.target.files[0])} />
+                                    </div>
 
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
+                                </div>
 
-                            <Link to={"/view-news"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="newsparagraph">
+                                            News Paragraph
+                                        </label>
+                                        <textarea id='newsparagraph' autoComplete='true' type="text" className='w-[100%] h-[200px] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Description', e.target.value)} />
+
+                                    </div>
+
+
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="additionallinks">
+                                            Additional Links
+                                        </label>
+                                        <input id='additionallinks' autoComplete='true' type="url" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Additional_Links', e.target.value)} />
+
+                                    </div>
+                                </div>
+
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
+
+                                    <Link to={"/view-news"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
         </>
     )

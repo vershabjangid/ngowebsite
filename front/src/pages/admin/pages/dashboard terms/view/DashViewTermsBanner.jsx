@@ -6,8 +6,10 @@ import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
 import { useFormik } from 'formik'
 import { LuClipboardList } from 'react-icons/lu'
+import { Loader } from '../../../../../common/Loader'
 
 export function DashViewTermsBanner() {
+    let [loader, setloader] = useState(false)
     let [imgurl, setimgurl] = useState([])
     let [aboutdata, setaboutdata] = useState([])
 
@@ -17,6 +19,7 @@ export function DashViewTermsBanner() {
                 .then((res) => {
                     setaboutdata(res.data.viewdata)
                     setimgurl(res.data.imgurl)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -29,6 +32,7 @@ export function DashViewTermsBanner() {
 
     useEffect(() => {
         viewdata()
+        setloader(true)
     }, [])
 
     // /update-about-banner
@@ -43,9 +47,16 @@ export function DashViewTermsBanner() {
             Terms_Banner_Description: "",
             Terms_Banner_Image: ""
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             formik.values._id = updatemodaldata._id
             updatedata(formik.values)
+            setloader(true)
+            resetForm({
+                _id: "",
+                Terms_Banner_Heading: "",
+                Terms_Banner_Description: "",
+                Terms_Banner_Image: ""
+            })
         }
     })
 
@@ -64,11 +75,12 @@ export function DashViewTermsBanner() {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
                         viewdata()
-                        setupdatemodal(false)
                     }
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setupdatemodal(false)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -82,129 +94,136 @@ export function DashViewTermsBanner() {
     return (
         <>
             {
-                updatemodal ?
-                    <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
-                        <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
-                            <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Update Terms Banner</h3>
-                            </div>
-                            <div>
-                                <form onSubmit={formik.handleSubmit}>
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homebannerheading">
-                                                Terms Banner Heading
-                                            </label>
-
-                                            <input maxLength={100} defaultValue={updatemodaldata.Terms_Banner_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Terms_Banner_Heading', e.target.value)} />
-                                        </div>
-
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homebannerdescription">
-                                                Terms Banner Description
-                                            </label>
-                                            <input maxLength={300} id='homebannerdescription' defaultValue={updatemodaldata.Terms_Banner_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Terms_Banner_Description', e.target.value)} />
-                                        </div>
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[100%]'>
-                                            <label htmlFor="homeimage">
-                                                Terms Banner
-                                            </label>
-
-                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Terms_Banner_Image', e.target.files[0])} />
-                                        </div>
-                                    </div>
-
-                                    <div className='w-[100%] flex justify-end mt-[20px]'>
-                                        <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                            Submit
-                                        </button>
-
-                                        <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setupdatemodal(false)}>
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </section>
-                    </section>
+                loader ?
+                    <Loader />
                     :
-                    null
-            }
+                    <>
+                        {
+                            updatemodal ?
+                                <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
+                                    <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
+                                        <div className=' border-b-[1px] border-[black] pb-1'>
+                                            <h3 className='text-[25px] font-[600]'>Update Terms Banner</h3>
+                                        </div>
+                                        <div>
+                                            <form onSubmit={formik.handleSubmit}>
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="termsbannerheading">
+                                                            Terms Banner Heading
+                                                        </label>
 
-
-            <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
-                <AdminSidebar />
-                <section className='w-[100%] h-[100%]'>
-                    <AdminHeader />
-
-                    <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
-                        <section className='w-[100%] px-3'>
-                            <div className='text-[25px] flex items-center'>
-                                <LuClipboardList />
-                                <h1 className='font-[600] ms-2'>
-                                    Terms & Conditions
-                                </h1>
-                            </div>
-                            <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>Terms & Conditions</span> / <span className='text-[#1385ff]'>Terms Banner Section</span></p>
-                            </div>
-                        </section>
-
-                        <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey] mb-[20px]'> About Terms Section</p>
-
-                            {
-                                aboutdata === null ?
-                                    <div className='text-center font-[600] text-[grey]'>
-                                        No Data Found
-                                    </div>
-
-                                    :
-                                    aboutdata.map((items, index) => {
-                                        return (
-                                            <section className='mb-[50px]'>
-                                                <section className=''>
-
-                                                    <section key={index} className='home_Terms_us w-[100%] py-[20px] px-[20px] flex'>
-                                                        <section className='w-[30%] flex justify-center items-center'>
-                                                            <section className='w-[300px]'>
-                                                                <img src={imgurl + items.Terms_Banner_Image} alt="" className='w-[100%]' />
-                                                            </section>
-                                                        </section>
-                                                        <section className='w-[70%] uppercase'>
-                                                            <h2 className='home_heading text-[30px] font-[700]'>
-                                                                {items.Terms_Banner_Heading}
-                                                            </h2>
-                                                            <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
-                                                                {items.Terms_Banner_Description}
-                                                            </p>
-                                                        </section>
-                                                    </section>
-
-
-                                                    <div>
-                                                        <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
-                                                            Update
-                                                        </button>
+                                                        <input id='termsbannerheading' autoComplete='true' maxLength={100} defaultValue={updatemodaldata.Terms_Banner_Heading} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Terms_Banner_Heading', e.target.value)} />
                                                     </div>
-                                                </section>
 
-                                            </section>
-                                        )
-                                    })
-                            }
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="termsbannerdescription">
+                                                            Terms Banner Description
+                                                        </label>
+                                                        <input maxLength={300} id='termsbannerdescription' autoComplete='true' defaultValue={updatemodaldata.Terms_Banner_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Terms_Banner_Description', e.target.value)} />
+                                                    </div>
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                                    <div className='w-[100%]'>
+                                                        <label className='font-[600]' htmlFor="termsimage">
+                                                            Terms Banner
+                                                        </label>
+
+                                                        <input id='termsimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Terms_Banner_Image', e.target.files[0])} />
+                                                    </div>
+                                                </div>
+
+                                                <div className='w-[100%] flex justify-end mt-[20px]'>
+                                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                                        Submit
+                                                    </button>
+
+                                                    <button className='bg-[grey] px-[20px] ms-2 py-[10px] rounded-[30px] text-[#ffffff]' onClick={() => setupdatemodal(false)}>
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </section>
+                                </section>
+                                :
+                                null
+                        }
 
 
+                        <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
+                            <AdminSidebar />
+                            <section className='w-[100%] h-[100%]'>
+                                <AdminHeader />
+
+                                <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
+                                    <section className='w-[100%] px-3'>
+                                        <div className='text-[25px] flex items-center'>
+                                            <LuClipboardList />
+                                            <h1 className='font-[600] ms-2'>
+                                                Terms & Conditions
+                                            </h1>
+                                        </div>
+                                        <div className='font-[500] text-[15px]'>
+                                            <p>Dashboard / <span className='text-[#000000]'>Terms & Conditions</span> / <span className='text-[#1385ff]'>Terms Banner Section</span></p>
+                                        </div>
+                                    </section>
+
+                                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                                        <p className='font-[600] text-[grey] mb-[20px]'> About Terms Section</p>
+
+                                        {
+                                            aboutdata === null ?
+                                                <div className='text-center font-[600] text-[grey]'>
+                                                    No Data Found
+                                                </div>
+
+                                                :
+                                                aboutdata.map((items, index) => {
+                                                    return (
+                                                        <section className='mb-[50px]'>
+                                                            <section className=''>
+
+                                                                <section key={index} className='home_Terms_us w-[100%] py-[20px] px-[20px] flex'>
+                                                                    <section className='w-[30%] flex justify-center items-center'>
+                                                                        <section className='w-[300px]'>
+                                                                            <img src={imgurl + items.Terms_Banner_Image} alt="" className='w-[100%]' />
+                                                                        </section>
+                                                                    </section>
+                                                                    <section className='w-[70%] uppercase'>
+                                                                        <h2 className='home_heading text-[30px] font-[700]'>
+                                                                            {items.Terms_Banner_Heading}
+                                                                        </h2>
+                                                                        <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
+                                                                            {items.Terms_Banner_Description}
+                                                                        </p>
+                                                                    </section>
+                                                                </section>
+
+
+                                                                <div>
+                                                                    <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
+                                                                        Update
+                                                                    </button>
+                                                                </div>
+                                                            </section>
+
+                                                        </section>
+                                                    )
+                                                })
+                                        }
+
+
+                                    </section>
+                                </section>
+                            </section>
                         </section>
-                    </section>
-                </section>
-            </section>
+                    </>
+            }
             <Toaster />
         </>
     )

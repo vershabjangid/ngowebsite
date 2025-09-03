@@ -27,6 +27,7 @@ export function Header() {
                     else {
                         document.cookie = 'logintoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -39,11 +40,13 @@ export function Header() {
 
     useEffect(() => {
         checksession()
+        setloader(true)
     }, [])
 
     let notificationerror = (error) => toast.error(error)
     let notificationsuccess = (success) => toast.success(success)
     let logout = (value) => {
+        setloader(true)
         try {
             apiurl.post('/user/logout', value, {
                 headers: {
@@ -58,6 +61,7 @@ export function Header() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -89,7 +93,7 @@ export function Header() {
                             <section className='flex items-center'>
                                 <div className='head_btn flex justify-center items-center relative'>
                                     {
-                                        cookie ?
+                                        getCookie('logintoken') && cookie ?
                                             <section className='relative'>
                                                 <section className='w-[50px] h-[50px] rounded-[50%] overflow-hidden border-[1px] border-[grey]' onClick={() => setsidebar(!sidebar)} >
                                                     {
@@ -106,7 +110,7 @@ export function Header() {
                                                         <section className='desktop_megamenu w-[270px] h-[375px] overflow-y-scroll text-white p-2 rounded-[15px] right-0 absolute bg-[black] top-[125%] z-[99999]'>
 
                                                             {
-                                                                cookie === 1 ?
+                                                                getCookie('logintoken') && cookie === 1 ?
 
                                                                     <div className='w-[100%] flex items-center py-3 cursor-pointer text-white border-b-[1px]'>
                                                                         <div className='w-[100%]'>
@@ -166,7 +170,7 @@ export function Header() {
                                                             }
 
                                                             {
-                                                                cookie === 1 ?
+                                                                getCookie('logintoken') && cookie === 1 ?
                                                                     <>
                                                                         <Link to={"/membership"} className='flex items-center py-3 border-b-[1px]'>
 
@@ -335,7 +339,7 @@ export function Header() {
                                     </section>
 
                                     {
-                                        cookie === 1 ?
+                                        getCookie('logintoken') && cookie === 1 ?
 
                                             <div className='w-[100%] flex items-center py-3 cursor-pointer text-white border-b-[1px]'>
                                                 <div className='w-[100%]'>
@@ -391,7 +395,7 @@ export function Header() {
 
                                     <section className='text-[white] pb-[60px]'>
                                         {
-                                            cookie === 1 ?
+                                            getCookie('logintoken') && cookie === 1 ?
                                                 <>
                                                     <Link to={"/membership"} className='flex items-center py-3 border-b-[1px]'>
 

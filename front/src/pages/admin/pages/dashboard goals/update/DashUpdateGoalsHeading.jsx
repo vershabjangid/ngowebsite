@@ -7,11 +7,12 @@ import toast, { Toaster } from 'react-hot-toast'
 import { AdminSidebar } from '../../../../../common/AdminSidebar'
 import { AdminHeader } from '../../../../../common/AdminHeader'
 import { GoGoal } from 'react-icons/go'
+import { Loader } from '../../../../../common/Loader'
 
 export function DashUpdateGoalsHeading() {
     let location = useLocation()
     let data = location.state
-
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             _id: "",
@@ -19,9 +20,15 @@ export function DashUpdateGoalsHeading() {
             Home_Card_Paragraph_Heading: "",
         },
 
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             formik.values._id = data._id
             updateparagraphdata(formik.values)
+            setloader(true)
+            resetForm({
+                _id: "",
+                Home_Card_Id: "",
+                Home_Card_Paragraph_Heading: "",
+            })
         }
     })
 
@@ -48,6 +55,7 @@ export function DashUpdateGoalsHeading() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -67,6 +75,7 @@ export function DashUpdateGoalsHeading() {
             apiurl.get('/admin/view-goals-card')
                 .then((res) => {
                     sethomegoalscarddata(res.data.viewdata)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -79,77 +88,83 @@ export function DashUpdateGoalsHeading() {
 
     useEffect(() => {
         viewdata()
+        setloader(true)
     }, [])
 
 
     return (
         <>
-            <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
-                <AdminSidebar />
-                <section className='w-[100%] h-[100%]'>
-                    <AdminHeader />
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
+                        <AdminSidebar />
+                        <section className='w-[100%] h-[100%]'>
+                            <AdminHeader />
 
 
-                    <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
-                        <section className='w-[100%] px-3'>
-                            <div className='text-[25px] flex items-center'>
-                                <GoGoal />
-                                <h1 className='font-[600] ms-2'>
-                                    Goals
-                                </h1>
-                            </div>
-                            <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / Goals / Home Goals Cards / <span className='text-[#1385ff]'>Update Goals Paragraph Heading</span></p>
-                            </div>
-                        </section>
-
-                        <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey]'> Home Update Goals Paragraph Heading</p>
-
-                            <section className='w-[100%] '>
-                                <form onSubmit={formik.handleSubmit}>
-                                    <div className='w-[100%] flex justify-between my-[10px]'>
-                                        <div className='w-[48%]'>
-                                            <label htmlFor="">
-                                                Choose Card
-                                            </label>
-
-                                            <select defaultValue={data.Home_Card_Id} className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Card_Id', e.target.value)} >
-                                                <option>Choose Option</option>
-                                                {
-                                                    homegoalscarddata.length === 0 ?
-                                                        null :
-                                                        homegoalscarddata.map((items, index) => {
-                                                            return (
-                                                                <option key={index} value={items._id}>{items.Home_Goals_Heading}</option>
-                                                            )
-                                                        })
-                                                }
-                                            </select>
-                                        </div>
-
-
-                                        <div className='w-[48%]'>
-                                            <label htmlFor="">
-                                                Content  Heading
-                                            </label>
-
-                                            <input defaultValue={data.Home_Card_Paragraph_Heading} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Card_Paragraph_Heading', e.target.value)} />
-                                        </div>
+                            <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
+                                <section className='w-[100%] px-3'>
+                                    <div className='text-[25px] flex items-center'>
+                                        <GoGoal />
+                                        <h1 className='font-[600] ms-2'>
+                                            Goals
+                                        </h1>
                                     </div>
-
-                                    <div className='w-[100%] flex justify-between mt-[20px]'>
-                                        <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                            Submit
-                                        </button>
+                                    <div className='font-[500] text-[15px]'>
+                                        <p>Dashboard / Goals / Home Goals Cards / <span className='text-[#1385ff]'>Update Goals Paragraph Heading</span></p>
                                     </div>
-                                </form>
+                                </section>
+
+                                <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                                    <p className='font-[600] text-[grey]'> Home Update Goals Paragraph Heading</p>
+
+                                    <section className='w-[100%] '>
+                                        <form onSubmit={formik.handleSubmit}>
+                                            <div className='w-[100%] flex justify-between my-[10px]'>
+                                                <div className='w-[48%]'>
+                                                    <label className='font-[600]' htmlFor="choosecard">
+                                                        Choose Card
+                                                    </label>
+
+                                                    <select id='choosecard' defaultValue={data.Home_Card_Id} className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Card_Id', e.target.value)} >
+                                                        <option>Choose Option</option>
+                                                        {
+                                                            homegoalscarddata.length === 0 ?
+                                                                null :
+                                                                homegoalscarddata.map((items, index) => {
+                                                                    return (
+                                                                        <option key={index} value={items._id}>{items.Home_Goals_Heading}</option>
+                                                                    )
+                                                                })
+                                                        }
+                                                    </select>
+                                                </div>
+
+
+                                                <div className='w-[48%]'>
+                                                    <label className='font-[600]' htmlFor="choosecardheading">
+                                                        Content  Heading
+                                                    </label>
+
+                                                    <input id='choosecardheading' autoComplete='true' defaultValue={data.Home_Card_Paragraph_Heading} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Card_Paragraph_Heading', e.target.value)} />
+                                                </div>
+                                            </div>
+
+                                            <div className='w-[100%] flex justify-between mt-[20px]'>
+                                                <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </section>
+                                </section>
                             </section>
+
                         </section>
                     </section>
-
-                </section>
-            </section>
+            }
             <Toaster />
         </>
     )

@@ -1,20 +1,28 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 
 export function DashAddContactBanner() {
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             Contact_Banner_Heading: "",
             Contact_Banner_Description: "",
             Contact_Banner_Image: ""
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                Contact_Banner_Heading: "",
+                Contact_Banner_Description: "",
+                Contact_Banner_Image: ""
+            })
         }
     })
 
@@ -35,6 +43,7 @@ export function DashAddContactBanner() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
         }
         catch (error) {
@@ -43,55 +52,60 @@ export function DashAddContactBanner() {
     }
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'> Contact Banner Section</p>
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'> Contact Banner Section</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Contact Banner Heading
-                                </label>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="contactbannerheading">
+                                            Contact Banner Heading
+                                        </label>
 
-                                <input maxLength={100} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Contact_Banner_Heading', e.target.value)} />
+                                        <input id='contactbannerheading' autoComplete='true' maxLength={100} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Contact_Banner_Heading', e.target.value)} />
 
-                            </div>
+                                    </div>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Contact Banner Paragraph
-                                </label>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="contactbannerparagraph">
+                                            Contact Banner Paragraph
+                                        </label>
 
-                                <input maxLength={300} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Contact_Banner_Description', e.target.value)} />
+                                        <input id='contactbannerparagraph' autoComplete='contactbannerparagraph' maxLength={300} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Contact_Banner_Description', e.target.value)} />
 
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Contact Banner Image
-                                </label>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="contactbanner">
+                                            Contact Banner Image
+                                        </label>
 
-                                <input type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Contact_Banner_Image', e.target.files[0])} />
-                            </div>
-                        </div>
+                                        <input id='contactbanner' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Contact_Banner_Image', e.target.files[0])} />
+                                    </div>
+                                </div>
 
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
 
-                            <Link to={"/view-contact-banner"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                                    <Link to={"/view-contact-banner"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
         </>
     )

@@ -1,13 +1,15 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 
 export function DashAddGoals() {
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             Home_Goals_Heading: "",
@@ -25,8 +27,14 @@ export function DashAddGoals() {
         }),
 
 
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                Home_Goals_Heading: "",
+                Home_Goals_Description: "",
+                Home_Goals_Card_Icon: ""
+            })
         }
     })
 
@@ -47,6 +55,7 @@ export function DashAddGoals() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -58,63 +67,67 @@ export function DashAddGoals() {
     }
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'> Home Add Goals</p>
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'> Home Add Goals</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Card Heading
-                                </label>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="goalscardheading">
+                                            Card Heading
+                                        </label>
+                                        <input id='goalscardheading' autoComplete='true' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Goals_Heading', e.target.value)} />
+                                        <div className='text-[#ff6780]'>
+                                            {formik.errors.Home_Goals_Heading}
+                                        </div>
+                                    </div>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Goals_Heading', e.target.value)} />
-                                <div className='text-[#ff6780]'>
-                                    {formik.errors.Home_Goals_Heading}
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="goalscarddescription">
+                                            Card Description
+                                        </label>
+
+                                        <input id='goalscarddescription' autoComplete='true' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Goals_Description', e.target.value)} />
+                                        <div className='text-[#ff6780]'>
+                                            {formik.errors.Home_Goals_Description}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Card Description
-                                </label>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Goals_Description', e.target.value)} />
-                                <div className='text-[#ff6780]'>
-                                    {formik.errors.Home_Goals_Description}
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+
+
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="goalscardicon">
+                                            Card Icon
+                                        </label>
+
+                                        <input id='goalscardicon' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Goals_Card_Icon', e.target.files[0])} />
+                                        <div className='text-[#ff6780]'>
+                                            {formik.errors.Home_Goals_Card_Icon}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
 
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-
-
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    Card Icon
-                                </label>
-
-                                <input type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Goals_Card_Icon', e.target.files[0])} />
-                                <div className='text-[#ff6780]'>
-                                    {formik.errors.Home_Goals_Card_Icon}
+                                    <Link to={"/view-home-Goals-cards"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
-
-                            <Link to={"/view-home-Goals-cards"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
         </>
     )

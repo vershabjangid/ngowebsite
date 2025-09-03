@@ -1,19 +1,27 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { Loader } from '../../../../../common/Loader'
 
 export function DashAddParagraph() {
+    let [loader, setloader] = useState(false)
     let formik = useFormik({
         initialValues: {
             About_Heading: "",
             About_Description: "",
             About_Image: ""
         },
-        onSubmit: () => {
+        onSubmit: (value, { resetForm }) => {
             insertdata(formik.values)
+            setloader(true)
+            resetForm({
+                About_Heading: "",
+                About_Description: "",
+                About_Image: ""
+            })
         }
     })
 
@@ -36,6 +44,7 @@ export function DashAddParagraph() {
                     else {
                         notificationerror(res.data.Message)
                     }
+                    setloader(false)
                 })
         }
         catch (error) {
@@ -44,56 +53,61 @@ export function DashAddParagraph() {
     }
     return (
         <>
-            <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                <p className='font-[600] text-[grey]'>Add Paragraph Section</p>
+            {
+                loader ?
+                    <Loader />
+                    :
+                    <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
+                        <p className='font-[600] text-[grey]'>Add Paragraph Section</p>
 
-                <section className='w-[100%] '>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className='w-[100%] flex justify-between my-[10px]'>
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Paragraph Heading
-                                </label>
+                        <section className='w-[100%] '>
+                            <form onSubmit={formik.handleSubmit}>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutparagraphheading">
+                                            About Paragraph Heading
+                                        </label>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Heading', e.target.value)} />
+                                        <input id='aboutparagraphheading' autoComplete='true' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Heading', e.target.value)} />
 
-                            </div>
+                                    </div>
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Paragraph
-                                </label>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutparagraph">
+                                            About Paragraph
+                                        </label>
 
-                                <input type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Description', e.target.value)} />
+                                        <input id='aboutparagraph' autoComplete='true' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Description', e.target.value)} />
 
-                            </div>
-                        </div>
-
-
-                        <div className='w-[100%] flex justify-between my-[10px]'>
+                                    </div>
+                                </div>
 
 
-                            <div className='w-[48%]'>
-                                <label htmlFor="">
-                                    About Image
-                                </label>
+                                <div className='w-[100%] flex justify-between my-[10px]'>
 
-                                <input type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Image', e.target.files[0])} />
-                            </div>
-                        </div>
 
-                        <div className='w-[100%] flex justify-between mt-[20px]'>
-                            <button className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                Submit
-                            </button>
+                                    <div className='w-[48%]'>
+                                        <label className='font-[600]' htmlFor="aboutimage">
+                                            About Image
+                                        </label>
 
-                            <Link to={"/view-about-paragraph"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
-                                View Data
-                            </Link>
-                        </div>
-                    </form>
-                </section>
-            </section>
+                                        <input id='aboutimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Image', e.target.files[0])} />
+                                    </div>
+                                </div>
+
+                                <div className='w-[100%] flex justify-between mt-[20px]'>
+                                    <button type='submit' className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        Submit
+                                    </button>
+
+                                    <Link to={"/view-about-paragraph"} className='bg-[#1385ff] px-[20px] py-[10px] rounded-[30px] text-[white]'>
+                                        View Data
+                                    </Link>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+            }
             <Toaster />
 
         </>
