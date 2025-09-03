@@ -106,9 +106,8 @@ export function Gallery() {
                                         {
                                             homegalleryimagesdata.map((items, index) => {
                                                 return (
-
-                                                    <section key={index} className="home_gallery_cards w-[32%] flex items-start justify-center py-2 px-[10px] mt-[20px]">
-                                                        <section className='home_management_card w-[100%] shadow m-auto overflow-hidden rounded-[20px]' >
+                                                    <section key={index} className="home_gallery_cards w-[32%]  h-[auto] flex items-start justify-center py-2 px-[10px] mt-[20px]">
+                                                        <section className='home_management_card w-[100%]  h-[auto] shadow m-auto overflow-hidden rounded-[20px]' >
                                                             <section className='w-[100%] h-[auto] rounded-b-[10px]'>
                                                                 <img src={imgurl + items.Gallery_Event_Image} alt="" className='w-[100%] h-[100%]' />
                                                             </section>
@@ -119,7 +118,6 @@ export function Gallery() {
                                                             </section>
                                                         </section>
                                                     </section>
-
                                                 )
                                             })
                                         }
