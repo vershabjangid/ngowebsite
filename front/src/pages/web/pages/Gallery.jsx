@@ -109,7 +109,7 @@ export function Gallery() {
 
                                                     <section key={index} className="home_gallery_cards w-[32%] flex items-start justify-center py-2 px-[10px] mt-[20px]">
                                                         <section className='home_management_card w-[100%] shadow m-auto overflow-hidden rounded-[20px]' >
-                                                            <section className='w-[100%] h-[250px] rounded-b-[10px]'>
+                                                            <section className='w-[100%] h-[auto] rounded-b-[10px]'>
                                                                 <img src={imgurl + items.Gallery_Event_Image} alt="" className='w-[100%] h-[100%]' />
                                                             </section>
                                                             <section className='p-3 bg-[#ffffff82] backdrop-blur-[2]'>
