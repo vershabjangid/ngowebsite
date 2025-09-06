@@ -77,6 +77,8 @@ import { WebDashboardTransactions } from './pages/webadmin/pages/WebDashboardTra
 import { WebDashboardMembershipTransactions } from './pages/webadmin/pages/WebDashboardMembershipTransactions';
 import { Receipt } from './pages/web/pages/userpanel/Receipt';
 import { MembershipReceipt } from './pages/web/pages/userpanel/MembershipReceipt';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (

@@ -13,6 +13,10 @@ import Slider from 'react-slick'
 import { TbUsersPlus } from 'react-icons/tb'
 import { Donation } from './Donation'
 import { Loader } from '../../../common/Loader'
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+
 export function Home() {
 
     let [bannerdata, setbannerdata] = useState([])
@@ -21,7 +25,7 @@ export function Home() {
     let [homemanagement, sethomemanagement] = useState([])
     let [homemanagementprofiles, sethomemanagementprofiles] = useState([])
     let [homegallerydata, sethomegallerydata] = useState([])
-    let [homemanagementprofiledata, sethomemanagementprofiledata] = useState([])
+    let [hometeamprofiledata, sethometeamprofiledata] = useState([])
     let [homegoalscarddata, sethomegoalscarddata] = useState([])
     let [homegalleryimagesdata, sethomegalleryimagesdata] = useState([])
     let [homegoalscardheading, sethomegoalscardheading] = useState([])
@@ -81,7 +85,7 @@ export function Home() {
                     sethomemanagementprofiles(res.homemanagementprofiles)
                     sethomemanagement(res.homemanagement)
                     sethomegallerydata(res.homegallery)
-                    sethomemanagementprofiledata(res.hometeamsprofiles)
+                    sethometeamprofiledata(res.hometeamsprofiles)
                     sethomegoalscarddata(res.homegoalscard)
                     sethomegalleryimagesdata(res.homegalleryimages)
                     sethomegoalscardheading(res.fetchcardparagraphheadingdata)
@@ -117,45 +121,6 @@ export function Home() {
         height: "100%"
     };
 
-
-
-    var managementsettings = {
-        dots: false,
-        infinite: homemanagementprofiledata.length <= 4 ? false : true,
-        speed: 500,
-        arrows: false,
-        autoplay: true,
-        slidesToScroll: 1,
-        slidesToShow: 4,
-        width: "100%",
-        height: "100%",
-        responsive: [
-            {
-                breakpoint: 1290,
-                settings: {
-                    slidesToShow: 3,
-                    infinite: homemanagementprofiledata.length <= 3 ? false : true,
-                }
-            },
-            {
-                breakpoint: 1060,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    infinite: homemanagementprofiledata.length <= 2 ? false : true,
-                }
-            },
-
-            {
-                breakpoint: 753,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    infinite: homemanagementprofiledata.length <= 1 ? false : true,
-                }
-            },
-        ]
-    };
 
 
     let [status, setstatus] = useState(0)
@@ -372,27 +337,48 @@ export function Home() {
                                         </p>
                                     </section>
 
-                                    <section className='mt-2 w-[100%] '>
-                                        <Slider {...managementsettings} className='w-[100%] h-[100%]'>
+                                    <section className='mt-2 w-[100%] flex justify-between'>
+                                        <Swiper
+                                            spaceBetween={20}
+                                            slidesPerView={4}
+                                            breakpoints={{
+
+                                                1224: {
+                                                    slidesPerView: 4,
+                                                },
+                                                1024: {
+                                                    slidesPerView: 3,
+                                                },
+                                                768: {
+                                                    slidesPerView: 2,
+                                                },
+                                                0: {
+                                                    slidesPerView: 1,
+                                                },
+                                            }}
+                                            className='w-[100%]'
+                                        >
                                             {
                                                 homemanagementprofiles.map((items, ind) => {
                                                     return (
-                                                        <section className="w-[100px] items-center justify-center py-[30px]">
-                                                            <section className='home_management_card w-[300px] h-[480px]  m-auto overflow-hidden rounded-[20px]' >
-                                                                <section className='w-[100%] h-[300px] rounded-b-[10px]'>
-                                                                    <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='w-[100%] h-[100%]' />
-                                                                </section>
-                                                                <section className='h-[100%] p-3 bg-[#ffffff82] backdrop-blur-[2]'>
-                                                                    <p className='font-[700] text-[20px] capitalize'>{items.Home_Management_Profile_Name}</p>
-                                                                    <p className='font-[600] text-[14px] text-[#1385ff] capitalize'>{items.Home_Management_Profile_Designation}</p>
-                                                                    <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description.slice(0, 180)} <Link className='text-[#3970de] font-[600]' to={'/about'}>Readmore...</Link></p>
+                                                        <SwiperSlide className='w-[full] '>
+                                                            <section className=" flex items-center justify-center py-[30px]">
+                                                                <section className='home_management_card h-[480px]  overflow-hidden rounded-[20px]' >
+                                                                    <section className='w-[100%] h-[300px] rounded-b-[10px]'>
+                                                                        <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='w-[100%] h-[100%]' />
+                                                                    </section>
+                                                                    <section className='h-[100%] p-3 bg-[#ffffff82] backdrop-blur-[2]'>
+                                                                        <p className='font-[700] text-[20px] capitalize'>{items.Home_Management_Profile_Name}</p>
+                                                                        <p className='font-[600] text-[14px] text-[#1385ff] capitalize'>{items.Home_Management_Profile_Designation}</p>
+                                                                        <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description.slice(0, 180)} <Link className='text-[#3970de] font-[600]' to={'/about'}>Readmore...</Link></p>
+                                                                    </section>
                                                                 </section>
                                                             </section>
-                                                        </section>
+                                                        </SwiperSlide>
                                                     )
                                                 })
                                             }
-                                        </Slider>
+                                        </Swiper>
                                     </section>
                                 </section>
                         }
@@ -451,7 +437,7 @@ export function Home() {
 
                         {/* {
 
-                    hometeamdata === null || homemanagementprofiledata.length === 0 ?
+                    hometeamdata === null || hometeamprofiledata.length === 0 ?
                         null :
                         <section className='home_management_profile_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black]'>
                             <section className='w-[100%] text-center'>
@@ -467,7 +453,7 @@ export function Home() {
                             <section className='mt-2 w-[100%] '>
                                 <Slider {...managementsettings} className='w-[100%] h-[100%]'>
                                     {
-                                        homemanagementprofiledata.map((items, ind) => {
+                                        hometeamprofiledata.map((items, ind) => {
                                             return (
                                                 <section className="w-[30%] flex items-center justify-center py-[30px]">
                                                     <section className='home_management_card w-[300px] border-[1px] border-[black] m-auto overflow-hidden rounded-[20px]' >

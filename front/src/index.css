@@ -199,8 +199,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 
-.home_news_events_outer_section{
-    background: linear-gradient(20deg, white, #7cbcfc, white);
+.home_news_events_outer_section {
+  background: linear-gradient(20deg, white, #7cbcfc, white);
 }
 
 /* From Uiverse.io by Nawsome */
@@ -396,3 +396,21 @@ input[type="range"]::-webkit-slider-thumb {
   }
 }
 
+
+
+
+
+
+/* 
+<section className="w-[300px]  py-[30px]">
+                                                            <section className='home_management_card w-[300px] h-[480px]  m-auto overflow-hidden rounded-[20px]' >
+                                                                <section className='w-[100%] h-[300px] rounded-b-[10px]'>
+                                                                    <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='w-[100%] h-[100%]' />
+                                                                </section>
+                                                                <section className='w-[100%] h-[100%] p-3 bg-[#ffffff82] backdrop-blur-[2]'>
+                                                                    <p className='font-[700] text-[20px] capitalize'>{items.Home_Management_Profile_Name}</p>
+                                                                    <p className='font-[600] text-[14px] text-[#1385ff] capitalize'>{items.Home_Management_Profile_Designation}</p>
+                                                                    <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description.slice(0, 180)} <Link className='text-[#3970de] font-[600]' to={'/about'}>Readmore...</Link></p>
+                                                                </section>
+                                                            </section>
+                                                        </section> */
