@@ -7,7 +7,7 @@ import { apiurl, getCookie } from '../../../apiurl/Apiurl';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../../common/Loader';
-
+import * as Yup from 'yup'
 
 export function Donation() {
 
@@ -25,7 +25,16 @@ export function Donation() {
             Amount: "",
 
         },
-
+        validationSchema: Yup.object().shape({
+            Name: Yup.string().required("Name is required"),
+            Email: Yup.string().email("Invalid email").required("Email is required"),
+            Phone: Yup.number().min(1000000000, "Invalid number").max(9999999999, "Invalid number").required("Phone number is required"),
+            Address: Yup.string().required("Address is required"),
+            Pan_No: Yup.string().required("Pancard no is required"),
+            Bank_Name: Yup.string().required("Bank name is required"),
+            Bank_Branch: Yup.string().required("Bank branch is required"),
+            Amount: Yup.string().min(100, "Minimum Donation amount is ₹ 100").max(100000, "Maximum Donation amount is ₹ 100000").required("Amount is required")
+        }),
         onSubmit: () => {
             formik.values.Amount = donation
             insertdata(formik.values)
@@ -156,38 +165,44 @@ export function Donation() {
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationname'>Name</label>
                                                     <input id='donationname' type="text" autoComplete='true' className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Name', e.target.value)} />
-
+                                                    <div className='text-[red] mt-1'>{formik.errors.Name}</div>
                                                 </div>
 
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationemail'>Email address</label>
                                                     <input id='donationemail' type="email" autoComplete='true' className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Email', e.target.value)} />
+                                                    <div className='text-[red] mt-1'>{formik.errors.Email}</div>
                                                 </div>
 
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor="donationmobile">Mobile.no</label>
                                                     <input id='donationmobile' autoComplete='true' type="number" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Phone', e.target.value)} />
+                                                    <div className='text-[red] mt-1'>{formik.errors.Phone}</div>
                                                 </div>
 
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationaddress'>Residential address</label>
                                                     <input id='donationaddress' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Address', e.target.value)} />
+                                                    <div className='text-[red] mt-1'>{formik.errors.Address}</div>
                                                 </div>
 
 
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationpancard'>Pancard.no</label>
                                                     <input id='donationpancard' autoComplete='true' type="text" maxLength={10} className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Pan_No', e.target.value)} />
+                                                    <div className='text-[red] mt-1'>{formik.errors.Pan_No}</div>
                                                 </div>
 
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationbankname'>Bank Name</label>
                                                     <input id='donationbankname' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Bank_Name', e.target.value)} />
+                                                    <div className='text-[red] mt-1'>{formik.errors.Bank_Name}</div>
                                                 </div>
 
                                                 <div className='text-[#1385ff] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationbankbranch'>Branch Name</label>
                                                     <input id='donationbankbranch' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Bank_Branch', e.target.value)} />
+                                                    <div className='text-[red] mt-1'>{formik.errors.Bank_Branch}</div>
                                                 </div>
                                             </section>
                                         </section>
