@@ -341,6 +341,7 @@ export function Home() {
                                         <Swiper
                                             spaceBetween={20}
                                             slidesPerView={4}
+                                            centeredSlides={homemanagementprofiles.length === 1 ? true : false}
                                             breakpoints={{
 
                                                 1224: {
