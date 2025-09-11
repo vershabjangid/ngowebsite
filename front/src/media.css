@@ -23,12 +23,68 @@
 }
 
 
+@media screen and (max-width:1368px) {
+    .home_banner {
+        width: 550px;
+        height: 550px;
+        margin: 20px 0px;
+    }
+}
+
+
+
+@media screen and (max-width:1240px) {
+    .home_banner {
+        width: 500px;
+        height: 500px;
+    }
+
+    .home_banner_heading {
+        font-size: 40px;
+    }
+
+    .home_banner_description {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
 @media screen and (max-width:1150px) {
 
 
     .dashboard_status_cards_section>div {
         width: 45% !important;
         margin: 20px 10px;
+    }
+
+    .Slide_home_overlay {
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    .Slide_home_overlay>section {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .home_banner_section {
+        width: 100%;
+    }
+
+
+
+    .home_banner {
+        width: 1000px;
+        height: 1000px;
+    }
+
+    .counter_section {
+        margin-top: 20px;
+        margin-bottom: 50px;
     }
 }
 
@@ -45,30 +101,36 @@
     .login_profile_banner {
         display: none;
     }
+
+    .home_banner {
+        width: 800px;
+        height: 800px;
+    }
 }
+
 @media screen and (max-width:1290px) {
-.home_management_card{
-width: 330px;
-}
+    .home_management_card {
+        width: 330px;
+    }
 }
 
 
 @media screen and (max-width:1060px) {
-.home_management_card{
-width: 350px;
-}
+    .home_management_card {
+        width: 350px;
+    }
 
-.home_gallery_cards{
-    width: 49%;
-}
+    .home_gallery_cards {
+        width: 49%;
+    }
 
-.home_gallery_cards>section{
-    width: 100%;
-}
+    .home_gallery_cards>section {
+        width: 100%;
+    }
 
-.donation_form_section{
-    width: 97%;
-}
+    .donation_form_section {
+        width: 97%;
+    }
 }
 
 
@@ -79,8 +141,25 @@ width: 350px;
         flex-direction: column;
     }
 
+    .about_us_section {
+        padding: 10px 15px;
+    }
+
     .home_about_us>section {
         width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .quick_links_section {
+        padding: 20px;
+    }
+
+    .home_management_profile_section {
+        padding: 20px;
+    }
+
+    .home_gallery_section {
+        padding: 20px;
     }
 
     .about_content_left {
@@ -102,23 +181,27 @@ width: 350px;
         width: 100%;
     }
 
-    .home_our_goals_section{
+    .home_our_goals_section {
         flex-direction: column;
     }
 
-    .home_our_goals_section>section{
+    .home_our_goals_section>section {
         width: 100%;
         margin-top: 10px;
         height: auto;
     }
 
-    .home_our_goals_content_section>p{
+    .home_our_goals_content_section>p {
         margin-top: 20px;
     }
 
 
-        .home_our_goals_content_section>section>li{
-       font-size: 15px;
+    .home_our_goals_content_section>section>li {
+        font-size: 15px;
+    }
+
+    .Quick_cards_sections {
+        width: 47%;
     }
 }
 
@@ -156,49 +239,54 @@ width: 350px;
         height: auto;
     }
 
-    .slider_main{
-        height: auto;
-    }
 
-    .Slide_home{
-        height: 500px;
-    }
 
-    .Slide_home>section{
-        height:500px;
-    }
-
-    .Slide_home_overlay{
-        height: 100% !important;
-        padding: 0;
-    }
-
-    .Slider_content_section>section>h1{
-          text-align: start;
+    .Slider_content_section>section>h1 {
+        text-align: start;
         font-size: 30px;
-        margin:10px 0px;
+        margin: 10px 0px;
         margin-top: 15px;
     }
 
-     .Slider_content_section>section>p{
+    .Slider_content_section>section>p {
         text-align: start;
         font-size: 15px;
     }
 
-    .slider_btn_section{
-justify-content:start ;
+    .slider_btn_section {
+        justify-content: start;
     }
 
-    .slider_btn{
+    .slider_btn {
         font-size: 12px;
-       padding: 8px;
+        padding: 8px;
     }
 }
 
 @media screen and (max-width:920px) {
+
+    /* header css  */
+    .header_options {
+        display: none;
+    }
+
+
     .menubar {
         display: block;
         margin-left: 10px;
+    }
+
+    .sidebar {
+        display: block;
+    }
+
+
+    /* home page */
+
+
+    .home_banner {
+        width: 600px;
+        height: 600px;
     }
 
     .register_header_btn {
@@ -246,21 +334,22 @@ justify-content:start ;
     }
 
 
-    .donation_form_section{
+    .donation_form_section {
         flex-direction: column;
     }
-.donation_form_section>section{
-width: 100%;
-}
 
-.about_inner_section{
-    flex-direction: column;
-}
+    .donation_form_section>section {
+        width: 100%;
+    }
 
-.about_inner_section>section{
-    width: 100%;
-    height: auto;
-}
+    .about_inner_section {
+        flex-direction: column;
+    }
+
+    .about_inner_section>section {
+        width: 100%;
+        height: auto;
+    }
 }
 
 
@@ -287,6 +376,15 @@ width: 100%;
     .register_subheading {
         font-size: 14px;
     }
+
+    .home_banner {
+        width: 500px;
+        height: 500px;
+    }
+
+    .Quick_cards_sections {
+        width: 100%;
+    }
 }
 
 
@@ -304,10 +402,20 @@ width: 100%;
         width: 60px;
     } */
 
+
+    .home_banner {
+        width: 450px;
+        height: 450px;
+    }
+
+
     .head_login_btn {
         font-size: 12px;
         display: none;
     }
+
+
+
 
     .quick_links_btn {
         display: none;
@@ -318,27 +426,21 @@ width: 100%;
     }
 
 
-    .footer_company_label{
+    .footer_company_label {
         padding-top: 30px !important;
         padding-bottom: 140px !important;
     }
 
-    .donate_now_btn{
+    .donate_now_btn {
         bottom: 75px !important;
     }
 
-    .home_heading {
-        font-size: 25px;
-        text-align: center;
-    }
 
     .home_logo_section {
         width: 100px;
     }
 
-    .home_heading {
-        font-size: 30px;
-    }
+
 
     .home_sub_heading {
         font-size: 20px;
@@ -352,12 +454,18 @@ width: 100%;
         padding: 20px 10px;
     }
 
-    .home_gallery_cards{
-    width: 100%;
-}
+    .home_gallery_cards {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width:530px) {
+
+
+    .home_banner {
+        width: 400px;
+        height: 400px;
+    }
 
     .home_banner_slides {
         height: auto;
@@ -386,16 +494,19 @@ width: 100%;
     .payment_overlay>section {
         height: 100%;
     }
+
+    .counter_value {
+        font-size: 18px;
+    }
+
+    .counter_title {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width:470px) {
     .home_logo_section {
         width: 70px;
-    }
-
-    .home_heading {
-        width: 100%;
-        font-size: 25px;
     }
 
     .home_sub_heading {
@@ -406,10 +517,16 @@ width: 100%;
         width: 100%;
     }
 
-     .donation_form_section{
+    .donation_form_section {
         flex-direction: column;
         width: 100%;
     }
+
+    .home_banner {
+        width: 300px;
+        height: 300px;
+    }
+
 }
 
 @media screen and (max-width:430px) {
@@ -424,10 +541,6 @@ width: 100%;
     .login_right>div {
         width: 100% !important;
     }
-}
-
-
-@media screen and (max-width:430px) {
 
     .header_heading {
         font-size: 12px;
@@ -436,14 +549,19 @@ width: 100%;
     .header_sub_heading {
         font-size: 8px;
     }
+
+    .counter_value {
+        font-size: 16px;
+    }
+
+    .counter_title {
+        font-size: 12px;
+    }
 }
 
 
 
 @media screen and (max-width:400px) {
-    .home_banner {
-        height: auto;
-    }
 
     .home_banner>section {
         padding: 30px 10px;
@@ -453,43 +571,42 @@ width: 100%;
         width: 100%;
     }
 
-    .megamenu_btn {
-        width: 90%;
-    }
-
-    .home_heading {
-        font-size: 20px;
-        text-align: center;
-        width: 100%;
-    }
-
     .megamenu {
         width: 100%;
         height: 100vh;
     }
 
-    .home_management_card{
-width: 95%
-}
+    .home_management_card {
+        width: 95%
+    }
 
-.home_management_profile_section{
-    padding: 5px;
-}
+    .home_management_profile_section {
+        padding: 10px;
+    }
 
-.donation_value_section>div{
-    width: 49%;
-}
+    .donation_value_section>div {
+        width: 49%;
+    }
 
 }
 
 
 @media screen and (max-width:460px) {
-.donation_label_section{
-    flex-direction: column;
+    .donation_label_section {
+        flex-direction: column;
+    }
+
+    .donation_label_section>section {
+        width: 99%;
+        margin-top: 10px;
+    }
 }
 
-.donation_label_section>section{
-    width: 99%;
-    margin-top: 10px;
-}
+
+
+@media screen and (max-width:352px) {
+    .home_banner {
+        width: 280px;
+        height: 280px;
+    }
 }

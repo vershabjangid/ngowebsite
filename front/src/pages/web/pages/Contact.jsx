@@ -8,7 +8,6 @@ import { ContactInfo } from '../../../common/ContactInfo'
 import toast, { Toaster } from 'react-hot-toast'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
-import { QuickLinks } from './QuickLinks'
 import { FaChevronRight } from 'react-icons/fa6'
 import { Loader } from '../../../common/Loader'
 export function Contact() {
@@ -37,7 +36,7 @@ export function Contact() {
                 .then((res) => {
                     setcontactbannerdata(res.contactbannerdata)
                     setimageurl(res.imgurl)
-                     setloader(false)
+                    setloader(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -74,7 +73,7 @@ export function Contact() {
         validationSchema: Yup.object().shape({
             Full_Name: Yup.string().required("Full name is required"),
             Email: Yup.string().email("Invalid Email").required("Email is required"),
-            Phone: Yup.number().min(6000000000,"Invalid Number").max(9999999999,"Invalid Number").required("Phone number is required"),
+            Phone: Yup.number().min(6000000000, "Invalid Number").max(9999999999, "Invalid Number").required("Phone number is required"),
             Message: Yup.string().required("Message is required")
         }),
 
@@ -216,7 +215,6 @@ export function Contact() {
                             </section>
 
                         </section>
-                        <QuickLinks />
                         <Footer />
                     </section >
             }

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { Logo } from '../../../common/Logo'
 import { Footer } from '../../../common/Footer'
-import { QuickLinks } from '../../../pages/web/pages/QuickLinks'
 import { Header } from '../../../common/Header'
 import { apiurl, getCookie } from '../../../apiurl/Apiurl'
-import { FaArrowRight } from 'react-icons/fa6';
-import { CiHeart } from "react-icons/ci";
-import { FixedOptionHeader } from '../../../common/FixedOptionHeader';
-import Slider from 'react-slick'
-import { TbUsersPlus } from 'react-icons/tb'
+import { FaArrowRight, FaUser } from 'react-icons/fa6';
+import { TbCertificate } from 'react-icons/tb'
 import { Donation } from './Donation'
 import { Loader } from '../../../common/Loader'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from "swiper/modules";
 // Import Swiper styles
 import 'swiper/css';
+import { LiaIdCard } from 'react-icons/lia'
+import { HiOutlineClipboardList } from 'react-icons/hi'
+import { BiDonateHeart } from 'react-icons/bi'
+import { MdOutlineNotifications } from 'react-icons/md'
 
 export function Home() {
 
@@ -25,7 +25,6 @@ export function Home() {
     let [homemanagement, sethomemanagement] = useState([])
     let [homemanagementprofiles, sethomemanagementprofiles] = useState([])
     let [homegallerydata, sethomegallerydata] = useState([])
-    let [hometeamprofiledata, sethometeamprofiledata] = useState([])
     let [homegoalscarddata, sethomegoalscarddata] = useState([])
     let [homegalleryimagesdata, sethomegalleryimagesdata] = useState([])
     let [homegoalscardheading, sethomegoalscardheading] = useState([])
@@ -35,15 +34,13 @@ export function Home() {
 
     let fetchalldata = async () => {
         try {
-            let [homebannerdata, homeaboutdata, homegoalsdata, homemanagementdata, homemanagementprofilesdata, homegallerydata, hometeamdata, hometeamprofiledata, homedonationdata, homegoalscarddata, homegalleryimagesdata, fetchcardparagraphheading, fetchcardparagraph, homegoalscardheadingdata] = await Promise.all([
+            let [homebannerdata, homeaboutdata, homegoalsdata, homemanagementdata, homemanagementprofilesdata, homegallerydata, homedonationdata, homegoalscarddata, homegalleryimagesdata, fetchcardparagraphheading, fetchcardparagraph, homegoalscardheadingdata] = await Promise.all([
                 apiurl.get('/admin/view-home-banner'),
                 apiurl.get('/admin/view-home-about-banner'),
                 apiurl.get('/admin/view-home-goals'),
                 apiurl.get('/admin/view-home-management-body'),
                 apiurl.get('/admin/view-home-management-card'),
                 apiurl.get('/admin/view-home-gallery'),
-                apiurl.get('/admin/view-home-team'),
-                apiurl.get('/admin/view-home-team-card'),
                 apiurl.get('/admin/view-home-donation'),
                 apiurl.get('/admin/view-goals-card'),
                 apiurl.get('/admin/view-gallery'),
@@ -60,8 +57,6 @@ export function Home() {
                 homemanagement: homemanagementdata.data.viewdata,
                 homemanagementprofiles: homemanagementprofilesdata.data.viewdata,
                 homegallery: homegallerydata.data.viewdata,
-                hometeams: hometeamdata.data.viewdata,
-                hometeamsprofiles: hometeamprofiledata.data.viewdata,
                 homedonations: homedonationdata.data.viewdata,
                 homegoalscard: homegoalscarddata.data.viewdata,
                 homegalleryimages: homegalleryimagesdata.data.viewdata,
@@ -85,7 +80,6 @@ export function Home() {
                     sethomemanagementprofiles(res.homemanagementprofiles)
                     sethomemanagement(res.homemanagement)
                     sethomegallerydata(res.homegallery)
-                    sethometeamprofiledata(res.hometeamsprofiles)
                     sethomegoalscarddata(res.homegoalscard)
                     sethomegalleryimagesdata(res.homegalleryimages)
                     sethomegoalscardheading(res.fetchcardparagraphheadingdata)
@@ -108,21 +102,6 @@ export function Home() {
     }, [])
 
 
-
-    var settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        arrows: false,
-        autoplay: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        width: "100%",
-        height: "100%"
-    };
-
-
-
     let [status, setstatus] = useState(0)
     return (
         <>
@@ -130,90 +109,260 @@ export function Home() {
                 loader ?
                     <Loader />
                     :
-                    <section className='main m-auto w-[100%]'>
+
+                    <section className='main m-auto w-[100%] bg-[white]'>
                         <Header />
-                        <section className='slider_main w-[100%] h-[100vh] bg-[#00000079] relative' >
-                            <FixedOptionHeader />
-                            <Slider {...settings} className='w-[100%] h-[100%]'>
+                        <section className='pt-[66px] bg-[black]'>
+                        </section>
+                        <section className='py-[10px] h-auto'>
+                            <Swiper
+                                modules={[Autoplay]}
+                                spaceBetween={0}
+                                slidesPerView={1}
+                                autoplay={{
+                                    delay: 3000, // 3 seconds per slide
+                                    disableOnInteraction: false, // keep autoplay running on interaction
+                                }}
+                            >
                                 {
                                     bannerdata.map((items, ind) => {
                                         return (
-                                            <section key={ind} className="Slide_home w-[100%]">
-                                                <section className='w-[100%] h-[100vh]' style={{ backgroundImage: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: 'cover' }}>
-                                                    <section className='Slide_home_overlay w-[100%] h-[100%] bg-[#0000005f] flex items-center justify-center'>
-                                                        <section className='Slider_content_section px-5'>
-                                                            <section className='w-[200px] m-auto'>
-                                                                <Logo />
+                                            <SwiperSlide>
+                                                <section key={ind} className="Slide_home w-[100%] ">
+                                                    <section className='w-[100%] pb-[10px] bg-[#ffffff] '>
+
+                                                        <section className='Slide_home_overlay w-[100%] flex items-center justify-evenly'>
+                                                            <section className='Slider_content_section px-5 w-[48%]'>
+                                                                <section>
+                                                                    <h1 className='home_banner_heading mt-[10px] text-[var(--primary-color--)] text-[50px] font-[800] capitalize'>{items.Home_Banner_Heading}</h1>
+                                                                    <p className='home_banner_description text-[var(--primary-color--)] text-[20px] my-5'>{items.Home_Banner_Description}</p>
+                                                                </section>
+
+                                                                {
+                                                                    getCookie('logintoken')
+                                                                        ?
+                                                                        null
+                                                                        :
+                                                                        <section className='slider_btn_section flex'>
+                                                                            <a href='#donation_section' className='slider_btn bg-[var(--primary-color--)] p-2 px-4 rounded-[10px] text-white font-[600] flex items-center'>
+                                                                                <p className=''>Donate Now</p>
+                                                                            </a>
+
+                                                                            <Link to={"/sign-up"} className='slider_btn border-[1px] border-[var(--primary-color--)] bg-[white]  p-2 px-4 rounded-[10px] text-[var(--primary-color--)] font-[600] flex items-center ms-2'>
+                                                                                <p className='me-2'>Join Us</p> <FaArrowRight />
+                                                                            </Link>
+                                                                        </section>
+                                                                }
                                                             </section>
 
-                                                            <section>
-                                                                <h1 className='mt-[10px] text-white text-[40px] font-[700] text-center'>{items.Home_Banner_Heading}</h1>
-                                                                <p className='text-white text-[18px] text-center'>{items.Home_Banner_Description}</p>
+                                                            <section className='home_banner_section w-[48%] flex items-center justify-center'>
+                                                                <section className='home_banner w-[600px] h-[600px] border rounded-[10px]' style={{ backgroundImage: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                                                                </section>
                                                             </section>
-
-                                                            {
-                                                                getCookie('logintoken')
-                                                                    ?
-                                                                    null
-                                                                    :
-                                                                    <section className='slider_btn_section mt-5 flex justify-center'>
-                                                                        <a href='#donation_section' className='slider_btn bg-[#1385ff] p-4 px-6 rounded-[15px] text-white font-[600] flex items-center'>
-                                                                            <CiHeart className='text-[20px]' />   <p className='ms-2'>Donate Now</p>
-                                                                        </a>
-
-                                                                        <Link to={"/sign-up"} className='slider_btn border-[1px] border-[#1385ff] bg-[white] p-4 px-6 rounded-[15px] text-[#1385ff] font-[600] flex items-center ms-2'>
-                                                                            <TbUsersPlus className='text-[20px]' />   <p className='ms-2'>Become a member</p>
-                                                                        </Link>
-                                                                    </section>
-                                                            }
                                                         </section>
                                                     </section>
                                                 </section>
-                                            </section>
-
+                                            </SwiperSlide>
                                         )
                                     })
                                 }
-                            </Slider>
+                            </Swiper>
                         </section>
 
+                        <section className='counter_section w-[100%] flex justify-evenly text-[var(--primary-color--)] mt-8 px-1'>
+                            <section className='flex items-center justify-center flex-col me-[40px]'>
+                                <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
+                                    <FaUser />
+                                </section>
+                                <section>
+                                    <p className='counter_value text-[25px] font-[700] text-center'>2000<sup>+</sup> </p>
+                                    <p className='counter_title text-[16px]  text-center'>Live Impacted</p>
+                                </section>
+                            </section>
+
+                            <section className='flex items-center justify-center flex-col me-[40px]'>
+                                <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
+                                    <FaUser />
+                                </section>
+                                <section>
+                                    <p className='counter_value text-[25px] font-[700] text-center'>2000<sup>+</sup> </p>
+                                    <p className='counter_title text-center'>Live Impacted</p>
+                                </section>
+                            </section>
+
+                            <section className='flex items-center justify-center flex-col'>
+                                <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
+                                    <FaUser />
+                                </section>
+                                <section>
+                                    <p className='counter_value text-[25px] font-[700] text-center'>2000<sup>+</sup> </p>
+                                    <p className='counter_title text-[16px] text-center'>Live Impacted</p>
+                                </section>
+                            </section>
+                        </section>
 
                         {
                             aboutdata === null ?
                                 null :
-                                <section className='home_about_us w-[100%] py-[50px] px-[10px] flex border-b-[1px] border-[#1385ff]'>
-                                    <section className='w-[30%]  flex justify-center items-center py-2'>
-                                        <section className='w-[80%] rounded-[10px] border-[1px] flex'>
-                                            <img src={imgurl + aboutdata.Home_About_Image} alt="" className='home_about_image w-[100%] rounded-[10px]' />
-                                        </section>
-                                    </section>
-                                    <section className='w-[70%] flex flex-col items-start'>
-                                        <h2 className='home_about_heading text-[30px] font-[700] capitalize w-auto '>
+                                <section className='home_about_us w-[100%] py-[20px] px-[10px] flex justify-evenly items-center mt-8'>
+
+                                    <section className='w-[45%] flex flex-col items-start'>
+                                        <h2 className='home_about_heading text-[var(--primary-color--)] text-[35px] font-[700] capitalize w-auto '>
                                             {aboutdata.Home_About_Heading}
 
-                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] w-[0px]'></div>
+                                            <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] w-[0px]'></div>
                                         </h2>
                                         <p className='text-justify my-[15px] mb-[20px] leading-[25px] text-[16px]'>
                                             {aboutdata.Home_About_Description}
                                         </p>
 
-                                        <Link to={"/about"} className='w-[160px] h-[50px] rounded-[30px] bg-[#1385ff] text-white font-[600] flex items-center justify-center'>
+                                        <Link to={"/about"} className='w-[160px] h-[50px] rounded-[30px] bg-[var(--primary-color--)] text-white font-[600] flex items-center justify-center'>
                                             Know More <FiArrowRight className='text-[20px] ms-3' />
                                         </Link>
+                                    </section>
+
+
+                                    <section className='w-[47%] flex justify-center items-center py-2'>
+                                        <section className='w-[100%] flex'>
+                                            <img src={imgurl + aboutdata.Home_About_Image} alt="" className=' w-[100%]  rounded-[20px]' />
+                                        </section>
                                     </section>
                                 </section>
 
                         }
 
+
+
+
+
+                        <section className='quick_links_section px-[50px] mt-8'>
+                            <h2 className='home_heading text-[var(--primary-color--)]  text-[35px] font-[700] text-center'>
+                                Quick Links
+
+                                <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1'></div>
+                            </h2>
+                            <p className=' my-[20px] mb-[30px] leading-[25px] text-[18px] text-center text-[grey]'>
+                                Access key features in just one click—donate, volunteer, explore programs, and more
+                            </p>
+                            <section className='w-[100%]  flex justify-evenly flex-wrap'>
+                                <section className='Quick_cards_sections w-[30%] shadow p-2 mb-5 rounded-[10px]'>
+                                    <section className=''>
+                                        <section className='bg-[#bbbbbb30] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center text-[30px] text-[var(--primary-color--)]'>
+                                            <LiaIdCard />
+                                        </section>
+                                        <section className='text-[var(--primary-color--)]'>
+                                            <p className='font-[600] mt-2'>ID Card</p>
+                                        </section>
+                                    </section>
+                                    <section>
+                                        <p className='text-[15px] mt-3 font-[500] text-[grey]'>Click on the view button to view and download your ID card instantly.</p>
+                                        <div className='my-5'>
+                                            <Link to={"/id-card"} className='px-3 py-3 border-[1px] border-[var(--primary-color--)] text-[14px]  font-[600] text-[var(--primary-color--)] rounded-[10px]'>
+                                                View Details
+                                            </Link>
+                                        </div>
+                                    </section>
+                                </section>
+
+
+                                <section className='Quick_cards_sections w-[30%] shadow p-2 mb-5 rounded-[10px]'>
+
+                                    <section className=''>
+                                        <section className='bg-[#bbbbbb30] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center text-[30px] text-[var(--primary-color--)]'>
+                                            <HiOutlineClipboardList />
+                                        </section>
+                                        <section className='text-[var(--primary-color--)]'>
+                                            <p className='font-[600] mt-2'>Appointment Letter</p>
+                                        </section>
+                                    </section>
+                                    <section>
+                                        <p className='text-[15px] mt-3 font-[500] text-[grey]'>Click on the view button to view and download your Appointment Letter instantly.</p>
+                                        <div className='my-5'>
+                                            <Link to={"/appointment-letter"} className='px-3 py-3 border-[1px] border-[var(--primary-color--)] text-[14px]  font-[600] text-[var(--primary-color--)] rounded-[10px]'>
+                                                View Details
+                                            </Link>
+                                        </div>
+                                    </section>
+                                </section>
+
+
+                                <section className='Quick_cards_sections w-[30%] shadow p-2 mb-5 rounded-[10px]'>
+                                    <section className=''>
+                                        <section className='bg-[#bbbbbb30] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center text-[30px] text-[var(--primary-color--)]'>
+                                            <TbCertificate />
+                                        </section>
+                                        <section className='text-[var(--primary-color--)]'>
+                                            <p className='font-[600] mt-2'>Certificates</p>
+                                        </section>
+                                    </section>
+                                    <section>
+                                        <p className='text-[15px] mt-3 font-[500] text-[grey]'>Click on the view button to view and download your Certificates instantly.</p>
+                                        <div className='my-5'>
+                                            <Link to={"/certificates"} className='px-3 py-3 border-[1px] border-[var(--primary-color--)] text-[14px]  font-[600] text-[var(--primary-color--)] rounded-[10px]'>
+                                                View Details
+                                            </Link>
+                                        </div>
+                                    </section>
+                                </section>
+
+
+
+                                <section className='Quick_cards_sections w-[30%] shadow p-2 mb-5 rounded-[10px]'>
+                                    <section className=''>
+                                        <section className='bg-[#bbbbbb30] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center text-[30px] text-[var(--primary-color--)]'>
+                                            <MdOutlineNotifications />
+                                        </section>
+                                        <section className='text-[var(--primary-color--)]'>
+                                            <p className='font-[600] mt-2'>Notices</p>
+                                        </section>
+                                    </section>
+                                    <section>
+                                        <p className='text-[15px] mt-3 font-[500] text-[grey]'>Click on the view button to view your Notices instantly.</p>
+                                        <div className='my-5'>
+                                            <Link to={"/notice"} className='px-3 py-3 border-[1px] border-[var(--primary-color--)] text-[14px]  font-[600] text-[var(--primary-color--)] rounded-[10px]'>
+                                                View Details
+                                            </Link>
+                                        </div>
+                                    </section>
+                                </section>
+
+
+
+                                <section className='Quick_cards_sections w-[30%] shadow p-2 mb-5 rounded-[10px]'>
+                                    <section className=''>
+                                        <section className='bg-[#bbbbbb30] w-[50px] h-[50px] rounded-[10px] flex items-center justify-center text-[30px] text-[var(--primary-color--)]'>
+                                            <BiDonateHeart />
+                                        </section>
+                                        <section className='text-[var(--primary-color--)]'>
+                                            <p className='font-[600] mt-2'>Donate Us</p>
+                                        </section>
+                                    </section>
+                                    <section>
+                                        <p className='text-[15px] mt-3 font-[500] text-[grey]'>Click on the Donate Us button to help instantly.</p>
+                                        <div className='my-6'>
+                                            <a href='#donation_section' className='px-3 py-4 border-[1px] border-[var(--primary-color--)] text-[14px] font-[600] text-[var(--primary-color--)] rounded-[10px]'>
+                                                Donate Now
+                                            </a>
+                                        </div>
+                                    </section>
+                                </section>
+
+                            </section>
+                        </section>
+
+
+
+
+
                         {
                             goalsdata === null || homegoalscarddata.length === 0 ?
                                 null :
-                                <section className='w-[100%] py-[20px] px-[10px]  flex'>
+                                <section className='about_us_section w-[100%] py-[20px] px-[50px] flex mt-8'>
                                     <section className='w-[100%] capitalize text-center'>
-                                        <h2 className='home_heading text-[30px] font-[700]'>
+                                        <h2 className='home_heading text-[var(--primary-color--)]  text-[35px] font-[700]'>
                                             {goalsdata.Home_Goals_Heading}
 
-                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1'></div>
+                                            <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1'></div>
                                         </h2>
                                         <p className='text-justify my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                             {goalsdata.Home_Goals_Description}
@@ -225,12 +374,12 @@ export function Home() {
                                                     null :
                                                     <section className='w-[100%] '>
                                                         <section className='w-[100%] flex justify-center '  >
-                                                            <section className='home_goals_options w-[100%] overflow-x-scroll grid grid-flow-col border-b-[1px] border-[#00000029]'>
+                                                            <section className='home_goals_options w-[100%] overflow-x-scroll flex justify-start bg-[#f0f0f0] rounded-[15px] py-2'>
                                                                 {
                                                                     homegoalscarddata.map((items, index) => {
                                                                         return (
-                                                                            <section key={index} className={status === index ? ' text-[#ffffff] font-[600] cursor-pointer  px-[10px] mb-[20px]  whitespace-nowrap' : ' px-[10px] mb-[20px] cursor-pointer  whitespace-nowrap font-[600]'} onClick={() => setstatus(index)}>
-                                                                                <p className={status === index ? 'my-[5px] text-[14px] border-[1px] border-[#1385ff] rounded-[30px] p-3 bg-[#1385ff]' : 'my-[5px] text-[14px] border-[1px] border-[#000000] rounded-[30px] p-3'}>
+                                                                            <section key={index} className={status === index ? ' font-[600] cursor-pointer  whitespace-nowrap px-2' : 'px-2 cursor-pointer  whitespace-nowrap font-[600]'} onClick={() => setstatus(index)}>
+                                                                                <p className={status === index ? 'text-[12px] px-3 py-2 bg-[#ffffff] rounded-[10px] text-[var(--primary-color--)]' : ' text-[12px] px-3 py-2 rounded-[10px]'}>
                                                                                     {items.Home_Goals_Heading}
                                                                                 </p>
                                                                             </section>
@@ -247,16 +396,16 @@ export function Home() {
                                                                         <section key={index}>
                                                                             {
                                                                                 status === index ?
-                                                                                    <section className='home_our_goals_outer_section w-[100%] flex justify-between rounded-[20px] mb-[20px]'>
-                                                                                        <section className='home_our_goals_section w-[100%] flex justify-between p-[10px] rounded-[20px]'>
-                                                                                            <section className='w-[40%] shadow rounded-[10px] border-[1px] flex'>
-                                                                                                <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className=' w-[100%] h-auto rounded-[10px]' />
+                                                                                    <section className='home_our_goals_outer_section w-[100%] flex justify-between rounded-[20px] mb-[20px] mt-3'>
+                                                                                        <section className='home_our_goals_section w-[100%] flex justify-between items-start rounded-[20px]'>
+                                                                                            <section className='w-[40%] h-[auto] shadow rounded-[10px] flex bg-[white] p-4'>
+                                                                                                <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className=' w-[100%] h-[auto] rounded-[10px]' />
                                                                                             </section>
                                                                                             <section className='w-[58%] text-start'>
-                                                                                                <p className='my-[5px] text-[20px] font-[600]'>
+                                                                                                <p className='my-[5px] text-[18px] font-[600]'>
                                                                                                     {items.Home_Goals_Heading}
                                                                                                 </p>
-                                                                                                <p className='text-[16px]'>
+                                                                                                <p className='text-[14px]'>
                                                                                                     {items.Home_Goals_Description}
                                                                                                 </p>
 
@@ -282,7 +431,7 @@ export function Home() {
                                                                                                                                     <section key={index}>
                                                                                                                                         {
                                                                                                                                             items._id === data.Home_Card_Content_Id && value._id === data.Home_Card_Content_Heading ?
-                                                                                                                                                <li className='text-[15px] mt-1 mb-3 capitalize'>
+                                                                                                                                                <li className='text-[14px] mt-1 mb-3 capitalize'>
                                                                                                                                                     {data.Home_Card_Content_Paragraph}
                                                                                                                                                 </li> :
                                                                                                                                                 null
@@ -320,17 +469,15 @@ export function Home() {
 
 
 
-
-
                         {
 
                             homemanagement === null || homemanagementprofiles.length === 0 ?
                                 null :
-                                <section className='home_management_profile_section w-[100%] py-[20px] px-[10px]  '>
+                                <section className='home_management_profile_section w-[100%] py-[20px] px-[50px] mt-8'>
                                     <section className='w-[100%] text-center'>
-                                        <h2 className='home_heading capitalize text-[30px] font-[700] text-[#1385ff]'>
+                                        <h2 className='capitalize text-[35px] font-[700] text-[var(--primary-color--)]'>
                                             {homemanagement.Home_Management_Heading}
-                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
+                                            <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1 '></div>
                                         </h2>
                                         <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                             {homemanagement.Home_Management_Description}
@@ -343,10 +490,6 @@ export function Home() {
                                             slidesPerView={4}
                                             centeredSlides={homemanagementprofiles.length === 1 ? true : false}
                                             breakpoints={{
-
-                                                1224: {
-                                                    slidesPerView: 4,
-                                                },
                                                 1024: {
                                                     slidesPerView: 3,
                                                 },
@@ -364,14 +507,14 @@ export function Home() {
                                                     return (
                                                         <SwiperSlide className='w-[full] '>
                                                             <section className=" flex items-center justify-center py-[30px]">
-                                                                <section className='home_management_card h-[480px]  overflow-hidden rounded-[20px]' >
-                                                                    <section className='w-[100%] h-[300px] rounded-b-[10px]'>
-                                                                        <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='w-[100%] h-[100%]' />
+                                                                <section className=' shadow h-[550px]  overflow-hidden rounded-[20px] p-2' >
+                                                                    <section className='w-[100%] h-[400px] rounded-[20px] overflow-hidden'>
+                                                                        <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='w-[100%] h-[100%] transition hover:scale-105' />
                                                                     </section>
                                                                     <section className='h-[100%] p-3 bg-[#ffffff82] backdrop-blur-[2]'>
                                                                         <p className='font-[700] text-[20px] capitalize'>{items.Home_Management_Profile_Name}</p>
-                                                                        <p className='font-[600] text-[14px] text-[#1385ff] capitalize'>{items.Home_Management_Profile_Designation}</p>
-                                                                        <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description.slice(0, 180)} <Link className='text-[#3970de] font-[600]' to={'/about'}>Readmore...</Link></p>
+                                                                        <p className='font-[600] text-[14px] text-[var(--primary-color--)] capitalize'>{items.Home_Management_Profile_Designation}</p>
+                                                                        <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description.slice(0, 180)} <Link className='text-[var(--primary-color--)] font-[600]' to={'/about'}>Readmore...</Link></p>
                                                                     </section>
                                                                 </section>
                                                             </section>
@@ -386,17 +529,15 @@ export function Home() {
 
 
 
-
-
                         {
 
                             homegallerydata === null || homegalleryimagesdata.length === 0 ?
                                 null :
-                                <section className=' w-[100%] py-[20px] px-[10px] '>
+                                <section className='home_gallery_section w-[100%] py-[20px] px-[50px] mt-8'>
                                     <section className='w-[100%] text-center'>
-                                        <h2 className='home_heading capitalize text-[30px] font-[700] '>
+                                        <h2 className='home_heading text-[var(--primary-color--)] capitalize text-[35px] font-[700] '>
                                             {homegallerydata.Home_Gallery_Heading}
-                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
+                                            <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1 '></div>
                                         </h2>
                                         <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                             {homegallerydata.Home_Gallery_Description}
@@ -409,12 +550,12 @@ export function Home() {
                                                 return (
                                                     index <= 5 ?
                                                         <section key={index} className="home_gallery_cards w-[32%] flex items-center justify-center py-2 px-[10px] mt-[20px]">
-                                                            <section className='home_management_card w-[100%] shadow m-auto overflow-hidden rounded-[20px]' >
-                                                                <section className='w-[100%] h-[250px] rounded-b-[10px]'>
-                                                                    <img src={imgurl + items.Gallery_Event_Image} alt="" className='w-[100%] h-[100%]' />
+                                                            <section className='w-[100%] shadow m-auto rounded-[20px] overflow-hidden' >
+                                                                <section className='w-[100%] h-[250px] flex items-center  overflow-hidden '>
+                                                                    <img src={imgurl + items.Gallery_Event_Image} alt="" className='w-[100%] h-[100%] transition hover:scale-110' />
                                                                 </section>
                                                                 <section className='p-3 bg-[#ffffff82] backdrop-blur-[2]'>
-                                                                    <p className='font-[700] text-[20px] capitalize'>{items.Gallery_Event_Heading}</p>
+                                                                    <p className='font-[700] text-[20px] text-[var(--primary-color--)] capitalize'>{items.Gallery_Event_Heading}</p>
                                                                     <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Gallery_Event_Description}</p>
                                                                 </section>
                                                             </section>
@@ -428,7 +569,7 @@ export function Home() {
 
                                     </section>
                                     <div className='flex justify-center m-auto'>
-                                        <Link to={"/gallery"} className='bg-[#1385ff] text-white p-3 px-5 font-[600] m-auto mt-4 rounded-[10px] flex items-center'>
+                                        <Link to={"/gallery"} className='bg-[var(--primary-color--)] text-white p-3 px-5 font-[600] m-auto mt-4 rounded-[10px] flex items-center'>
                                             View Gallery <FaArrowRight className='ms-2' />
                                         </Link>
                                     </div>
@@ -436,47 +577,6 @@ export function Home() {
                         }
 
 
-                        {/* {
-
-                    hometeamdata === null || hometeamprofiledata.length === 0 ?
-                        null :
-                        <section className='home_management_profile_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black]'>
-                            <section className='w-[100%] text-center'>
-                                <h2 className='home_heading capitalize text-[30px] font-[700] text-[#1385ff]'>
-                                    {hometeamdata.Home_Team_Member_Heading}
-                                    <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
-                                </h2>
-                                <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
-                                    {hometeamdata.Home_Team_Member_Description}
-                                </p>
-                            </section>
-
-                            <section className='mt-2 w-[100%] '>
-                                <Slider {...managementsettings} className='w-[100%] h-[100%]'>
-                                    {
-                                        hometeamprofiledata.map((items, ind) => {
-                                            return (
-                                                <section className="w-[30%] flex items-center justify-center py-[30px]">
-                                                    <section className='home_management_card w-[300px] border-[1px] border-[black] m-auto overflow-hidden rounded-[20px]' >
-                                                        <section className='w-[100%] h-[300px] rounded-b-[10px]'>
-                                                            <img src={imgurl + items.Home_Team_Profile_Picture} alt="" className='w-[100%] h-[100%]' />
-                                                        </section>
-                                                        <section className='p-3 bg-[#ffffff82] backdrop-blur-[2]'>
-                                                            <p className='font-[700] text-[20px] capitalize'>{items.Home_Team_Profile_Name}</p>
-                                                            <p className='font-[600] text-[14px] text-[#1385ff] capitalize'>{items.Home_Team_Profile_Designation}</p>
-                                                            <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Team_Profile_Description}</p>
-                                                        </section>
-                                                    </section>
-                                                </section>
-                                            )
-                                        })
-                                    }
-                                </Slider>
-                            </section>
-                        </section>
-
-                } */}
-                        <QuickLinks />
                         <Donation />
                         <Footer />
                     </section >

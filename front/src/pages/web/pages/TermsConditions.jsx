@@ -4,7 +4,6 @@ import { Footer } from '../../../common/Footer'
 import { apiurl } from '../../../apiurl/Apiurl'
 import { Logo } from '../../../common/Logo'
 import { FixedOptionHeader } from '../../../common/FixedOptionHeader'
-import { QuickLinks } from './QuickLinks'
 import { FaChevronRight } from 'react-icons/fa6'
 import { Loader } from '../../../common/Loader'
 
@@ -210,7 +209,6 @@ export function TermsConditions() {
                                     </section>
                             }
 
-                            <QuickLinks />
                         </section>
                         <Footer />
                     </section >

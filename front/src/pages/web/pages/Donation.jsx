@@ -136,8 +136,8 @@ export function Donation() {
 
     return (
         <>
-            {/* <a href='#donation_section' className='donate_now_btn fixed bottom-[100px] z-[99999] left-[2%] font-[600] bg-[#1385ff] text-white py-2 px-[10px] rounded-[20px]'>Donate Now</a> */}
-            <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
+            {/* <a href='#donation_section' className='donate_now_btn fixed bottom-[100px] z-[99999] left-[2%] font-[600] bg-[var(--primary-color--)] text-white py-2 px-[10px] rounded-[20px]'>Donate Now</a> */}
+            <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] mt-10'>
 
                 {
                     loader ?
@@ -145,63 +145,63 @@ export function Donation() {
                         :
                         <>
                             <section className='w-[100%] text-center'>
-                                <h2 className='home_heading capitalize text-[35px] font-[700] text-[#1385ff]'>
+                                <h2 className='home_heading capitalize text-[35px] font-[700] text-[var(--primary-color--)]'>
                                     Support Our Mission
-                                    <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
+                                    <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1 '></div>
                                 </h2>
-                                <p className='text-center capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
+                                <p className='text-center capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px] font-[500] text-[grey]'>
                                     Your donation directly transforms lives and creates lasting change in communities worldwide
                                 </p>
                             </section>
 
                             <section className='mt-2 w-[100%] '>
                                 <section className="w-[100%] flex items-center justify-center py-5">
-                                    <form onSubmit={formik.handleSubmit} className='donation_form_section w-[80%] border-[5px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex' >
+                                    <form onSubmit={formik.handleSubmit} className='donation_form_section w-[80%] border-[5px] border-[var(--primary-color--)] m-auto overflow-hidden rounded-[20px] flex' >
                                         <section className='p-3 bg-[#ffffff82] backdrop-blur-[2] w-[50%]'>
-                                            <p className='font-[600] text-[20px] text-[#1385ff] text-center'>Make a Donation</p>
-                                            <p className=' text-[15px] text-[grey] text-center'>Choose an amount that feels right for you</p>
+                                            <p className='font-[600] text-[20px] text-[var(--primary-color--)] text-center'>Make a Donation</p>
+                                            <p className=' text-[15px] text-[grey] text-center font-[500]'>Choose an amount that feels right for you</p>
 
                                             <section className='w-[100%] mt-3'>
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationname'>Name</label>
-                                                    <input id='donationname' type="text" autoComplete='true' className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Name', e.target.value)} />
+                                                    <input id='donationname' type="text" autoComplete='true' className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Name', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Name}</div>
                                                 </div>
 
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationemail'>Email address</label>
-                                                    <input id='donationemail' type="email" autoComplete='true' className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Email', e.target.value)} />
+                                                    <input id='donationemail' type="email" autoComplete='true' className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Email', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Email}</div>
                                                 </div>
 
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor="donationmobile">Mobile.no</label>
-                                                    <input id='donationmobile' autoComplete='true' type="number" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Phone', e.target.value)} />
+                                                    <input id='donationmobile' autoComplete='true' type="number" className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Phone', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Phone}</div>
                                                 </div>
 
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationaddress'>Residential address</label>
-                                                    <input id='donationaddress' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Address', e.target.value)} />
+                                                    <input id='donationaddress' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Address', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Address}</div>
                                                 </div>
 
 
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationpancard'>Pancard.no</label>
-                                                    <input id='donationpancard' autoComplete='true' type="text" maxLength={10} className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Pan_No', e.target.value)} />
+                                                    <input id='donationpancard' autoComplete='true' type="text" maxLength={10} className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Pan_No', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Pan_No}</div>
                                                 </div>
 
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationbankname'>Bank Name</label>
-                                                    <input id='donationbankname' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Bank_Name', e.target.value)} />
+                                                    <input id='donationbankname' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Bank_Name', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Bank_Name}</div>
                                                 </div>
 
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='donationbankbranch'>Branch Name</label>
-                                                    <input id='donationbankbranch' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Bank_Branch', e.target.value)} />
+                                                    <input id='donationbankbranch' autoComplete='true' type="text" className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Bank_Branch', e.target.value)} />
                                                     <div className='text-[red] mt-1'>{formik.errors.Bank_Branch}</div>
                                                 </div>
                                             </section>
@@ -209,23 +209,23 @@ export function Donation() {
 
                                         <section className='p-3 bg-[#ffffff82] backdrop-blur-[2] w-[50%]'>
                                             <section className='donation_value_section w-[100%] flex justify-between flex-wrap mt-3'>
-                                                <div className='cursor-pointer text-[#1385ff] w-[30%] border-[2px] border-[#1385ff] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(100)}> <FaIndianRupeeSign className='me-1' /> 100</div>
-                                                <div className='cursor-pointer text-[#1385ff] w-[30%] border-[2px] border-[#1385ff] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(500)}> <FaIndianRupeeSign className='me-1' /> 500</div>
-                                                <div className='cursor-pointer text-[#1385ff] w-[30%] border-[2px] border-[#1385ff] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(1000)}> <FaIndianRupeeSign className='me-1' /> 1000</div>
-                                                <div className='cursor-pointer text-[#1385ff] w-[30%] border-[2px] border-[#1385ff] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(1500)}> <FaIndianRupeeSign className='me-1' /> 1500</div>
-                                                <div className='cursor-pointer text-[#1385ff] w-[30%] border-[2px] border-[#1385ff] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(3000)}> <FaIndianRupeeSign className='me-1' /> 3000</div>
-                                                <div className='cursor-pointer text-[#1385ff] w-[30%] border-[2px] border-[#1385ff] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(10000)}> <FaIndianRupeeSign className='me-1' /> 10000</div>
+                                                <div className='cursor-pointer text-[var(--primary-color--)] w-[30%] border-[2px] border-[var(--primary-color--)] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(100)}> <FaIndianRupeeSign className='me-1' /> 100</div>
+                                                <div className='cursor-pointer text-[var(--primary-color--)] w-[30%] border-[2px] border-[var(--primary-color--)] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(500)}> <FaIndianRupeeSign className='me-1' /> 500</div>
+                                                <div className='cursor-pointer text-[var(--primary-color--)] w-[30%] border-[2px] border-[var(--primary-color--)] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(1000)}> <FaIndianRupeeSign className='me-1' /> 1000</div>
+                                                <div className='cursor-pointer text-[var(--primary-color--)] w-[30%] border-[2px] border-[var(--primary-color--)] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(1500)}> <FaIndianRupeeSign className='me-1' /> 1500</div>
+                                                <div className='cursor-pointer text-[var(--primary-color--)] w-[30%] border-[2px] border-[var(--primary-color--)] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(3000)}> <FaIndianRupeeSign className='me-1' /> 3000</div>
+                                                <div className='cursor-pointer text-[var(--primary-color--)] w-[30%] border-[2px] border-[var(--primary-color--)] bg-[white] rounded-[10px] font-[600] mt-2 py-3 flex items-center justify-center' onClick={() => setdonation(10000)}> <FaIndianRupeeSign className='me-1' /> 10000</div>
                                             </section>
 
 
                                             <section className='w-[100%] mt-3'>
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='amount'>Amount</label>
                                                     <div className='flex items-center justify-between'>
                                                         <div>
                                                             <FaMinus onClick={() => setdonation(donation <= 100 ? 100 : donation - 50)} />
                                                         </div>
-                                                        <input id='amount' type="range" className='bg-[white] w-[90%] border-[2px] border-[#1385ff] rounded-[10px]' value={donation} onChange={(e) => formik.setFieldValue('Amount', e.target.value) && setdonation(Number(e.target.value))} min={100} step={50} max={100000} />
+                                                        <input id='amount' type="range" className='bg-[white] w-[90%] border-[2px] border-[var(--primary-color--)] rounded-[10px]' value={donation} onChange={(e) => formik.setFieldValue('Amount', e.target.value) && setdonation(Number(e.target.value))} min={100} step={50} max={100000} />
                                                         <div>
                                                             <FaPlus onClick={() => setdonation(donation >= 100000 ? 100000 : donation + 50)} />
                                                         </div>
@@ -234,15 +234,15 @@ export function Donation() {
                                             </section>
 
                                             <section className='w-[100%] mt-3'>
-                                                <div className='text-[#1385ff] w-[100%] mt-3'>
+                                                <div className='text-[var(--primary-color--)] w-[100%] mt-3'>
                                                     <label className='font-[600]' htmlFor='amount'>Amount</label>
-                                                    <input id='amount' autoComplete='true' type="number" value={donation} disabled className='bg-[white] w-[100%] border-[2px] border-[#1385ff] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Amount', e.target.value)} />
+                                                    <input id='amount' autoComplete='true' type="number" value={donation} disabled className='bg-[white] w-[100%] border-[2px] border-[var(--primary-color--)] rounded-[10px] p-2' onChange={(e) => formik.setFieldValue('Amount', e.target.value)} />
                                                 </div>
                                             </section>
 
                                             {
                                                 donation > 0 ?
-                                                    <section className='w-[100%] mt-3 bg-[#1385ff] p-2 py-3 rounded-[10px] text-white'>
+                                                    <section className='w-[100%] mt-3 bg-[var(--primary-color--)] p-2 py-3 rounded-[10px] text-white'>
                                                         <p className='font-[500]'>Your Impact:</p>
                                                         <p className='flex items-center w-[100%] text-[16px] font-[500] mt-2'>Your donation of &nbsp; ₹ {donation.toLocaleString()} will make a significant difference in someone's life.</p>
                                                     </section> :
@@ -250,14 +250,14 @@ export function Donation() {
                                             }
 
 
-                                            <button type='submit' className='w-[100%] mt-3 bg-[#1385ff] p-2 py-3 rounded-[10px] font-[600] text-white flex items-center justify-center'>
+                                            <button type='submit' className='w-[100%] mt-3 bg-[var(--primary-color--)] p-2 py-3 rounded-[10px] font-[600] text-white flex items-center justify-center'>
                                                 <FaCreditCard className='me-2' /> Donate Now
                                             </button>
 
 
                                             <section className='donation_label_section mt-[20px] w-[100%] flex justify-between'>
                                                 <section className='bg-[white] border-[1px] w-[48%] border-[black] p-2 py-3 rounded-[10px] flex '>
-                                                    <section className='w-[40px] h-[40px] bg-[#1385ff] rounded-[10px] flex justify-center items-center text-white text-[30px]'>
+                                                    <section className='w-[40px] h-[40px] bg-[var(--primary-color--)] rounded-[10px] flex justify-center items-center text-white text-[30px]'>
                                                         <LuShieldCheck />
                                                     </section>
 
@@ -269,7 +269,7 @@ export function Donation() {
 
 
                                                 <section className='bg-[white] border-[1px] w-[48%] border-[black] p-2 py-3 rounded-[10px] flex '>
-                                                    <section className='w-[40px] h-[40px] bg-[#1385ff] rounded-[10px] flex justify-center items-center text-white text-[30px]'>
+                                                    <section className='w-[40px] h-[40px] bg-[var(--primary-color--)] rounded-[10px] flex justify-center items-center text-white text-[30px]'>
                                                         <RiVerifiedBadgeLine />
                                                     </section>
 
