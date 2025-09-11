@@ -112,7 +112,7 @@ export function Home() {
 
                     <section className='main m-auto w-[100%] bg-[white]'>
                         <Header />
-                        <section className='pt-[66px] bg-[black]'>
+                        <section className='pt-[66px]'>
                         </section>
                         <section className='py-[10px] h-auto'>
                             <Swiper
