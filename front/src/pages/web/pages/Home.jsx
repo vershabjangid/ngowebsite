@@ -215,7 +215,7 @@ export function Home() {
 
                                             <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] w-[0px]'></div>
                                         </h2>
-                                        <p className='text-justify my-[15px] mb-[20px] leading-[25px] text-[16px]'>
+                                        <p className=' my-[15px] mb-[20px] leading-[25px] text-[16px]'>
                                             {aboutdata.Home_About_Description}
                                         </p>
 
@@ -367,7 +367,7 @@ export function Home() {
 
                                             <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1'></div>
                                         </h2>
-                                        <p className='text-justify my-[20px] mb-[20px] leading-[25px] text-[16px]'>
+                                        <p className=' my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                             {goalsdata.Home_Goals_Description}
                                         </p>
 
@@ -482,7 +482,7 @@ export function Home() {
                                             {homemanagement.Home_Management_Heading}
                                             <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1 '></div>
                                         </h2>
-                                        <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
+                                        <p className=' capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                             {homemanagement.Home_Management_Description}
                                         </p>
                                     </section>
@@ -542,7 +542,7 @@ export function Home() {
                                             {homegallerydata.Home_Gallery_Heading}
                                             <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] m-auto mt-1 '></div>
                                         </h2>
-                                        <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
+                                        <p className=' capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                             {homegallerydata.Home_Gallery_Description}
                                         </p>
                                     </section>
