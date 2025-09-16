@@ -20,6 +20,7 @@ import { MdOutlineNotifications } from 'react-icons/md'
 export function Home() {
 
     let [bannerdata, setbannerdata] = useState([])
+    let [counters, setcounters] = useState([])
     let [aboutdata, setaboutdata] = useState([])
     let [goalsdata, setgoalsdata] = useState([])
     let [homemanagement, sethomemanagement] = useState([])
@@ -34,8 +35,9 @@ export function Home() {
 
     let fetchalldata = async () => {
         try {
-            let [homebannerdata, homeaboutdata, homegoalsdata, homemanagementdata, homemanagementprofilesdata, homegallerydata, homedonationdata, homegoalscarddata, homegalleryimagesdata, fetchcardparagraphheading, fetchcardparagraph, homegoalscardheadingdata] = await Promise.all([
+            let [homebannerdata, homecounters, homeaboutdata, homegoalsdata, homemanagementdata, homemanagementprofilesdata, homegallerydata, homedonationdata, homegoalscarddata, homegalleryimagesdata, fetchcardparagraphheading, fetchcardparagraph, homegoalscardheadingdata] = await Promise.all([
                 apiurl.get('/admin/view-home-banner'),
+                apiurl.get('/admin/view-counters'),
                 apiurl.get('/admin/view-home-about-banner'),
                 apiurl.get('/admin/view-home-goals'),
                 apiurl.get('/admin/view-home-management-body'),
@@ -52,6 +54,7 @@ export function Home() {
             return {
                 homebanner: homebannerdata.data.viewdata,
                 imgurl: homebannerdata.data.imgurl,
+                homecounters: homecounters.data.viewdata,
                 homeabout: homeaboutdata.data.viewdata,
                 homegoals: homegoalsdata.data.viewdata,
                 homemanagement: homemanagementdata.data.viewdata,
@@ -74,6 +77,7 @@ export function Home() {
             fetchalldata()
                 .then((res) => {
                     setbannerdata(res.homebanner)
+                    setcounters(res.homecounters)
                     setimgurl(res.imgurl)
                     setaboutdata(res.homeabout)
                     setgoalsdata(res.homegoals)
@@ -103,6 +107,8 @@ export function Home() {
 
 
     let [status, setstatus] = useState(0)
+
+    console.log(counters)
     return (
         <>
             {
@@ -169,37 +175,34 @@ export function Home() {
                             </Swiper>
                         </section>
 
-                        <section className='counter_section w-[100%] flex justify-evenly text-[var(--primary-color--)] mt-8 px-1'>
-                            <section className='flex items-center justify-center flex-col me-[40px]'>
-                                <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
-                                    <FaUser />
-                                </section>
-                                <section>
-                                    <p className='counter_value text-[25px] font-[700] text-center'>2000<sup>+</sup> </p>
-                                    <p className='counter_title text-[16px]  text-center'>Live Impacted</p>
-                                </section>
-                            </section>
 
-                            <section className='flex items-center justify-center flex-col me-[40px]'>
-                                <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
-                                    <FaUser />
-                                </section>
-                                <section>
-                                    <p className='counter_value text-[25px] font-[700] text-center'>2000<sup>+</sup> </p>
-                                    <p className='counter_title text-center'>Live Impacted</p>
-                                </section>
-                            </section>
+                        <section className='flex justify-center'>
+                            {
+                                counters.length === undefined || counters.length === 0 ?
+                                    null :
 
-                            <section className='flex items-center justify-center flex-col'>
-                                <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
-                                    <FaUser />
-                                </section>
-                                <section>
-                                    <p className='counter_value text-[25px] font-[700] text-center'>2000<sup>+</sup> </p>
-                                    <p className='counter_title text-[16px] text-center'>Live Impacted</p>
-                                </section>
-                            </section>
+                                    <section className='counter_section w-[100%] flex justify-evenly text-[var(--primary-color--)] mt-8 px-1 flex-wrap'>
+                                        {
+                                            counters.map((items, index) => {
+                                                return (
+                                                    <section key={index} className=' flex items-center justify-center flex-col'>
+                                                        <section className='text-[30px] mb-2 p-4 rounded-[20px] bg-[#bbbbbb30]'>
+                                                            <img src={imgurl + items.CounterIcon} alt="" className='w-[45px]' />
+                                                        </section>
+                                                        <section>
+                                                            <p className='counter_value text-[25px] font-[700] text-center'>{items.Counter_Value}<sup>+</sup> </p>
+                                                            <p className='counter_title text-[16px]  text-center'>{items.Home_Counter_Heading}</p>
+                                                        </section>
+                                                    </section>
+                                                )
+                                            })
+                                        }
+
+
+                                    </section>
+                            }
                         </section>
+
 
                         {
                             aboutdata === null ?

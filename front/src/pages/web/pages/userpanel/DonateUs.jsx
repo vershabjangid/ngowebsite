@@ -131,7 +131,9 @@ export function DonateUs() {
                     :
                     <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                         <Header />
-                        <section className='flex h-[calc(100%-90px)] border-t-[1px]  overflow-y-scroll'>
+                        <section className='pt-[66px]'>
+                        </section>
+                        <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
                             <Sidebar />
                             <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                                 <section className=' w-[100%] px-3'>
@@ -143,16 +145,16 @@ export function DonateUs() {
                                     </div>
 
                                     <div className='font-[500] text-[15px]'>
-                                        <p className='text-[#1385ff]'>Here you can donate to support us.</p>
+                                        <p className='text-[var(--primary-color--)]'>Here you can donate to support us.</p>
                                     </div>
                                 </section>
 
                                 {
-                                    user[0] === undefined ?
+                                    user[0] === null || user[0] === undefined ?
                                         <section className='text-center text-[16px] mt-3'>
                                             <p className=''>No Form Found</p>
                                             <br />
-                                            <Link to={"/sign-in"} className='py-3 px-3 bg-[#1385ff] rounded-[10px] text-white'>
+                                            <Link to={"/sign-in"} className='py-3 px-3 bg-[var(--primary-color--)] rounded-[10px] text-white'>
                                                 Back to login
                                             </Link>
                                         </section> :
@@ -211,7 +213,7 @@ export function DonateUs() {
 
                                                     <div>
                                                         <label htmlFor='panno' className='text-[16px] font-[500]'>PAN No.</label>
-                                                        <input id='panno'  type={"text"} autoComplete="true" maxLength={10} className='w-[100%] border-[1px] border-[black] p-3 rounded-[10px] text-[14px] uppercase' onChange={(e) => formik.setFieldValue('Pan_No', e.target.value)} />
+                                                        <input id='panno' type={"text"} autoComplete="true" maxLength={10} className='w-[100%] border-[1px] border-[black] p-3 rounded-[10px] text-[14px] uppercase' onChange={(e) => formik.setFieldValue('Pan_No', e.target.value)} />
                                                         <div className='text-[15px] text-[red] mt-1'>
                                                             {formik.errors.Pan_No}
                                                         </div>
@@ -219,7 +221,7 @@ export function DonateUs() {
 
 
                                                     <div>
-                                                        <button type={"submit"} className='w-[100%] bg-[black] text-white font-[600] p-3 rounded-[10px] text-[16px] mt-4'>
+                                                        <button type={"submit"} className='w-[100%] bg-[var(--primary-color--)] text-white font-[600] p-3 rounded-[10px] text-[16px] mt-4'>
                                                             Donate Now
                                                         </button>
                                                     </div>

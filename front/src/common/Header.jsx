@@ -101,10 +101,10 @@ export function Header() {
                                     {
                                         getCookie('logintoken') && cookie ?
 
-                                            <section className='bg-[black] relative'>
+                                            <section className=' relative'>
                                                 <section className='w-[50px] h-[50px] rounded-[50%] overflow-hidden border-[1px] border-[grey]' onClick={() => setsidebar(!sidebar)}>
                                                     {
-                                                        user[0] === undefined || user[0].Profile_Picture === undefined ?
+                                                        user[0] === null || user[0] === undefined || user[0].Profile_Picture === undefined ?
                                                             <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
                                                                 <FaUser />
                                                             </div>
@@ -125,7 +125,7 @@ export function Header() {
                                                                             <div className='ms-2 text-[14px] flex items-center'>
                                                                                 <div className='w-[50px] h-[50px] border-[1px] rounded-[50%] overflow-hidden'>
                                                                                     {
-                                                                                        user[0] === undefined || user[0].Profile_Picture === undefined ?
+                                                                                        user[0] === null ||user[0] === undefined || user[0].Profile_Picture === undefined ?
                                                                                             <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
                                                                                                 <FaUser />
                                                                                             </div>
@@ -137,7 +137,7 @@ export function Header() {
                                                                                 <div className='ms-2 text-[var(--primary-color--)]'>
                                                                                     <p>
                                                                                         {
-                                                                                            user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found"
+                                                                                            user[0] === null || user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found"
                                                                                                 :
                                                                                                 user[0].Full_Name
                                                                                         }
@@ -349,7 +349,7 @@ export function Header() {
                                             <div className='ms-2 text-[14px] flex items-center'>
                                                 <div className='w-[50px] h-[50px] border-[1px] rounded-[50%] overflow-hidden'>
                                                     {
-                                                        user[0] === undefined || user[0].Profile_Picture === undefined ?
+                                                        user[0] === null || user[0] === undefined || user[0].Profile_Picture === undefined ?
                                                             <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
                                                                 <FaUser />
                                                             </div>
@@ -361,12 +361,12 @@ export function Header() {
                                                 <div className='ms-2 text-[var(--primary-color--)]'>
                                                     <p>
                                                         {
-                                                            user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found"
+                                                            user[0] === null || user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found"
                                                                 :
                                                                 user[0].Full_Name
                                                         }
                                                     </p>
-                                                    <p>{user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}</p>
+                                                    <p>{user[0] === null || user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}</p>
                                                 </div>
                                             </div>
                                             <div className='w-[100%] px-2 mt-4'>

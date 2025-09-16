@@ -34,30 +34,30 @@ export function Profile() {
 
     let formik = useFormik({
         initialValues: {
-            Sub_Id: user[0] === undefined ? "" : user[0].Sub_Id,
-            Email: user[1] === undefined ? "" : user[1].Email || "",
-            Full_Name: user[0] === undefined ? "" : user[0].Full_Name || "",
-            Father_Name: user[0] === undefined ? "" : user[0].Father_Name || "",
-            Occupation: user[0] === undefined ? "" : user[0].Occupation || "",
-            Date_Of_Birth: user[0] === undefined ? "" : user[0].Date_Of_Birth || "",
-            Address: user[0] === undefined ? "" : user[0].Address || "",
-            City: user[0] === undefined ? "" : user[0].City || "",
-            Select_Designation: user[0] === undefined ? "" : user[0].Select_Designation || "",
-            Profile_Picture: user[0] === undefined ? "" : user[0].Profile_Picture || ""
+            Sub_Id: user[0] === null || user[0] === undefined ? "" : user[0].Sub_Id,
+            Email: user[1] === null || user[1] === undefined ? "" : user[1].Email || "",
+            Full_Name: user[0] === null || user[0] === undefined ? "" : user[0].Full_Name || "",
+            Father_Name: user[0] === null || user[0] === undefined ? "" : user[0].Father_Name || "",
+            Occupation: user[0] === null || user[0] === undefined ? "" : user[0].Occupation || "",
+            Date_Of_Birth: user[0] === null || user[0] === undefined ? "" : user[0].Date_Of_Birth || "",
+            Address: user[0] === null || user[0] === undefined ? "" : user[0].Address || "",
+            City: user[0] === null || user[0] === undefined ? "" : user[0].City || "",
+            Select_Designation: user[0] === null || user[0] === undefined ? "" : user[0].Select_Designation || "",
+            Profile_Picture: user[0] === null || user[0] === undefined ? "" : user[0].Profile_Picture || ""
         },
         onSubmit: (value, { resetForm }) => {
             updatedata(formik.values)
             setloader(true)
             resetForm({
-                Email: user[1] === undefined ? "" : user[1].Email || "",
-                Full_Name: user[0] === undefined ? "" : user[0].Full_Name || "",
-                Father_Name: user[0] === undefined ? "" : user[0].Father_Name || "",
-                Occupation: user[0] === undefined ? "" : user[0].Occupation || "",
-                Date_Of_Birth: user[0] === undefined ? "" : user[0].Date_Of_Birth || "",
-                Address: user[0] === undefined ? "" : user[0].Address || "",
-                City: user[0] === undefined ? "" : user[0].City || "",
-                Select_Designation: user[0] === undefined ? "" : user[0].Select_Designation || "",
-                Profile_Picture: user[0] === undefined ? "" : user[0].Profile_Picture || ""
+                Email: user[1] === null || user[1] === undefined ? "" : user[1].Email || "",
+                Full_Name: user[0] === null || user[0] === undefined ? "" : user[0].Full_Name || "",
+                Father_Name: user[0] === null || user[0] === undefined ? "" : user[0].Father_Name || "",
+                Occupation: user[0] === null || user[0] === undefined ? "" : user[0].Occupation || "",
+                Date_Of_Birth: user[0] === null || user[0] === undefined ? "" : user[0].Date_Of_Birth || "",
+                Address: user[0] === null || user[0] === undefined ? "" : user[0].Address || "",
+                City: user[0] === null || user[0] === undefined ? "" : user[0].City || "",
+                Select_Designation: user[0] === null || user[0] === undefined ? "" : user[0].Select_Designation || "",
+                Profile_Picture: user[0] === null || user[0] === undefined ? "" : user[0].Profile_Picture || ""
             })
         }
     })
@@ -104,7 +104,9 @@ export function Profile() {
                     :
                     <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                         <Header />
-                        <section className='flex h-[calc(100%-90px)] border-t-[1px]'>
+                        <section className='pt-[66px]'>
+                        </section>
+                        <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
                             <Sidebar />
                             <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                                 <section className=' w-[100%] px-3'>
@@ -115,7 +117,7 @@ export function Profile() {
                                         </h1>
                                     </div>
                                     <div className='font-[500] text-[15px]'>
-                                        <p className='text-[#1385ff]'>Here you can see your profile</p>
+                                        <p className='text-[var(--primary-color--)]'>Here you can see your profile</p>
                                     </div>
                                 </section>
 
@@ -131,18 +133,18 @@ export function Profile() {
                                                     </section>
                                                     <section className='w-[100%] h-[50%]  rounded-t-[20px] profile_banner relative'>
                                                         <section className='w-[100px] h-[100px] rounded-[50%] absolute bottom-[-34%] ms-5 bg-[black] border-[3px] border-[white] overflow-hidden'>
-                                                            <img src={user[0] === undefined || user[0].Profile_Picture === undefined ? Profilepicture : user[2] + user[0].Profile_Picture} alt="" className='h-[100%] w-[100%] rounded-[50%]' />
+                                                            <img src={user[0] === null || user[0] === undefined || user[0].Profile_Picture === undefined ? Profilepicture : user[2] + user[0].Profile_Picture} alt="" className='h-[100%] w-[100%] rounded-[50%]' />
                                                         </section>
                                                     </section>
                                                     <section className='w-[100%] h-[50%]  '>
                                                         <p className='mt-[60px] ms-3  font-[700] text-[15px] uppercase'>
-                                                            {user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}
+                                                            {user[0] === null || user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}
                                                         </p>
                                                         <p className='mt-[2px] ms-3 font-[700] text-[14px] uppercase'>
-                                                            {user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found" : user[0].Full_Name}
+                                                            {user[0] === null || user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found" : user[0].Full_Name}
                                                         </p>
                                                         <p className='mt-[2px] ms-3 font-[600] text-[grey] text-[14px] uppercase'>
-                                                            {user[0] === undefined || user[0].Occupation === undefined ? "No Data Found" : user[0].Occupation}
+                                                            {user[0] === null || user[0] === undefined || user[0].Occupation === undefined ? "No Data Found" : user[0].Occupation}
                                                         </p>
                                                     </section>
                                                 </section>
@@ -173,7 +175,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B] '>
-                                                                    {user[0] === undefined || user[0].Select_Designation === undefined ? "No Data Found" : user[0].Select_Designation}
+                                                                    {user[0] === null || user[0] === undefined || user[0].Select_Designation === undefined ? "No Data Found" : user[0].Select_Designation}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -194,7 +196,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B]'>
-                                                                    {user[0] === undefined || user[0].Father_Name === undefined ? "No Data Found" : user[0].Father_Name}
+                                                                    {user[0] === null || user[0] === undefined || user[0].Father_Name === undefined ? "No Data Found" : user[0].Father_Name}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -216,7 +218,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B] '>
-                                                                    {user[0] === undefined || user[0].Date_Of_Birth === undefined ? "No Data Found" : user[0].Date_Of_Birth}
+                                                                    {user[0] === null || user[0] === undefined || user[0].Date_Of_Birth === undefined ? "No Data Found" : user[0].Date_Of_Birth}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -237,7 +239,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B] '>
-                                                                    {user[0] === undefined || user[0].Address === undefined || user[0].City === undefined ? "No Data Found" : `${user[0].Address} , ${user[0].City}`}
+                                                                    {user[0] === null || user[0] === undefined || user[0].Address === undefined || user[0].City === undefined ? "No Data Found" : `${user[0].Address} , ${user[0].City}`}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -269,7 +271,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B]'>
-                                                                    {user[1] === undefined || user[1].Email === undefined ? "No Data Found" : user[1].Email}
+                                                                    {user[1] === null || user[1] === undefined || user[1].Email === undefined ? "No Data Found" : user[1].Email}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -292,7 +294,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B] '>
-                                                                    {user[1] === undefined || user[1].Phone === undefined ? "No Data Found" : user[1].Phone}
+                                                                    {user[1] === null || user[1] === undefined || user[1].Phone === undefined ? "No Data Found" : user[1].Phone}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -336,7 +338,7 @@ export function Profile() {
                                                         </section>
                                                         <section className='w-[100%] h-[235px] absolute bottom-0'>
                                                             <p className='mt-[49px] ms-3 font-[700] uppercase'>
-                                                                {user[0] === undefined ? "No Data Found" : user[0].User_ID}
+                                                                {user[0] === null || user[0] === undefined ? "No Data Found" : user[0].User_ID}
                                                             </p>
                                                             <div className='mt-[10px] mx-3 font-[700] uppercase'>
                                                                 <label htmlFor='name' className='w-[100%]'>Name</label>

@@ -65,7 +65,9 @@ export function Notices() {
                     :
                     <section className='w-[100%] h-[100vh]  bg-[#f3f1f1]'>
                         <Header />
-                        <section className='flex h-[calc(100%-90px)] border-t-[1px]'>
+                        <section className='pt-[66px]'>
+                        </section>
+                        <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
                             <Sidebar />
                             <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                                 <section className=' w-[100%] px-3'>
@@ -76,27 +78,27 @@ export function Notices() {
                                         </h1>
                                     </div>
                                     <div className='font-[500] text-[15px]'>
-                                        <p className='text-[#1385ff]'>Here you can see your all notices</p>
+                                        <p className='text-[var(--primary-color--)]'>Here you can see your all notices</p>
                                     </div>
                                 </section>
 
                                 <section className='mt-[20px]'>
-                                    <button className={status === 'All' ? 'text-[14px] border-[2px] font-[600] bg-[#1385ff] text-[#ffffff] px-[20px] py-[6px] rounded-[10px]' : 'text-[14px] border-dashed border-[2px] font-[600] border-[#1385ff] text-[#1385ff] px-[20px] py-1 rounded-[10px]'} onClick={() => filterdata('All') || setstatus('All')}>
+                                    <button className={status === 'All' ? 'text-[14px] border-[2px] font-[600] bg-[var(--primary-color--)] text-[#ffffff] px-[20px] py-[6px] rounded-[10px]' : 'text-[14px] border-dashed border-[2px] font-[600] border-[var(--primary-color--)] text-[var(--primary-color--)] px-[20px] py-1 rounded-[10px]'} onClick={() => filterdata('All') || setstatus('All')}>
                                         All
                                     </button>
 
-                                    <button className={status === "Personal" ? 'text-[14px] border-[2px] font-[600] bg-[#1385ff] text-[#ffffff] px-[20px] py-[6px] rounded-[10px] ms-2' : 'text-[14px] border-dashed border-[2px] font-[600] border-[#1385ff] text-[#1385ff] px-[20px] py-1 rounded-[10px] ms-2'} onClick={() => filterdata('Personal') || setstatus("Personal")}>
+                                    <button className={status === "Personal" ? 'text-[14px] border-[2px] font-[600] bg-[var(--primary-color--)] text-[#ffffff] px-[20px] py-[6px] rounded-[10px] ms-2' : 'text-[14px] border-dashed border-[2px] font-[600] border-[var(--primary-color--)] text-[var(--primary-color--)] px-[20px] py-1 rounded-[10px] ms-2'} onClick={() => filterdata('Personal') || setstatus("Personal")}>
                                         Personal
                                     </button>
 
 
-                                    <button className={status === "General" ? 'text-[14px] border-[2px] font-[600] bg-[#1385ff] text-[#ffffff] px-[20px] py-[6px] rounded-[10px] ms-2' : 'text-[14px] border-dashed border-[2px] font-[600] border-[#1385ff] text-[#1385ff] px-[20px] py-1 rounded-[10px] ms-2'} onClick={() => filterdata('General') || setstatus("General")}>
+                                    <button className={status === "General" ? 'text-[14px] border-[2px] font-[600] bg-[var(--primary-color--)] text-[#ffffff] px-[20px] py-[6px] rounded-[10px] ms-2' : 'text-[14px] border-dashed border-[2px] font-[600] border-[var(--primary-color--)] text-[var(--primary-color--)] px-[20px] py-1 rounded-[10px] ms-2'} onClick={() => filterdata('General') || setstatus("General")}>
                                         General
                                     </button>
                                 </section>
 
 
-                                <section className='bg-[#1385ff] py-2 rounded-[10px] mt-4'>
+                                <section className='bg-[var(--primary-color--)] py-2 rounded-[10px] mt-4'>
                                     <p className='text-[18px] text-center font-[600] text-white'>Notices</p>
                                 </section>
 
@@ -108,9 +110,9 @@ export function Notices() {
                                         data.map((items, index) => {
                                             return (
                                                 <section key={index} className='dashboard_notice w-[100%] mt-5'>
-                                                    <section className='mt-[10px] border-[1px] border-[#1385ff] bg-[#c4e0ffa3] p-4 rounded-[10px]'>
+                                                    <section className='mt-[10px] border-[1px] border-[var(--primary-color--)] bg-[#c4e0ffa3] p-4 rounded-[10px]'>
                                                         <div className='flex'>
-                                                            <IoMdNotificationsOutline className='text-[25px] text-[#1385ff]' /> <p className='text-[18px] font-[600] ms-1'>{items.Notice_Heading}</p>
+                                                            <IoMdNotificationsOutline className='text-[25px] text-[var(--primary-color--)]' /> <p className='text-[18px] font-[600] ms-1'>{items.Notice_Heading}</p>
                                                         </div>
                                                         <div className='flex mt-2'>
                                                             <p className='text-[10px] font-[600] bg-[#fdcece] px-2 py-1 rounded-[15px] text-[red]'> Subject : {items.Notice_Heading}</p>

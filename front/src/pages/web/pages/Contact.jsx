@@ -133,7 +133,7 @@ export function Contact() {
                                                         <Logo />
                                                     </section>
                                                     <p className='text-white text-[30px] font-[700]'>Contact Us</p>
-                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  Contact Us</span>  </p>
+                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[var(--primary-color--)]'>  Contact Us</span>  </p>
                                                 </section>
                                             </section>
                                         </section>
@@ -142,7 +142,27 @@ export function Contact() {
                         }
 
 
+                        {
+                            contactbannerdata === null ?
+                                null :
+                                contactbannerdata.map((items, index) => {
+                                    return (
 
+                                        <section key={index} className="Slide_home w-[100%] mt-3">
+                                            <section className='w-[100%] pb-[10px] bg-[#ffffff] '>
+                                                <section className='Slide_home_overlay w-[100%] flex items-center justify-evenly'>
+                                                    <section className='Slider_content_section px-5 w-[90%] '>
+                                                        <section>
+                                                            <h1 className='home_banner_heading mt-[10px] text-[var(--primary-color--)] text-[50px] font-[800] capitalize text-center'>{items.Contact_Banner_Heading}</h1>
+                                                            <p className='About_banner_description text-[grey] text-[18px] my-5 text-center italic'>{items.Contact_Banner_Description}</p>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    )
+                                })
+                        }
 
 
 
@@ -161,7 +181,7 @@ export function Contact() {
 
                                             <div>
                                                 <p className='font-[600] text-[25px]'>Contact information</p>
-                                                <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-1 mb-5'></div>
+                                                <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] mt-1 mb-5'></div>
                                             </div>
 
                                             <section className=''>
@@ -176,7 +196,7 @@ export function Contact() {
                                             <p className=' font-[700] text-[25px]'>
                                                 Get in touch
                                             </p>
-                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-1 mb-5'></div>
+                                            <div className='heading_hoverline border-b-[3px] border-[var(--primary-color--)] mt-1 mb-5'></div>
                                         </div>
 
                                         <form onSubmit={formik.handleSubmit}>
@@ -184,11 +204,11 @@ export function Contact() {
                                                 inputname.map((items, index) => {
                                                     return (
                                                         <div key={index} className='mb-[10px]'>
-                                                            <label htmlFor={inputname[index]} className='font-[600] text-[#1385ff]'>{inputlabel[index]}</label>
+                                                            <label htmlFor={inputname[index]} className='font-[600] text-[var(--primary-color--)]'>{inputlabel[index]}</label>
                                                             {
                                                                 inputtype[index] !== "message" ?
-                                                                    <input id={inputname[index]} autoComplete='true' type={inputtype[index]} name={items} className='border-[2px] mt-1 border-[#1385ff] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} /> :
-                                                                    <textarea id={inputname[index]} autoComplete='true' name={items} className='border-[2px] h-[200px] mt-1 border-[#1385ff] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                                    <input id={inputname[index]} autoComplete='true' type={inputtype[index]} name={items} className='border-[2px] mt-1 border-[var(--primary-color--)] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} /> :
+                                                                    <textarea id={inputname[index]} autoComplete='true' name={items} className='border-[2px] h-[200px] mt-1 border-[var(--primary-color--)] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
                                                             }
                                                             <div className='text-[red]'>
                                                                 {
@@ -206,7 +226,7 @@ export function Contact() {
                                                 })
                                             }
 
-                                            <button className='bg-[#1385ff] text-[white] font-[600] w-[100%] py-3 rounded-[10px]'>Submit</button>
+                                            <button className='bg-[var(--primary-color--)] text-[white] font-[600] w-[100%] py-3 rounded-[10px]'>Submit</button>
 
                                         </form>
 

@@ -23,7 +23,7 @@ exports.generatedonationorderid = async (req, res) => {
         const response = await razorpay.orders.create(options)
         if (req.body.Amount !== undefined || req.body.Amount !== 0) {
             let saveorder = await donationpaymentsmodel.create({
-                Receipt_No: "RC/ESP-" + Math.floor(Math.random() * 10000),
+                Receipt_No: "RCESP-" + Math.floor(Math.random() * 10000),
                 User_Id: req.session.user,
                 Order_Id: response.id,
                 Amount: req.body.Amount,
@@ -144,7 +144,7 @@ exports.generateindividualdonationorderid = async (req, res) => {
         const response = await razorpay.orders.create(options)
         if (req.body.Amount !== undefined || req.body.Amount >= 100) {
             let saveorder = await individualdonationpaymentmodel.create({
-                Receipt_No: "RC/ESP-" + Math.floor(Math.random() * 10000),
+                Receipt_No: "RCESP-" + Math.floor(Math.random() * 10000),
                 Name: req.body.Name,
                 Email: req.body.Email,
                 Phone: req.body.Phone,

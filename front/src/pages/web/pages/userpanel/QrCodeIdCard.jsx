@@ -1,25 +1,15 @@
-import React, { useContext, useRef } from 'react'
-import { Header } from '../../../../common/Header'
-import { Sidebar } from '../../../../common/Sidebar'
-import { FaDownload, FaEnvelope, FaLocationPin, FaRegAddressCard, FaUser } from 'react-icons/fa6'
-import { UserContext } from '../Context/UserDataContext'
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import { FaEnvelope, FaLocationPin, FaRegAddressCard } from 'react-icons/fa6'
 import { Logo } from '../../../../common/Logo'
 import { FaPhoneAlt } from 'react-icons/fa'
-import { useReactToPrint } from 'react-to-print'
-import QRCode from 'react-qr-code'
 
-export function IdCard() {
-    let { user } = useContext(UserContext)
-    const contentRef = useRef(null);
-    const reactToPrintFn = useReactToPrint({ contentRef });
+export function QrCodeIdCard() {
+    let { IdName, IdProfilePicture, IdDesignation, IdNo, IdMobile, IdEmail, IdCity } = useParams()
     return (
         <>
             <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
-                <Header />
-                <section className='pt-[66px]'>
-                </section>
-                <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
-                    <Sidebar />
+                <section className='flex h-[calc(100%-75px)] border-t-[1px]'>
                     <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                         <section className=' w-[100%] px-3'>
                             <div className='text-[25px] flex items-center'>
@@ -32,14 +22,8 @@ export function IdCard() {
                                 <p className='text-[var(--primary-color--)]'>Here you can see your Id Card</p>
                             </div>
                         </section>
-                        {
-                            user[0] === null || user[0] === undefined || user[0].Address === undefined ? null :
-                                <section className='text-black w-[100%] flex justify-center h-auto my-[10px]'>
-                                    <button className='text-[16px] py-3 px-3 rounded-[10px] border-[1px] bg-[var(--primary-color--)] text-white flex items-center' onClick={reactToPrintFn}><FaDownload className='me-2' /> DOWNLOAD AND PRINT</button>
-                                </section>
-                        }
 
-                        <section className='mt-[30px] flex justify-evenly flex-wrap py-2 ' ref={contentRef}>
+                        <section className='mt-[30px] flex justify-evenly flex-wrap py-2 '>
                             <section className='id_card w-[300px] rounded-[10px] bg-[white]  pt-2 mt-[10px]'>
                                 <section className='w-[165px] m-auto mt-2 text-center'>
                                     <Logo />
@@ -50,32 +34,14 @@ export function IdCard() {
 
                                 <section className='flex justify-center mt-3'>
                                     <section className='w-[100px] h-[100px] rounded-[10px] overflow-hidden mt-3 flex items-center justify-center'>
-                                        {
-                                            user[0] === null || user[0] === undefined ?
-                                                <section>
-                                                    <FaUser className='text-[grey] text-[35px]' />
-                                                </section> :
-                                                <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%]' />
-                                        }
-                                    </section>
 
-                                    {
-                                        user[0] === null || user[0] === undefined ?
-                                            null :
-                                            <section className='w-[95px] h-[95px]  ms-2 rounded-[5px] overflow-hidden  mt-3 flex items-center justify-center'>
-                                                <QRCode
-                                                    value={`http://194.238.22.240:3001/qr-id-card/${user[0].Full_Name}/${user[0].Profile_Picture}/${user[0].Select_Designation}/${user[0].User_ID}/${user[1].Phone}/${user[1].Email}/${user[0].City}`}
-                                                    width={100}
-                                                    height={100}
-                                                    bgColor='white'
-                                                    fgColor='var(--primary-color--)'
-                                                />
-                                            </section>
-                                    }
+                                        <img src={'http://194.238.22.240:5500/uploads/' + IdProfilePicture} alt="" className='w-[100%] h-[100%]' />
+
+                                    </section>
                                 </section>
                                 <section>
-                                    <p className='text-[17px] text-center mt-2 font-[600]'>{user[0] === null || user[0] === undefined ? "No Data Found" : user[0].Full_Name}</p>
-                                    <p className='text-[14px] text-center'>( {user[0] === null || user[0] === undefined || user[0].Select_Designation === undefined ? "No Data Found" : user[0].Select_Designation} )</p>
+                                    <p className='text-[17px] text-center mt-2 font-[600]'>{IdName}</p>
+                                    <p className='text-[14px] text-center'>( {IdDesignation} )</p>
                                 </section>
 
 
@@ -86,7 +52,7 @@ export function IdCard() {
                                             <p className=' font-[600]'>ID.No : &nbsp;</p>
                                         </div>
                                         <div>
-                                            <p>{user[0] === null || user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}</p>
+                                            <p>{IdNo}</p>
                                         </div>
                                     </div>
 
@@ -95,7 +61,7 @@ export function IdCard() {
                                             <p className=' font-[600]'> MOB.No : &nbsp;</p>
                                         </div>
                                         <div>
-                                            <p>{user[1] === null || user[1] === undefined ? "No Data Found" : user[1].Phone}</p>
+                                            <p>{IdMobile}</p>
                                         </div>
                                     </div>
 
@@ -104,7 +70,7 @@ export function IdCard() {
                                             <p className=' font-[600]'> Email : &nbsp;</p>
                                         </div>
                                         <div>
-                                            <p>{user[1] === null || user[1] === undefined ? "No Data Found" : user[1].Email}</p>
+                                            <p>{IdEmail}</p>
                                         </div>
                                     </div>
 
@@ -113,7 +79,7 @@ export function IdCard() {
                                             <p className=' font-[600]'> City : &nbsp;</p>
                                         </div>
                                         <div>
-                                            <p>{user[0] === null || user[0] === undefined || user[0].City === undefined ? "No Data Found" : user[0].City}</p>
+                                            <p>{IdCity}</p>
                                         </div>
                                     </div>
                                 </section>
@@ -123,19 +89,19 @@ export function IdCard() {
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 98102 85469</p>
+                                            <p>&nbsp;&nbsp;+91 97182 77194</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;tfgtrust@gmail.com</p>
+                                            <p>&nbsp;&nbsp;rcmicci@gmail.com</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
                                             <FaLocationPin className='me-1' />
-                                            <p>&nbsp;523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                            <p>&nbsp;316, Park View Plaza, 32 Park Area, Ajmal Khan Road Karol Bagh, New Delhi-110005</p>
                                         </div>
                                     </div>
 
@@ -149,7 +115,7 @@ export function IdCard() {
                                 </section>
                                 <section className='text-center '>
                                     {/* <p className=' text-[16px] font-[600]'>RCMICCI</p> */}
-                                    <p className='font-[500] text-[13px]'>tfgtrust@gmail.com</p>
+                                    <p className='font-[500] text-[13px]'>rcmicci@gmail.com</p>
                                     <p className='font-[600] text-[16px] mt-1'>TERMS & CONDITIONS</p>
                                 </section>
 
@@ -174,19 +140,19 @@ export function IdCard() {
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 98102 85469</p>
+                                            <p>&nbsp;&nbsp;+91 97182 77194</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;tfgtrust@gmail.com</p>
+                                            <p>&nbsp;&nbsp;rcmicci@gmail.com</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
                                             <FaLocationPin className='me-1' />
-                                            <p>&nbsp;523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                            <p>&nbsp;316, Park View Plaza, 32 Park Area, Ajmal Khan Road Karol Bagh, New Delhi-110005</p>
                                         </div>
                                     </div>
 

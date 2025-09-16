@@ -152,8 +152,8 @@ export function Otp_Verification() {
                                         <Logo />
                                     </section>
                                     <section className='register_right_heading_section'>
-                                        <h1 className='text-[30px] font-[600] text-center'>OTP VERIFICATION</h1>
-                                        <p className='register_subheading text-center mt-2 text-[17px] font-[600]'>We've sent a 4-digit code to your email <br /> ( {email} ). Please enter it below to verify</p>
+                                        <h1 className='text-[30px] font-[700] text-center text-[var(--primary-color--)]'>OTP VERIFICATION</h1>
+                                        <p className='register_subheading text-center mt-2 text-[17px] font-[600]'>We've sent a 4-digit code to your email <br /> ( <span className='text-[var(--primary-color--)]'>{email}</span> ). Please enter it below to verify</p>
                                     </section>
 
                                     <section className='register_form mt-5 flex justify-center'>
@@ -172,7 +172,7 @@ export function Otp_Verification() {
                                                                     onKeyDown={(e) => handlekeydown(e, index)}
                                                                     id={`otp${index}`}
                                                                     value={otp[index]}
-                                                                    className='otp_inputs w-[80px] h-[80px] border-[2px] mt-1 border-[orange] p-3 rounded-[12px] text-[14px] text-center'
+                                                                    className='otp_inputs w-[80px] h-[80px] border-[2px] mt-1 border-[orange] outline-[var(--primary-color--)] p-3 rounded-[12px] text-[14px] text-center'
                                                                 />
                                                             </div>
 
@@ -182,11 +182,11 @@ export function Otp_Verification() {
                                             </div>
 
                                             <div className='w-[80%] mt-[20px]'>
-                                                <button type='submit' onClick={() => insertdata(otp)} className='w-[100%] bg-[black] text-[white] text-[18px] font-[500] py-3 rounded-[10px]'>VERIFY</button>
+                                                <button type='submit' onClick={() => insertdata(otp)} className='w-[100%] bg-[var(--primary-color--)] text-[white] text-[18px] font-[500] py-3 rounded-[10px]'>VERIFY</button>
                                             </div>
 
                                             <div className='register_bottom_content w-[80%] mt-[20px] text-center flex justify-center items-center text-[15px]'>
-                                                <p className='font-[600] text-[grey]'>00 :</p>&nbsp;<span className=' font-[600]'>{seconds === 0 ? <p className=' cursor-pointer' onClick={() => resendotp()}>Resend</p> : seconds}</span>
+                                                <p className='font-[600] text-[grey]'>00 :</p>&nbsp;<span className=' font-[600] text-[var(--primary-color--)]'>{seconds === 0 ? <p className=' cursor-pointer ' onClick={() => resendotp()}>Resend</p> : seconds}</span>
                                             </div>
                                         </div>
                                     </section>

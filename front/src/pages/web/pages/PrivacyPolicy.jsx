@@ -94,16 +94,16 @@ export function PrivacyPolicy() {
                                     null :
                                     privacybannerdata.map((items, index) => {
                                         return (
-                                            <section key={items} className='w-[100%]  border-b-[1px] border-[#1385ff]' >
-                                                <section className='w-[100%] h-[100%] flex justify-center items-center'>
-                                                    <section className='w-[100%] text-justify p-3'>.
 
-                                                        <div className='text-center'>
-                                                            <p className=' text-[30px] font-[700] capitalize mb-1'>{items.Privacy_Banner_Heading}</p>
-                                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] w-[300px] m-auto mb-6 '></div>
-                                                        </div>
-                                                        <p className='w-[100%] text-[16px] leading-[30px] m-auto'>{items.Privacy_Banner_Description}</p>
-
+                                            <section key={index} className="Slide_home w-[100%] mt-3">
+                                                <section className='w-[100%] pb-[10px] bg-[#ffffff] '>
+                                                    <section className='Slide_home_overlay w-[100%] flex items-center justify-evenly'>
+                                                        <section className='Slider_content_section px-5 w-[90%] '>
+                                                            <section>
+                                                                <h1 className='home_banner_heading mt-[10px] text-[var(--primary-color--)] text-[50px] font-[800] capitalize text-center'>{items.Privacy_Banner_Heading}</h1>
+                                                                <p className='About_banner_description text-[grey] text-[18px] italic my-5 text-center'>{items.Privacy_Banner_Description}</p>
+                                                            </section>
+                                                        </section>
                                                     </section>
                                                 </section>
                                             </section>
@@ -111,106 +111,66 @@ export function PrivacyPolicy() {
                                     })
                             }
 
+
+
                             {
-                                privacyparagraph.length === 0 ? null :
-                                    <section className='w-[100%] py-[0px]'>
-                                        <section id='donation_section' className='donation_section w-[100%] py-[10px] px-[10px] '>
-                                            {
-                                                privacyparagraph.length === 0 ? null
-                                                    :
-                                                    privacyparagraph.map((items, index) => {
-                                                        return (
-                                                            <section key={index} className='mt-4 w-[100%] '>
-                                                                <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] flex items-center justify-center">
+                                privacyparagraph.length === 0 ? null
+                                    :
+                                    <section className='meet_the_founder_Section w-[100%] px-10 my-8'>
+                                        {
+                                            privacyparagraph.map((items, index) => {
+                                                return (
+                                                    <section key={index} className=' w-[100%] h-auto mb-[10px]'>
+                                                        <section className='founder_profile_section w-[100%] text-[var(--primary-color--)] shadow h-auto border-e-[5px] rounded-[15px]  text-start p-2 '>
+                                                            <h1 className='font-[700] text-[30px] mb-[10px]'>
+                                                                {items.Privacy_Heading}
+                                                            </h1>
 
-                                                                    {
-                                                                        items.Privacy_Image === null ?
-                                                                            <section className='about_inner_section w-[100%] border-[1px] border-[#1385ff] m-auto overflow-hidden rounded-[20px] flex justify-between ' >
-                                                                                <section className='p-3 backdrop-blur-[2] w-[100%]'>
-                                                                                    <section className=' capitalize text-[25px] font-[700] text-[#000000]'>
-                                                                                        {items.Privacy_Heading}
-                                                                                        <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-2 w-[auto]'></div>
-                                                                                    </section>
+                                                            <section className='meet_the_founder_inner_Section flex justify-between'>
+                                                                {
+                                                                    items.Privacy_Image !== null ?
+                                                                        <section className='w-[25%] '>
+                                                                            <img src={imageurl + items.Privacy_Image} alt="" className='rounded-[10px] w-[100%]' />
+                                                                        </section>
+                                                                        :
+                                                                        null
+                                                                }
 
-                                                                                    <section>
-                                                                                        <p className='mt-5 text-[16px] font-[500]  capitalize'>
-                                                                                            {items.Privacy_Description}
-                                                                                        </p>
-                                                                                    </section>
-
-
-                                                                                    <section className='w-[100%] mb-[10px]'>
-                                                                                        {
-                                                                                            privacyextraparagraph.length === 0 ? null :
-                                                                                                privacyextraparagraph.map((value, ind) => {
-                                                                                                    return (
-                                                                                                        <section className='w-[100%]' key={ind}>
-                                                                                                            {
-                                                                                                                value.Privacy_Section_Id !== items._id ?
-                                                                                                                    null :
-                                                                                                                    <p className='mb-[20px] mt-3 text-[16px] font-[500] capitalize'>
-                                                                                                                        {value.Privacy_Paragraph}
-                                                                                                                    </p>
-                                                                                                            }
-                                                                                                        </section>
-                                                                                                    )
-                                                                                                })
-                                                                                        }
-                                                                                    </section>
+                                                                <section className={items.Privacy_Image !== null ? 'mb-[10px] w-[73%] text-start' : 'mb-[10px] w-[100%] text-start'}>
+                                                                    <p className='mb-[20px] mt-2 text-[16px] font-[500] italic text-[black] capitalize'>
+                                                                        {items.Privacy_Description}
+                                                                    </p>
+                                                            <section className='w-[100%] mb-[10px]'>
+                                                                {
+                                                                    privacyextraparagraph.length === 0 ? null :
+                                                                        privacyextraparagraph.map((value, ind) => {
+                                                                            return (
+                                                                                <section className='w-[100%] text-start' key={ind}>
+                                                                                    {
+                                                                                        value.Privacy_Section_Id !== items._id ?
+                                                                                            null :
+                                                                                            <p className='mb-[20px] mt-2 text-[16px] font-[500] italic capitalize text-[black]'>
+                                                                                                {value.Privacy_Paragraph}
+                                                                                            </p>
+                                                                                    }
                                                                                 </section>
-                                                                            </section>
-                                                                            :
-
-                                                                            <section className='about_inner_section w-[100%] border-[1px] border-[#1385ff] m-auto overflow-hidden rounded-[20px] flex justify-between p-1' >
-                                                                                <section className='backdrop-blur-[2] w-[350px] h-[350px]'>
-                                                                                    <img src={imageurl + items.Privacy_Image} alt="" className='h-[100%] rounded-[20px]' />
-                                                                                </section>
-
-                                                                                <section className='p-3 backdrop-blur-[2] w-[calc(100%-370px)]'>
-                                                                                    <section className=' capitalize text-[25px] font-[700] text-[#000000]'>
-                                                                                        {items.Privacy_Heading}
-                                                                                        <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-2 w-[auto]'></div>
-                                                                                    </section>
-
-                                                                                    <section>
-                                                                                        <p className='mt-5 text-[16px] font-[500]  capitalize'>
-                                                                                            {items.Privacy_Description}
-                                                                                        </p>
-                                                                                    </section>
-
-
-                                                                                    <section className='w-[100%] mb-[10px]'>
-                                                                                        {
-                                                                                            privacyextraparagraph.length === 0 ? null :
-                                                                                                privacyextraparagraph.map((value, ind) => {
-                                                                                                    return (
-                                                                                                        <section className='w-[100%]' key={ind}>
-                                                                                                            {
-                                                                                                                value.Privacy_Section_Id !== items._id ?
-                                                                                                                    null :
-                                                                                                                    <p className='mb-[20px] mt-3 text-[16px] font-[500] capitalize'>
-                                                                                                                        {value.Privacy_Paragraph}
-                                                                                                                    </p>
-                                                                                                            }
-                                                                                                        </section>
-                                                                                                    )
-                                                                                                })
-                                                                                        }
-                                                                                    </section>
-                                                                                </section>
-                                                                            </section>
-                                                                    }
-
+                                                                            )
+                                                                        })
+                                                                }
+                                                            </section>
                                                                 </section>
                                                             </section>
-                                                        )
-                                                    })
-                                            }
-                                        </section>
 
+                                                        </section>
+
+
+
+                                                    </section>
+                                                )
+                                            })
+                                        }
                                     </section>
                             }
-
                         </section>
                         <Footer />
                     </section >

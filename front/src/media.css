@@ -150,6 +150,44 @@
         margin-bottom: 30px;
     }
 
+    .about_mission_vision_section {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .about_mission_vision_section>section {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+
+
+    .meet_the_founder_Section {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .meet_the_founder_Section>section {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .meet_the_founder_inner_Section {
+        flex-direction: column;
+    }
+
+
+    .meet_the_founder_inner_Section>section {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+
+    .news_report_section {
+        padding: 10px;
+    }
+
+
     .quick_links_section {
         padding: 20px;
     }
@@ -261,6 +299,24 @@
         font-size: 12px;
         padding: 8px;
     }
+
+    .appiontment_letter_heading_section {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .appiontment_letter_heading_section>section>section {
+        margin: auto;
+        margin: 20px auto;
+    }
+
+    .appiontment_letter_heading_section>section {
+       margin: 0;
+    }
+
+
 }
 
 @media screen and (max-width:920px) {
@@ -608,5 +664,9 @@
     .home_banner {
         width: 280px;
         height: 280px;
+    }
+
+    .membership_status_card {
+        width: 98%;
     }
 }

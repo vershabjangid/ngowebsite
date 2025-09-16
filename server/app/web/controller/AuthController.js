@@ -10,7 +10,7 @@ const membershippaymentsmodel = require('../model/MembershipPaymentModal');
 const { isNumber } = require('razorpay/dist/utils/razorpay-utils');
 let finalpath = path.join(__dirname, "../../../uploads")
 require('dotenv').config();
-let imageurl = "http://194.238.22.240:5500/uploads/"
+let imageurl = "http://localhost:5500/uploads/"
 
 
 
@@ -259,104 +259,6 @@ exports.resendotp = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-//   if (req.files[0] !== undefined && req.files[1] !== undefined && !req.files[0].filename.includes(".fake") && !req.files[1].filename.includes(".fake")) {
-//                 let searchregister = await registermodel.findOne({ Email: req.body.Email })
-//                 if (searchregister === null) {
-//                     res.send({
-//                         Status: 0,
-//                         Message: 'No User Found'
-//                     })
-//                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-//                     fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
-//                 }
-//                 else if (req.body.Aadhar_NO.length !== 12) {
-//                     res.send({
-//                         Status: 0,
-//                         Message: 'Invalid Inputs'
-//                     })
-//                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-//                     fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
-//                 }
-//                 else {
-//                     let searchprofile = await createprofilemodel.findOne({ Sub_Id: searchregister._id })
-//                     if (searchprofile !== null) {
-//                         res.send({
-//                             Status: 0,
-//                             Message: 'Data Already Exists'
-//                         })
-//                         fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-//                         fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
-//                     }
-// else {
-
-// }
-// }
-//             }
-//             else {
-
-//                 if (req.files[0] !== undefined && req.files[1] !== undefined) {
-//                     for (var i = 0; i < req.files.length; i++) {
-//                         fs.unlinkSync(`${finalpath}/${req.files[i].filename}`)
-//                     }
-//                     res.send({
-//                         Status: 0,
-//                         Message: 'Data Missing'
-//                     })
-//                 }
-//                 else {
-//                     if (req.files[0] !== undefined || req.files[1] !== undefined) {
-//                         fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-//                         res.send({
-//                             Status: 0,
-//                             Message: 'Data Missing'
-//                         })
-//                     }
-//                     else {
-//                         res.send({
-//                             Status: 0,
-//                             Message: 'Data Missing'
-//                         })
-//                     }
-//                 }
-//             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.createprofilecontroller = async (req, res) => {
     try {
 
@@ -371,15 +273,10 @@ exports.createprofilecontroller = async (req, res) => {
 
         if (age >= 18) {
             if (req.files[0] !== undefined && req.files[1] !== undefined) {
-                console.log(req.body, '1')
                 if (!req.files[0].filename.includes('.fake') && !req.files[1].filename.includes('.fake')) {
-                    console.log(req.body, '2')
                     if (req.body.Aadhar_NO.length === 12 && Number(req.body.Aadhar_NO) !== NaN) {
-                        console.log(req.body, '3')
                         let searchregister = await registermodel.findOne({ Email: req.body.Email })
-                        console.log(req.body, '4')
                         if (searchregister !== null) {
-                            console.log(req.body, '5')
                             let data = {
                                 Sub_Id: searchregister._id,
                                 User_ID: "SRT-" + Math.floor(Math.random() * 10000),
@@ -392,7 +289,8 @@ exports.createprofilecontroller = async (req, res) => {
                                 Upload_Aadhar: req.files[0].filename,
                                 City: req.body.City,
                                 Select_Designation: req.body.Select_Designation,
-                                Profile_Picture: req.files[1].filename
+                                Profile_Picture: req.files[1].filename,
+                                Shapath: req.body.Shapath
                             }
 
                             let insertdata = await createprofilemodel(data)
@@ -777,89 +675,125 @@ exports.updateprofile = async (req, res) => {
                 })
             }
             else {
-                let data = {
-                    Sub_Id: finddata.Sub_id,
-                    Full_Name: req.body.Full_Name === "" || req.body.Full_Name === null ? finddata.Full_Name : req.body.Full_Name,
-                    Father_Name: req.body.Father_Name === "" || req.body.Father_Name === null ? finddata.Father_Name : req.body.Father_Name,
-                    Occupation: req.body.Occupation === "" || req.body.Occupation === null ? finddata.Occupation : req.body.Occupation,
-                    Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
-                    Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
-                    City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
-                    Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation
+
+                let date = new Date()
+                let birthdate = new Date(req.body.Date_Of_Birth)
+                let age = date.getFullYear() - birthdate.getFullYear();
+                let monthdiff = date.getMonth() - birthdate.getMonth();
+
+                if (monthdiff < 0 || (monthdiff < 0 && date.getDate() < birthdate.getDate())) {
+                    age--
                 }
 
-                let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
-                    Full_Name: data.Full_Name,
-                    Father_Name: data.Father_Name,
-                    Occupation: data.Occupation,
-                    Date_Of_Birth: data.Date_Of_Birth,
-                    Address: data.Address,
-                    City: data.City,
-                    Select_Designation: data.Select_Designation
-                })
+                if (age >= 18) {
+                    let data = {
+                        Sub_Id: finddata.Sub_id,
+                        Full_Name: req.body.Full_Name === "" || req.body.Full_Name === null ? finddata.Full_Name : req.body.Full_Name,
+                        Father_Name: req.body.Father_Name === "" || req.body.Father_Name === null ? finddata.Father_Name : req.body.Father_Name,
+                        Occupation: req.body.Occupation === "" || req.body.Occupation === null ? finddata.Occupation : req.body.Occupation,
+                        Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
+                        Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
+                        City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
+                        Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation
+                    }
 
-
-                if (updateprofile.modifiedCount > 0) {
-                    res.send({
-                        Status: 1,
-                        Message: "Data Updated Successfully"
+                    let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
+                        Full_Name: data.Full_Name,
+                        Father_Name: data.Father_Name,
+                        Occupation: data.Occupation,
+                        Date_Of_Birth: data.Date_Of_Birth,
+                        Address: data.Address,
+                        City: data.City,
+                        Select_Designation: data.Select_Designation
                     })
+
+
+                    if (updateprofile.modifiedCount > 0) {
+                        res.send({
+                            Status: 1,
+                            Message: "Data Updated Successfully"
+                        })
+                    }
+                    else {
+                        res.send({
+                            Status: 0,
+                            Message: "Data Doesn't Updated"
+                        })
+                    }
                 }
                 else {
                     res.send({
                         Status: 0,
-                        Message: "Data Doesn't Updated"
+                        Message: 'Minimum 18 year required'
                     })
                 }
             }
         }
         else {
-            if (finddata === null) {
-                res.send({
-                    Status: 0,
-                    Message: "Data Not Found"
-                })
-                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            let date = new Date()
+            let birthdate = new Date(req.body.Date_Of_Birth)
+            let age = date.getFullYear() - birthdate.getFullYear();
+            let monthdiff = date.getMonth() - birthdate.getMonth();
+
+            if (monthdiff < 0 || (monthdiff < 0 && date.getDate() < birthdate.getDate())) {
+                age--
             }
-            else {
-                let data = {
-                    Sub_Id: finddata.Sub_id,
-                    Full_Name: req.body.Full_Name === "" || req.body.Full_Name === null ? finddata.Full_Name : req.body.Full_Name,
-                    Father_Name: req.body.Father_Name === "" || req.body.Father_Name === null ? finddata.Father_Name : req.body.Father_Name,
-                    Occupation: req.body.Occupation === "" || req.body.Occupation === null ? finddata.Occupation : req.body.Occupation,
-                    Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
-                    Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
-                    City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
-                    Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation,
-                    Profile_Picture: req.files[0].filename
-                }
 
-                let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
-                    Full_Name: data.Full_Name,
-                    Father_Name: data.Father_Name,
-                    Occupation: data.Occupation,
-                    Date_Of_Birth: data.Date_Of_Birth,
-                    Address: data.Address,
-                    City: data.City,
-                    Select_Designation: data.Select_Designation,
-                    Profile_Picture: data.Profile_Picture
-                })
-
-
-                if (updateprofile.modifiedCount > 0) {
-                    res.send({
-                        Status: 1,
-                        Message: "Data Updated Successfully"
-                    })
-                    fs.unlinkSync(`${finalpath}/${finddata.Profile_Picture}`)
-                }
-                else {
+            if (age >= 18) {
+                if (finddata === null) {
                     res.send({
                         Status: 0,
-                        Message: "Data Doesn't Updated"
+                        Message: "Data Not Found"
                     })
                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
                 }
+                else {
+                    let data = {
+                        Sub_Id: finddata.Sub_id,
+                        Full_Name: req.body.Full_Name === "" || req.body.Full_Name === null ? finddata.Full_Name : req.body.Full_Name,
+                        Father_Name: req.body.Father_Name === "" || req.body.Father_Name === null ? finddata.Father_Name : req.body.Father_Name,
+                        Occupation: req.body.Occupation === "" || req.body.Occupation === null ? finddata.Occupation : req.body.Occupation,
+                        Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
+                        Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
+                        City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
+                        Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation,
+                        Profile_Picture: req.files[0].filename
+                    }
+
+                    let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
+                        Full_Name: data.Full_Name,
+                        Father_Name: data.Father_Name,
+                        Occupation: data.Occupation,
+                        Date_Of_Birth: data.Date_Of_Birth,
+                        Address: data.Address,
+                        City: data.City,
+                        Select_Designation: data.Select_Designation,
+                        Profile_Picture: data.Profile_Picture
+                    })
+
+
+                    if (updateprofile.modifiedCount > 0) {
+                        res.send({
+                            Status: 1,
+                            Message: "Data Updated Successfully"
+                        })
+                        fs.unlinkSync(`${finalpath}/${finddata.Profile_Picture}`)
+                    }
+                    else {
+                        res.send({
+                            Status: 0,
+                            Message: "Data Doesn't Updated"
+                        })
+                        fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                    }
+                }
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: 'Minimum 18 year required'
+                })
+                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
             }
         }
     }

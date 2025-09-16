@@ -33,7 +33,7 @@ export function CreateProfile() {
             City: "",
             Select_Designation: "",
             Profile_Picture: "",
-
+            Shapath: ""
         },
         validationSchema: Yup.object().shape({
             Full_Name: Yup.string().required("Full Name is required"),
@@ -68,7 +68,8 @@ export function CreateProfile() {
                 Upload_Aadhar: "",
                 City: "",
                 Select_Designation: "",
-                Profile_Picture: ""
+                Profile_Picture: "",
+                Shapath: ""
             })
         }
     })
@@ -126,7 +127,7 @@ export function CreateProfile() {
                                         <Logo />
                                     </section>
                                     <section className='register_right_heading_section'>
-                                        <h1 className='text-[30px] font-[600] text-center'>Create Profile</h1>
+                                        <h1 className='text-[30px] font-[700] text-center text-[var(--primary-color--)]'>Create Profile</h1>
                                         <p className='register_subheading text-center mt-2 text-[17px] font-[600]'>Please enter your required details to create profile</p>
                                     </section>
 
@@ -138,14 +139,14 @@ export function CreateProfile() {
 
                                                         return (
                                                             <div key={index} className='register_form_section w-[100%] mt-[15px]'>
-                                                                <label htmlFor={`input${index}`} className='text-[15px] font-[600]'>{labelname[index]}</label>
+                                                                <label htmlFor={`input${index}`} className='text-[15px] font-[600] text-[var(--primary-color--)]'>{labelname[index]}</label>
                                                                 {
                                                                     inputtype[index] === "password" ?
                                                                         <section className='relative'>
-                                                                            <input id={`input${index}`} autoCorrect='true' type={eye ? "text" : inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                                            <input id={`input${index}`} autoCorrect='true' type={eye ? "text" : inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] outline-[var(--primary-color--)] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
                                                                             <div className='absolute top-[50%] text-[20px] translate-y-[-50%] right-[20px]'>
                                                                                 {
-                                                                                    eye ? <FaEyeSlash onClick={() => seteye(false)} className=' cursor-pointer' />
+                                                                                    eye ? <FaEyeSlash onClick={() => seteye(false)} className=' cursor-pointer text-[var(--primary-color--)]' />
                                                                                         :
                                                                                         <FaEye onClick={() => seteye(true)} className=' cursor-pointer' />
                                                                                 }
@@ -154,18 +155,18 @@ export function CreateProfile() {
                                                                         :
                                                                         inputtype[index] === "file" ?
                                                                             <section className='h-[150px] relative '>
-                                                                                <section className=' absolute w-[100%] h-[100%] border-dashed border-[1.8px] border-[black] rounded-[10px] z-99 flex justify-center items-center'>
+                                                                                <section className=' absolute w-[100%] h-[100%] border-dashed border-[1.8px] border-[var(--primary-color--)] rounded-[10px] z-99 flex justify-center items-center'>
                                                                                     <div className='flex justify-center items-center flex-col'>
                                                                                         <MdOutlineUploadFile className='text-[30px]' />
                                                                                         <p className='font-[600] mt-[5px] '>{placeholder[index].slice(12)}....</p>
                                                                                     </div>
                                                                                 </section>
                                                                                 <section className='w-[100%] h-[100%] absolute z-[999] opacity-0'>
-                                                                                    <input id={`input${index}`} type={inputtype[index]} className='w-[100%] h-[100%] p-3  text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.files[0]) && handlechange(e, index)} />
+                                                                                    <input id={`input${index}`} type={inputtype[index]} className='w-[100%] h-[100%] p-3  text-[14px] outline-[var(--primary-color--)]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.files[0]) && handlechange(e, index)} />
                                                                                 </section>
                                                                             </section> :
                                                                             inputtype[index] === "select" ?
-                                                                                <select id={`input${index}`} className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)}>
+                                                                                <select id={`input${index}`} className='w-[100%] border-[1px] mt-1 border-[black] outline-[var(--primary-color--)] p-3 rounded-[10px] text-[14px]' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)}>
                                                                                     <option>Select Designation</option>
                                                                                     <option value="Director">Director</option>
                                                                                     <option value="Secretory">Secretory</option>
@@ -178,7 +179,7 @@ export function CreateProfile() {
 
                                                                                 </select>
                                                                                 :
-                                                                                <input id={`input${index}`} type={inputtype[index]} className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                                                <input id={`input${index}`} type={inputtype[index]} className='w-[100%] border-[1px] mt-1 border-[black] outline-[var(--primary-color--)] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
                                                                 }
                                                                 <div className='text-[red] mt-[5px]'>
                                                                     {
@@ -206,12 +207,18 @@ export function CreateProfile() {
                                                                     }
 
                                                                 </div>
+
                                                             </div>
                                                         )
                                                     })
                                                 }
+                                                <div className='flex items-start mt-2'>
+                                                    <input type="checkbox" className='me-2' onChange={(e) => formik.setFieldValue('Shapath', e.target.checked)} required />
+                                                    <p className='font-[600]'>
+                                                        मैं, शपथ लेता/लेती हूं कि मैं बिना किसी भेदभाव के, मानव अधिकारों के संरक्षण और संवर्धन के लिए हमेशा कार्य करूंगा/करूंगी। मैं यह सुनिश्चित करूंगा/करूंगी कि मेरे शब्दों, कर्मों या कृत्यों से किसी के मानव अधिकारों का उल्लंघन न हो। मैं मानवाधिकार संरक्षण संगठन (HRD) के उद्देश्यों को बढ़ाने, संगठन के विकास में सहयोग करने और सदस्यता की जिम्मेदारी निभाने का वचन देता/देती हूं। मैं संगठन के किसी भी गैर-कानूनी या विरोधी गतिविधि में भाग नहीं लूंगा/लूंगी।</p>
+                                                </div>
                                                 <div className='mt-[15px] w-[100%]'>
-                                                    <button type='submit' className='border-[1px] border-[black] w-[100%] p-1 py-2 mt-1 mb-[10px] rounded-[10px] text-white bg-[black] font-[600]'>
+                                                    <button type='submit' className=' w-[100%] p-1 py-2 mt-1 mb-[10px] rounded-[10px] text-white bg-[var(--primary-color--)] font-[600]'>
                                                         Create Profile
                                                     </button>
                                                 </div>

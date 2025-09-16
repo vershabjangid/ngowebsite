@@ -6,12 +6,14 @@
 
 
 :root {
-  --primary-color--: #1385ff;
+  --primary-color--: #339bd1;
 }
 
 
 html {
   scroll-behavior: smooth !important;
+  /* user-select: none; */
+
 }
 
 body {
@@ -27,7 +29,7 @@ body {
 }
 
 .header_options>li:hover {
-  color: #1385ff;
+  color: var(--primary-color--);
 }
 
 .home_banner {
@@ -45,13 +47,63 @@ body {
   box-shadow: 5px 5px 3px 3px var(--primary-color--);
 }
 
+
+.about_our_mission {
+  transition: all ease 1s;
+}
+
+.about_our_mission:hover {
+  transform: scale(1.02);
+  box-shadow: none;
+  border-right: 5px solid var(--primary-color--);
+  border-bottom: 5px solid var(--primary-color--);
+}
+
+
+.about_our_vision {
+  transition: all ease 1s;
+}
+
+.about_our_vision:hover {
+  transform: scale(1.02);
+  box-shadow: none;
+  border-right: 5px solid var(--primary-color--);
+  border-bottom: 5px solid var(--primary-color--);
+}
+
+
+.founder_profile_section {
+  transition: all ease 1s;
+}
+
+.founder_profile_section:hover {
+  transform: scale(1.02);
+  box-shadow: none;
+  border-right: 5px solid var(--primary-color--);
+  border-bottom: 5px solid var(--primary-color--);
+}
+
+
+.news_report_section>section {
+  transition: all ease 1s;
+}
+
+.news_report_section>section:hover {
+  transform: scale(1.02);
+  box-shadow: none;
+  border-right: 5px solid var(--primary-color--);
+  border-bottom: 5px solid var(--primary-color--);
+
+}
+
 .slider_inner {
   width: 100% !important;
 }
 
 .admin_side_options:hover {
-  background-color: #d5e9ff;
-  color: #1385ff;
+  background-color: var(--primary-color--);
+  backdrop-filter: opacity(0.8) !important;
+  color: white;
   transition: 0.5s;
 }
 

@@ -77,8 +77,13 @@ import { WebDashboardTransactions } from './pages/webadmin/pages/WebDashboardTra
 import { WebDashboardMembershipTransactions } from './pages/webadmin/pages/WebDashboardMembershipTransactions';
 import { Receipt } from './pages/web/pages/userpanel/Receipt';
 import { MembershipReceipt } from './pages/web/pages/userpanel/MembershipReceipt';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { DashViewHomeCounter } from './pages/admin/pages/dashboard home/view/DashViewHomeCounter';
+import { QrCodeIdCard } from './pages/web/pages/userpanel/QrCodeIdCard';
+import { QrCodeAppointmentLetter } from './pages/web/pages/userpanel/QrCodeAppointmentLetter';
+import { QrDonationReceipt } from './pages/web/pages/userpanel/QrDonationReceipt';
+import { QrMembershipReceipt } from './pages/web/pages/userpanel/QrMembershipReceipt';
 
 function App() {
   return (
@@ -92,6 +97,10 @@ function App() {
         <Route path="/create-profile" element={<CreateProfile />} />
         <Route path="/verify-otp" element={<ForgotOtp />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/qr-id-card/:IdName/:IdProfilePicture/:IdDesignation/:IdNo/:IdMobile/:IdEmail/:IdCity" element={<QrCodeIdCard />} />
+        <Route path="/qr-appointment-letter/:IdName/:IdAddress" element={<QrCodeAppointmentLetter />} />
+        <Route path="/qr-donation-receipt/:IdName/:IdAddress/:ReceiptNo/:Amount/:PaymentId/:Status/:CreatedOn/:BankName/:BranchName/:PanNo" element={<QrDonationReceipt />} />
+        <Route path="/qr-membership-receipt/:IdName/:IdAddress/:ReceiptNo/:Amount/:PaymentId/:Status/:CreatedOn" element={<QrMembershipReceipt />} />
         <Route element={<UserDataContext />}>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
@@ -121,6 +130,7 @@ function App() {
         <Route element={<AdminPrivate />}>
           <Route path='/dash-home' element={<DashHome />} />
           <Route path='/view-home-banner-slides' element={<DashViewHomeBanner />} />
+          <Route path='/view-home-counters' element={<DashViewHomeCounter />} />
           <Route path='/view-home-about-section' element={<DashViewHomeAbout />} />
           <Route path='/view-home-goals' element={<DashViewHomeGoals />} />
           <Route path='/view-home-management' element={<DashViewHomeManagement />} />

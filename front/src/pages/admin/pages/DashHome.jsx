@@ -11,6 +11,7 @@ import { DashAddHomeGallery } from './dashboard home/add/DashAddHomeGallery'
 import { DashAddHomeTeamMember } from './dashboard home/add/DashAddHomeTeamMember'
 import { DashAddHomeTeamCard } from './dashboard home/add/DashAddHomeTeamCard'
 import { DashAddHomeDonation } from './dashboard home/add/DashAddHomeDonation'
+import { DashAddHomeCounter } from './dashboard home/add/DashAddHomeCounter'
 
 export function DashHome() {
   
@@ -35,6 +36,7 @@ export function DashHome() {
                         </section>
 
                         <DashAddHomeBanner />
+                        <DashAddHomeCounter/>
                         <DashAddHomeAbout />
                         <DashAddHomeGoals />
                         <DashAddHomeManagement />

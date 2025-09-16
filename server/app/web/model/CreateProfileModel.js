@@ -52,6 +52,10 @@ let createproofileschema = mongoose.Schema({
         type: String,
         required: true
     },
+    Shapath: {
+        type: String,
+        required: true
+    },
     CreatedOn: {
         type: String,
         default: Date.now()

@@ -68,8 +68,8 @@ export function ForgotPassword() {
                                     <div className='w-[160px] mb-4  m-auto'>
                                         <Logo />
                                     </div>
-                                    <h1 className='text-[30px] font-[600] text-center'>Forgot Password</h1>
-                                    <p className='text-center mb-[20px]'>Please enter your email to find your account</p>
+                                    <h1 className='text-[30px] font-[700] text-center text-[var(--primary-color--)]'>Forgot Password</h1>
+                                    <p className='text-center mb-[20px] font-[500]'>Please enter your email to find your account</p>
 
                                 </div>
 
@@ -78,21 +78,21 @@ export function ForgotPassword() {
                                         inputname.map((items, index) => {
                                             return (
                                                 <div key={index} className='login_form_section w-[90%] mt-[15px]'>
-                                                    <label className='text-[15px] font-[600]' htmlFor={`forgotinput${index}`}>{labelname[index]}</label>
+                                                    <label className='text-[15px] font-[600] text-[var(--primary-color--)]' htmlFor={`forgotinput${index}`}>{labelname[index]}</label>
                                                     {
                                                         inputtype[index] === "password" ?
                                                             <section className='relative'>
                                                                 <input id={`forgotinput${index}`} autoCorrect='true' type={eye ? "text" : inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
                                                                 <div className='absolute top-[50%] text-[20px] translate-y-[-50%] right-[20px]'>
                                                                     {
-                                                                        eye ? <FaEyeSlash onClick={() => seteye(false)} className=' cursor-pointer' />
+                                                                        eye ? <FaEyeSlash onClick={() => seteye(false)} className=' cursor-pointer text-[var(--primary-color--)]' />
                                                                             :
                                                                             <FaEye onClick={() => seteye(true)} className=' cursor-pointer' />
                                                                     }
                                                                 </div>
                                                             </section>
                                                             :
-                                                            <input id={`forgotinput${index}`} autoCorrect='true' type={inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                            <input id={`forgotinput${index}`} autoCorrect='true' type={inputtype[index]} autoComplete="true" className='w-[100%] border-[1px] mt-1 border-[black] outline-[var(--primary-color--)] p-3 rounded-[10px] text-[14px]' placeholder={placeholder[index]} onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
                                                     }
                                                 </div>
                                             )
@@ -101,12 +101,12 @@ export function ForgotPassword() {
 
 
                                     <div className='w-[90%] mt-[20px]'>
-                                        <button type='submit' className='w-[100%] bg-[black] text-[white] text-[18px] font-[500] py-3 rounded-[10px]'>Verify</button>
+                                        <button type='submit' className='w-[100%] bg-[var(--primary-color--)] text-[white] text-[18px] font-[500] py-3 rounded-[10px]'>Verify</button>
                                     </div>
 
                                 </form>
                                 <p className='mt-4 text-center font-[500]'>
-                                    Doesn't have an account? <Link to={"/sign-up"} className='font-[600]'>Sign Up</Link>
+                                    Doesn't have an account? <Link to={"/sign-up"} className='font-[600] text-[var(--primary-color--)]'>Sign Up</Link>
                                 </p>
                             </div>
                         </section>

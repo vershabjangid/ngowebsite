@@ -18,6 +18,7 @@ const { addnotice, updateadminnotice, viewadminnotice, deletenotice } = require(
 const { addcertificates, viewadmincertificate, deletecertificate, updatecertificate } = require('../../controller/certificatecontroller')
 const { viewadminmembershiptransactions } = require('../../controller/MembershipController')
 const { viewadmindonationstransactions } = require('../../controller/donationcontroller')
+const { addcounters, viewcounters, deletecounters, updatecounters } = require('../../../admin/controller/CounterController')
 dotenv.config({ debug: false, quiet: true });
 
 let storage = multer.diskStorage({
@@ -40,7 +41,7 @@ let storage = multer.diskStorage({
 })
 
 
-const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image', 'Certificate_File'])
+const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'CounterIcon', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image', 'Certificate_File'])
 
 
 let verifytoken = (req, res, next) => {
@@ -99,6 +100,11 @@ adminroutes.post('/add-home-banner', verifytoken, adminsession, upload, addhomeb
 adminroutes.get('/view-home-banner', viewhomebanner)
 adminroutes.delete('/delete-home-banner', verifytoken, adminsession, upload, deletehomebanner)
 adminroutes.put('/update-home-banner', verifytoken, adminsession, upload, updatehomebannerslides)
+// home counter
+adminroutes.post('/add-counters', verifytoken, adminsession, upload, addcounters)
+adminroutes.get('/view-counters', viewcounters)
+adminroutes.delete('/delete-counters', verifytoken, adminsession, upload, deletecounters)
+adminroutes.put('/update-counters', verifytoken, adminsession, upload, updatecounters)
 
 // home about 
 adminroutes.post('/add-home-about-banner', verifytoken, adminsession, upload, addhomeaboutdata)

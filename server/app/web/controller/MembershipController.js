@@ -21,7 +21,7 @@ exports.generatemembershipoderid = async (req, res) => {
         const viewmembership = await membershippaymentsmodel.findOne({ User_Id: req.session.user, Status: "Paid" })
         if (viewmembership === null) {
             let saveorder = await membershippaymentsmodel.create({
-                Receipt_No: "RC/ESP-" + Math.floor(Math.random() * 10000),
+                Receipt_No: "RCESP-" + Math.floor(Math.random() * 10000),
                 User_Id: req.session.user,
                 Order_Id: response.id,
                 Amount: 100,

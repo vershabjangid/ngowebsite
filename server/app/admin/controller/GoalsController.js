@@ -4,7 +4,7 @@ const homegoalscardmodel = require('../model/goals/GoalsCardModal')
 const homegoalsaddheadingmodel = require('../model/goals/GoalsAddHeadingModel')
 const homegoalsparagraphmodel = require('../model/goals/GoalsAddParagraphModel')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "http://194.238.22.240:5500/uploads/"
+let imageurl = "http://localhost:5500/uploads/"
 
 
 

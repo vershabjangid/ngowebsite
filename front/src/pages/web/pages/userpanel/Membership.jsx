@@ -145,7 +145,9 @@ export function Membership() {
 
                 <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                     <Header />
-                    <section className='flex h-[calc(100%-90px)] border-t-[1px]'>
+                    <section className='pt-[66px]'>
+                    </section>
+                    <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
                         <Sidebar />
                         <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                             <section className=' w-[100%] px-3'>
@@ -157,14 +159,14 @@ export function Membership() {
                                 </div>
 
                                 <div className='font-[500] text-[15px]'>
-                                    <p className='text-[#1385ff]'>Here you can see your membership status</p>
+                                    <p className='text-[var(--primary-color--)]'>Here you can see your membership status</p>
                                 </div>
                             </section>
 
 
                             <section className='flex justify-center items-center flex-col h-[calc(100%-60px)]'>
-                                <section className='border-[1px] border-[black] w-[350px] rounded-[10px]'>
-                                    <section className='text-[16px] p-2 text-center bg-[#1385ff] rounded-t-[10px] text-white'>Membership Status</section>
+                                <section className='membership_status_card border-[1px] border-[black] w-[350px] rounded-[10px]'>
+                                    <section className='text-[16px] p-2 text-center bg-[var(--primary-color--)] rounded-t-[10px] text-white'>Membership Status</section>
                                     <table className='flex justify-between w-[100%]'>
                                         <thead className='w-[50%]'>
                                             <tr className='w-[100%] text-[13px] flex flex-col items-start text-start'>
@@ -178,7 +180,7 @@ export function Membership() {
 
                                         <tbody className='w-[50%]'>
                                             <tr className='w-[100%] text-[13px] flex flex-col'>
-                                                <td className='py-2'>{user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}</td>
+                                                <td className='py-2'>{user[0] === null || user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}</td>
                                                 <td className='py-2 border-t-[1px] border-[black]'>{data.Status === 'Paid' ? 'Active' : 'De-Active'}</td>
                                                 <td className='py-2 border-t-[1px] border-[black]'>{data.ExpiresOn === undefined ? "No Data Found" : <DateFormat value={data.ExpiresOn} />}</td>
                                                 <td className='py-2 border-t-[1px] border-[black]'>{data.Amount === undefined ? "No Data Found" : `Rs. ${data.Amount}`}</td>
@@ -189,7 +191,7 @@ export function Membership() {
 
                                 </section>
                                 {
-                                    data.ExpiresOn === undefined ? <button className='mt-4 text-[16px] text-white bg-[#1385ff] p-2 px-3 rounded-[10px]' onClick={() => makepayment()}>Pay Now</button> :
+                                    data.ExpiresOn === undefined ? <button className='mt-4 text-[16px] text-white bg-[var(--primary-color--)] p-2 px-3 rounded-[10px]' onClick={() => makepayment()}>Pay Now</button> :
                                         null
                                 }
                             </section>
