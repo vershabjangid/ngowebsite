@@ -107,8 +107,6 @@ export function Home() {
 
 
     let [status, setstatus] = useState(0)
-
-    console.log(counters)
     return (
         <>
             {
@@ -238,7 +236,7 @@ export function Home() {
 
 
 
-                        <section className='quick_links_section px-[50px] mt-8'>
+                        <section className='quick_links_section px-[10px] mt-8'>
                             <h2 className='home_heading text-[var(--primary-color--)]  text-[35px] font-[700] text-center'>
                                 Quick Links
 
@@ -360,7 +358,7 @@ export function Home() {
                         {
                             goalsdata === null || homegoalscarddata.length === 0 ?
                                 null :
-                                <section className='about_us_section w-[100%] py-[20px] px-[50px] flex mt-8'>
+                                <section className='about_us_section w-[100%] py-[20px] px-[10px] flex mt-8'>
                                     <section className='w-[100%] capitalize text-center'>
                                         <h2 className='home_heading text-[var(--primary-color--)]  text-[35px] font-[700]'>
                                             {goalsdata.Home_Goals_Heading}
@@ -476,7 +474,7 @@ export function Home() {
 
                             homemanagement === null || homemanagementprofiles.length === 0 ?
                                 null :
-                                <section className='home_management_profile_section w-[100%] py-[20px] px-[50px] mt-8'>
+                                <section className='home_management_profile_section w-[100%] py-[20px] px-[10px] mt-8'>
                                     <section className='w-[100%] text-center'>
                                         <h2 className='capitalize text-[35px] font-[700] text-[var(--primary-color--)]'>
                                             {homemanagement.Home_Management_Heading}
@@ -536,7 +534,7 @@ export function Home() {
 
                             homegallerydata === null || homegalleryimagesdata.length === 0 ?
                                 null :
-                                <section className='home_gallery_section w-[100%] py-[20px] px-[50px] mt-8'>
+                                <section className='home_gallery_section w-[100%] py-[20px] px-[10px] mt-8'>
                                     <section className='w-[100%] text-center'>
                                         <h2 className='home_heading text-[var(--primary-color--)] capitalize text-[35px] font-[700] '>
                                             {homegallerydata.Home_Gallery_Heading}
