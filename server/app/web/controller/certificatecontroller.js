@@ -3,7 +3,7 @@ const createprofilemodel = require("../model/CreateProfileModel")
 const fs = require('fs')
 let path = require('path')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "http://localhost:5500/uploads/"
+let imageurl = "http://194.238.22.240:5500/uploads/"
 
 exports.addcertificates = async (req, res) => {
     try {
