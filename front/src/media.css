@@ -317,6 +317,10 @@
     }
 
 
+    .management_card{
+        height: 580px;
+    }
+
 }
 
 @media screen and (max-width:920px) {
