@@ -441,6 +441,10 @@
     .Quick_cards_sections {
         width: 100%;
     }
+
+    .Home_Page_Heading{
+        text-align: start;
+    }
 }
 
 
