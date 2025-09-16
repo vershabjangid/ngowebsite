@@ -514,7 +514,7 @@ export function Home() {
                                                                     <section className='w-[100%] h-[400px] rounded-[20px] overflow-hidden'>
                                                                         <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='w-[100%] h-[100%] transition hover:scale-105' />
                                                                     </section>
-                                                                    <section className='h-[100%] p-3 bg-[#ffffff82] backdrop-blur-[2]'>
+                                                                    <section className='h-[100%] p-3 py-4 bg-[#ffffff82] backdrop-blur-[2]'>
                                                                         <p className='font-[700] text-[20px] capitalize'>{items.Home_Management_Profile_Name}</p>
                                                                         <p className='font-[600] text-[14px] text-[var(--primary-color--)] capitalize'>{items.Home_Management_Profile_Designation}</p>
                                                                         <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description.slice(0, 180)} <Link className='text-[var(--primary-color--)] font-[600]' to={'/about'}>Readmore...</Link></p>
