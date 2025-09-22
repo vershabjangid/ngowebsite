@@ -16,9 +16,8 @@ export function IdCard() {
         <>
             <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                 <Header />
-                <section className='pt-[66px]'>
-                </section>
-                <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
+               
+                <section className='flex h-[calc(100%-110px)] border-t-[1px] mt-2 overflow-y-scroll'>
                     <Sidebar />
                     <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                         <section className=' w-[100%] px-3'>
@@ -64,7 +63,7 @@ export function IdCard() {
                                             null :
                                             <section className='w-[95px] h-[95px]  ms-2 rounded-[5px] overflow-hidden  mt-3 flex items-center justify-center'>
                                                 <QRCode
-                                                    value={`http://194.238.22.240:3001/qr-id-card/${user[0].Full_Name}/${user[0].Profile_Picture}/${user[0].Select_Designation}/${user[0].User_ID}/${user[1].Phone}/${user[1].Email}/${user[0].City}`}
+                                                    value={`http://194.238.22.240:3000/qr-id-card/${user[0].Full_Name}/${user[0].Profile_Picture}/${user[0].Select_Designation}/${user[0].User_ID}/${user[1].Phone}/${user[1].Email}/${user[0].City}`}
                                                     width={100}
                                                     height={100}
                                                     bgColor='white'
@@ -118,24 +117,24 @@ export function IdCard() {
                                     </div>
                                 </section>
 
-
-                                <section className='w-[100%] mt-2 bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white'>
+ <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white'>
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 98102 85469</p>
+                                            
+                                            <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;tfgtrust@gmail.com</p>
+                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
                                             <FaLocationPin className='me-1' />
-                                            <p>&nbsp;523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                            <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
                                         </div>
                                     </div>
 
@@ -149,7 +148,7 @@ export function IdCard() {
                                 </section>
                                 <section className='text-center '>
                                     {/* <p className=' text-[16px] font-[600]'>RCMICCI</p> */}
-                                    <p className='font-[500] text-[13px]'>tfgtrust@gmail.com</p>
+                                    <p className='font-[500] text-[13px]'>info@balkrishnam.org</p>
                                     <p className='font-[600] text-[16px] mt-1'>TERMS & CONDITIONS</p>
                                 </section>
 
@@ -170,23 +169,24 @@ export function IdCard() {
                                     </div>
                                 </section>
 
-                                <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white'>
+                                <section className='w-[100%] bg-[var(--primary-color--)] py-[14.5px] rounded-b-[10px] text-white'>
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 98102 85469</p>
+                                            
+                                            <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;tfgtrust@gmail.com</p>
+                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
                                             <FaLocationPin className='me-1' />
-                                            <p>&nbsp;523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                            <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
                                         </div>
                                     </div>
 

@@ -116,9 +116,7 @@ export function Home() {
 
                     <section className='main m-auto w-[100%] bg-[white]'>
                         <Header />
-                        <section className='pt-[66px]'>
-                        </section>
-                        <section className='py-[10px] h-auto'>
+                        <section className='py-[20px] h-auto'>
                             <Swiper
                                 modules={[Autoplay]}
                                 spaceBetween={0}

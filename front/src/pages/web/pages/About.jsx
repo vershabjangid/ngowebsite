@@ -65,8 +65,6 @@ export function About() {
                     :
                     <section className='main m-auto w-[100%]'>
                         <Header />
-                        <section className='pt-[66px]'>
-                        </section>
                         {
                             aboutbannerdata === null ?
                                 null :
@@ -79,7 +77,7 @@ export function About() {
                                                         <Logo />
                                                     </section>
                                                     <p className='text-white text-[30px] font-[700]'>About Us</p>
-                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  About Us</span>  </p>
+                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[var(--primary-color--)]'>  About Us</span>  </p>
                                                 </section>
                                             </section>
                                         </section>
@@ -98,7 +96,7 @@ export function About() {
                                                     <section className='Slider_content_section px-5 w-[90%] '>
                                                         <section>
                                                             <h1 className='home_banner_heading mt-[10px] text-[var(--primary-color--)] text-[50px] font-[800] capitalize text-center'>{items.About_Banner_Heading}</h1>
-                                                            <p className='About_banner_description text-[grey] text-[18px] italic my-5 text-center'>{items.About_Banner_Description}</p>
+                                                            <p className='About_banner_description text-[grey] text-[18px]  my-5 text-center'>{items.About_Banner_Description}</p>
                                                         </section>
                                                     </section>
                                                 </section>
@@ -126,17 +124,17 @@ export function About() {
                                                         <section className='meet_the_founder_inner_Section flex justify-between'>
                                                             {
                                                                 items.About_Image !== null ?
-                                                                    <section className='w-[40%] '>
+                                                                    <section className='w-[25%] border '>
                                                                         <img src={imageurl + items.About_Image} alt="" className='rounded-[10px] w-[100%]' />
                                                                     </section>
                                                                     :
                                                                     null
                                                             }
 
-                                                            <section className='mb-[10px] w-[57%] text-start'>
+                                                            <section className='mb-[10px] w-[73%] text-start'>
 
 
-                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] italic text-[black] capitalize'>
+                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] text-[black] capitalize'>
                                                                     {items.About_Description}
                                                                 </p>
                                                             </section>
@@ -151,7 +149,7 @@ export function About() {
                                                                                 {
                                                                                     value.About_Section_Id !== items._id ?
                                                                                         null :
-                                                                                        <p className='mb-[20px] mt-2 text-[16px] font-[500] italic text-[black] capitalize'>
+                                                                                        <p className='mb-[20px] mt-2 text-[16px] font-[500] text-[black] capitalize'>
                                                                                             {value.About_Paragraph}
                                                                                         </p>
                                                                                 }
@@ -179,7 +177,7 @@ export function About() {
                                     {
                                         aboutparagraph.map((items, index) => {
                                             return (
-                                                <section key={index} className={items.About_Heading.includes('Mission') || items.About_Heading.includes('Vision') ? 'w-[49%] h-auto' : 'hidden'}>
+                                                <section key={index} className={items.About_Heading.includes('Mission') || items.About_Heading.includes('Vision') || items.About_Heading.toLowerCase().includes('Vision') || items.About_Heading.toLowerCase().includes('Vision') ? 'w-[49%] h-auto' : 'hidden'}>
                                                     {
                                                         items.About_Heading.includes('Mission') ?
                                                             <section className='about_our_mission w-[100%] text-[var(--primary-color--)] shadow h-auto border-e-[5px] rounded-[15px]  text-center p-2 '>
@@ -202,7 +200,7 @@ export function About() {
                                                                                         {
                                                                                             value.About_Section_Id !== items._id ?
                                                                                                 null :
-                                                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] italic text-[black] capitalize'>
+                                                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500]  text-[black] capitalize'>
                                                                                                     {value.About_Paragraph}
                                                                                                 </p>
                                                                                         }
@@ -232,7 +230,7 @@ export function About() {
                                                                                             {
                                                                                                 value.About_Section_Id !== items._id ?
                                                                                                     null :
-                                                                                                    <p className='mb-[20px] mt-2 text-[16px] font-[500] italic capitalize text-[black]'>
+                                                                                                    <p className='mb-[20px] mt-2 text-[16px] font-[500]  capitalize text-[black]'>
                                                                                                         {value.About_Paragraph}
                                                                                                     </p>
                                                                                             }
@@ -270,15 +268,15 @@ export function About() {
                                                         <section className='meet_the_founder_inner_Section flex justify-between'>
                                                             {
                                                                 items.About_Image !== null ?
-                                                                    <section className='w-[40%] '>
+                                                                    <section className='w-[25%] '>
                                                                         <img src={imageurl + items.About_Image} alt="" className='rounded-[10px] w-[100%]' />
                                                                     </section>
                                                                     :
                                                                     null
                                                             }
 
-                                                            <section className='mb-[10px] w-[57%] text-start'>
-                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] italic text-[black] capitalize'>
+                                                            <section className='mb-[10px] w-[73%] text-start'>
+                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500]  text-[black] capitalize'>
                                                                     {items.About_Description}
                                                                 </p>
 
@@ -295,7 +293,7 @@ export function About() {
                                                                                 {
                                                                                     value.About_Section_Id !== items._id ?
                                                                                         null :
-                                                                                        <p className='mb-[20px] mt-2 text-[16px] font-[500] italic capitalize text-[black]'>
+                                                                                        <p className='mb-[20px] mt-2 text-[16px] font-[500]  capitalize text-[black]'>
                                                                                             {value.About_Paragraph}
                                                                                         </p>
                                                                                 }

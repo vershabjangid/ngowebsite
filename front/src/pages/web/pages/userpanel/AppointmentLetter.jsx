@@ -9,7 +9,7 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { GrCopy } from 'react-icons/gr';
 import DateFormat from '../../../../common/DateFormat';
 import QRCode from 'react-qr-code';
-
+import { Signature } from '../../../../common/Signature';
 export function AppointmentLetter() {
     let { user } = useContext(UserContext)
     const contentRef = useRef(null);
@@ -18,9 +18,8 @@ export function AppointmentLetter() {
         <>
             <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                 <Header />
-                <section className='pt-[66px]'>
-                </section>
-                <section className='flex h-[calc(100%-75px)] border-t-[1px] mt-2 overflow-y-scroll'>
+
+                <section className='flex h-[calc(100%-110px)] border-t-[1px] mt-2 overflow-y-scroll'>
                     <Sidebar />
                     <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                         <section className=' w-[100%] px-3'>
@@ -51,8 +50,8 @@ export function AppointmentLetter() {
                                         </section>
                                         <section className=''>
                                             {/* <p className=' text-[18px] font-[600]'>RCMICCI</p> */}
-                                            <p className='font-[500] text-[16px] mt-1'>tfgtrust@gmail.com</p>
-                                            <p className='font-[500] text-[16px] mt-1 px-1'>523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                            <p className='font-[500] text-[16px] mt-1'>info@balkrishnam.org</p>
+                                            <p className='font-[500] text-[16px] mt-1 px-1'>Jalori Gate, Jodhpur, Rajasthan, India</p>
                                         </section>
                                     </section>
 
@@ -93,15 +92,16 @@ export function AppointmentLetter() {
                                     <p className='text-[14px] mt-[10px]'>We are excited to have you on board and look forward to your active participation and collaboration. Should you have any questions or require further information, please do not hesitate to contact our membership coordinator.</p>
                                     <p className='text-[14px] mt-[10px]'>Once again, welcome to our organization. Together, we can make a meaningful impact and create positive change in our community.</p>
 
-                                    <p className='text-[14px] mt-[70px]'>Yours’ sincerely</p>
-                                    <p className='text-[14px] mt-[5px]'>Rev. Dr. Abraham Sahu</p>
+                                    <Signature/>
+                                    <p className='text-[14px] mt-[10px]'>Yours’ sincerely</p>
+                                    <p className='text-[14px] mt-[5px]'>Dr.Prakash Singaria</p>
                                     <p className='text-[14px] mt-[5px]'>( Director / Founder )</p>
-                                    <p className='text-[14px] mt-[5px]'>tfgti trust</p>
+                                    <p className='text-[14px] mt-[5px]'>Balkrishnam International Foundation</p>
                                 </section>
 
                                 <div className=' flex justify-evenly items-end mt-[40px]'>
                                     <div className=' text-[15px] font-[700] flex px-2 text-center'>
-                                        <p>523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                        <p> Jalori Gate, Jodhpur, Rajasthan, India</p>
                                     </div>
                                 </div>
 
@@ -109,12 +109,12 @@ export function AppointmentLetter() {
                                     <div className=' flex justify-evenly items-end flex-wrap'>
                                         <div className=' text-[15px] font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 97182 77194</p>
+                                            <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[15px] font-[700] flex items-center  mt-2'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;tfgtrust@gmail.com</p>
+                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
                                         </div>
                                     </div>
                                 </section>

@@ -89,19 +89,19 @@ export function QrCodeIdCard() {
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 97182 77194</p>
+                                            <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;rcmicci@gmail.com</p>
+                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
                                             <FaLocationPin className='me-1' />
-                                            <p>&nbsp;316, Park View Plaza, 32 Park Area, Ajmal Khan Road Karol Bagh, New Delhi-110005</p>
+                                            <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
                                         </div>
                                     </div>
 
@@ -115,7 +115,7 @@ export function QrCodeIdCard() {
                                 </section>
                                 <section className='text-center '>
                                     {/* <p className=' text-[16px] font-[600]'>RCMICCI</p> */}
-                                    <p className='font-[500] text-[13px]'>rcmicci@gmail.com</p>
+                                    <p className='font-[500] text-[13px]'>info@balkrishnam.org</p>
                                     <p className='font-[600] text-[16px] mt-1'>TERMS & CONDITIONS</p>
                                 </section>
 
@@ -140,19 +140,19 @@ export function QrCodeIdCard() {
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
-                                            <p>&nbsp;&nbsp;+91 97182 77194</p>
+                                            <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;rcmicci@gmail.com</p>
+                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
                                             <FaLocationPin className='me-1' />
-                                            <p>&nbsp;316, Park View Plaza, 32 Park Area, Ajmal Khan Road Karol Bagh, New Delhi-110005</p>
+                                            <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
                                         </div>
                                     </div>
 

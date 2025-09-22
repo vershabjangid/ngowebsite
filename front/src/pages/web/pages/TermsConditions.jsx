@@ -72,14 +72,13 @@ export function TermsConditions() {
                                 termsbannerdata.map((items, index) => {
                                     return (
                                         <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.Terms_Banner_Image})`, backgroundPosition: "center", backgroundSize: "cover" }}>
-                                            <FixedOptionHeader />
                                             <section className='bg-[#00000088] w-[100%] h-[100%] flex justify-center items-center'>
                                                 <section className='w-[100%] text-center p-3'>.
                                                     <section className='w-[200px] mb-4 m-auto'>
                                                         <Logo />
                                                     </section>
                                                     <p className='text-white text-[30px] font-[700]'>Terms & Conditions</p>
-                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  Terms & Conditions</span>  </p>
+                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[var(--primary-color--)]'>  Terms & Conditions</span>  </p>
                                                 </section>
                                             </section>
                                         </section>

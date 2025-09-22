@@ -4,6 +4,7 @@ import DateFormat from '../../../../common/DateFormat'
 import { FaGlobe, FaPhone } from 'react-icons/fa6'
 import { IoIosMail } from 'react-icons/io'
 import { useParams } from 'react-router-dom'
+import { Signature } from '../../../../common/Signature'
 
 export function QrMembershipReceipt() {
     let { IdName, IdAddress, ReceiptNo, Amount, PaymentId, Status, CreatedOn } = useParams();
@@ -82,10 +83,10 @@ export function QrMembershipReceipt() {
 
                                 <section className=''>
                                     <section className='w-[100px] m-auto mb-2'>
-                                        <Logo />
+                                        <Signature />
                                     </section>
                                     <section className='text-[12px] font-[500] text-center'>
-                                        <p>Rev. Dr. Abraham Sahu</p>
+                                        <p>Dr. Prakash Singaria</p>
                                         <p>(Director / Founder)</p>
                                         <p>Authorised Signatory</p>
                                     </section>
@@ -101,15 +102,15 @@ export function QrMembershipReceipt() {
                             <section className='w-[100%] flex justify-between py-2 px-2 mt-[20px] rounded-b-[10px] bg-[var(--primary-color--)] text-[14px] '>
                                 <div className='m-auto flex justify-evenly w-[100%]'>
                                     <p className='flex items-center text-white'>
-                                        <FaPhone className='me-2' />  (+91) 9810285469
+                                        <FaPhone className='me-2' /> +91 85600 26002
                                     </p>
 
                                     <p className='flex items-center text-white'>
-                                        <IoIosMail className='me-2 text-[20px]' />   tfgtrust@gmail.com
+                                        <IoIosMail className='me-2 text-[20px]' />   info@balkrishnam.org
                                     </p>
 
                                     <p className='flex items-center text-white'>
-                                        <FaGlobe className='me-2' />  www.tfgti.org
+                                        <FaGlobe className='me-2' />  www.balkrishnam.org
                                     </p>
                                 </div>
                             </section>

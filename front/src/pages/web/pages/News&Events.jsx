@@ -62,8 +62,7 @@ export function NewsEvents() {
                     :
                     <section className='main m-auto w-[100%]'>
                         <Header />
-                        <section className='pt-[66px]'>
-                        </section>
+            
                         {
                             newsbannerdata === null ?
                                 null :
@@ -76,7 +75,7 @@ export function NewsEvents() {
                                                         <Logo />
                                                     </section>
                                                     <p className='text-white text-[30px] font-[700]'>News & Events</p>
-                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  News & Events</span>  </p>
+                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[var(--primary-color--)]'>  News & Events</span>  </p>
                                                 </section>
                                             </section>
                                         </section>

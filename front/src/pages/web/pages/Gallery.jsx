@@ -66,8 +66,6 @@ export function Gallery() {
                     :
                     <section className='main m-auto w-[100%]'>
                         <Header />
-                        <section className='pt-[66px]'>
-                        </section>
                         {
                             gallerybannerdata === null ?
                                 null :
@@ -80,7 +78,7 @@ export function Gallery() {
                                                         <Logo />
                                                     </section>
                                                     <p className='text-white text-[30px] font-[700]'>Gallery</p>
-                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  Gallery</span>  </p>
+                                                    <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[var(--primary-color--)]'>  Gallery</span>  </p>
                                                 </section>
                                             </section>
                                         </section>

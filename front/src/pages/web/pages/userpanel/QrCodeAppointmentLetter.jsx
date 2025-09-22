@@ -5,6 +5,7 @@ import { Logo } from '../../../../common/Logo';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { GrCopy } from 'react-icons/gr';
 import DateFormat from '../../../../common/DateFormat';
+import { Signature } from '../../../../common/Signature';
 
 export function QrCodeAppointmentLetter() {
     let { IdName, IdAddress } = useParams()
@@ -35,8 +36,8 @@ export function QrCodeAppointmentLetter() {
                                         </section>
                                         <section className=''>
                                             {/* <p className=' text-[18px] font-[600]'>RCMICCI</p> */}
-                                            <p className='font-[500] text-[16px] mt-1'>tfgtrust@gmail.com</p>
-                                            <p className='font-[500] text-[16px] mt-1 px-1'>523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                            <p className='font-[500] text-[16px] mt-1'>info@balkrishnam.org</p>
+                                            <p className='font-[500] text-[16px] mt-1 px-1'>Jalori Gate, Jodhpur, Rajasthan, India</p>
                                         </section>
                                     </section>
                                 </section>
@@ -63,26 +64,27 @@ export function QrCodeAppointmentLetter() {
                                     <p className='text-[14px] mt-[10px]'>We are excited to have you on board and look forward to your active participation and collaboration. Should you have any questions or require further information, please do not hesitate to contact our membership coordinator.</p>
                                     <p className='text-[14px] mt-[10px]'>Once again, welcome to our organization. Together, we can make a meaningful impact and create positive change in our community.</p>
 
-                                    <p className='text-[14px] mt-[70px]'>Yours’ sincerely</p>
-                                    <p className='text-[14px] mt-[5px]'>Rev. Dr. Abraham Sahu</p>
+                                    <Signature />
+                                    <p className='text-[14px] mt-[10px]'>Yours’ sincerely</p>
+                                    <p className='text-[14px] mt-[5px]'>Dr.Prakash Singaria</p>
                                     <p className='text-[14px] mt-[5px]'>( Director / Founder )</p>
-                                    <p className='text-[14px] mt-[5px]'>tfgti trust</p>
+                                    <p className='text-[14px] mt-[5px]'>Balkrishnam International Foundation</p>
                                 </section>
 
                                 <div className=' flex justify-evenly items-end mt-[40px]'>
-                                    <div className=' text-[15px] font-[700] flex px-2 text-center'>
-                                        <p>523, BLOCK-C, SECTOR 19, Rohini, New Delhi - 110089, India</p>
+                                   <div className=' text-[15px] font-[700] flex px-2 text-center'>
+                                        <p> Jalori Gate, Jodhpur, Rajasthan, India</p>
                                     </div>
                                 </div>
 
-                                <section className='w-[100%] mt-2 bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white'>
+                                <section className='w-[100%] mt-2 bg-[var(--primary-color--)] p-2 rounded-b-[10px] text-white'>
                                     <div className=' flex justify-evenly items-end flex-wrap'>
                                         <div className=' text-[15px] font-[700] flex items-center'>
                                             <FaPhoneAlt />
                                             <p>&nbsp;&nbsp;+91 97182 77194</p>
                                         </div>
 
-                                        <div className=' text-[15px] font-[700] flex items-center  mt-2'>
+                                        <div className=' text-[15px] font-[700] flex items-center  mt-2 ms-2'>
                                             <FaEnvelope />
                                             <p>&nbsp;&nbsp;tfgtrust@gmail.com</p>
                                         </div>

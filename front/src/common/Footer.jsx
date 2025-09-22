@@ -1,6 +1,6 @@
 import React from 'react'
 import { Logo } from './Logo'
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa6'
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa6'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { ContactInfo } from './ContactInfo'
@@ -20,26 +20,26 @@ export function Footer() {
                     <p className='mt-[20px] text-[20px]'>Follow US ON</p>
                     <section className='mt-[10px]'>
                         <section className='flex'>
-                            <a href="https://www.facebook.com/tfgti.ind">
+                            <a href="https://www.facebook.com/balkrishnamIF#">
                                 <FaFacebook className='text-[25px]' />
                             </a>
 
-                            <a href="https://x.com/tfgtrustofindia">
+                            <a href="https://twitter.com/BalkrishnamIF">
                                 <FaTwitter className='text-[25px] ms-5' />
                             </a>
 
 
-                            <a href="https://www.instagram.com/tfgti/">
+                            <a href="https://www.instagram.com/balkrishnam.international.fnd/?igshid=ZDdkNTZiNTM%3D">
                                 <FaInstagram className='text-[25px] ms-5' />
                             </a>
 
-                            <a href="https://www.linkedin.com/in/the-full-gospel-trust-of-india/">
+                            {/* <a href="https://www.linkedin.com/in/the-full-gospel-trust-of-india/">
                                 <FaLinkedin className='text-[25px] ms-5' />
-                            </a>
-
-                            {/* <a href="https://youtube.com/@rcmicci9139?si=HlMYvSjnDgRhVX0c">
-                                <FaYoutube className='text-[25px] mx-5' />
                             </a> */}
+
+                             <a href="https://www.youtube.com/@balkrishnaminternational-fnd">
+                                <FaYoutube className='text-[25px] mx-5' />
+                            </a> 
 
                         </section>
                     </section>
