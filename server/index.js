@@ -77,7 +77,7 @@ io.on("connection", (socket) => {
 })
 
 
-mongoose.connect('mongodb://localhost:27017/rcmicci')
+mongoose.connect('mongodb://194.238.22.240:27017/balkrishnam')
     .then(() => {
         server.listen('5500', () => {
             console.log("Server listening at 5500")

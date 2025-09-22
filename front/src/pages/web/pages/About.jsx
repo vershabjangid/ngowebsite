@@ -179,7 +179,7 @@ export function About() {
                                     {
                                         aboutparagraph.map((items, index) => {
                                             return (
-                                                <section key={index} className={items.About_Heading.includes('Our Mission') || items.About_Heading.includes('Our Vision') ? 'w-[49%] h-auto' : 'hidden'}>
+                                                <section key={index} className={items.About_Heading.includes('Mission') || items.About_Heading.includes('Vision') ? 'w-[49%] h-auto' : 'hidden'}>
                                                     {
                                                         items.About_Heading.includes('Mission') ?
                                                             <section className='about_our_mission w-[100%] text-[var(--primary-color--)] shadow h-auto border-e-[5px] rounded-[15px]  text-center p-2 '>
@@ -261,7 +261,7 @@ export function About() {
                                     {
                                         aboutparagraph.map((items, index) => {
                                             return (
-                                                <section key={index} className={items.About_Heading.includes('Founder') || items.About_Heading.includes('Director') || items.About_Heading.includes('Our Mission') || items.About_Heading.includes('Our Vision') ? 'hidden' : ' w-[100%] h-auto mb-[10px]'}>
+                                                <section key={index} className={items.About_Heading.includes('Founder') || items.About_Heading.includes('Director') || items.About_Heading.includes('Mission') || items.About_Heading.includes('Vision') ? 'hidden' : ' w-[100%] h-auto mb-[10px]'}>
                                                     <section className='founder_profile_section w-[100%] text-[var(--primary-color--)] shadow h-auto border-e-[5px] rounded-[15px]  text-start p-2 '>
                                                         <h1 className='font-[700] text-[30px] mb-[10px]'>
                                                             {items.About_Heading}
