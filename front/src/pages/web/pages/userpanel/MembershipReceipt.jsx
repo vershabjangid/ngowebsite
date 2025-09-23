@@ -121,7 +121,8 @@ export function MembershipReceipt() {
 
 
                             <section className='w-[100%] flex justify-between py-1 px-3 mt-[20px] '>
-                                <p className='bg-[#c0bebe] text-black p-2 rounded-[10px] text-[14px]'>Donations made to "The Full Gospel Trust Of India" are eligible for the benefit of deduction under Section 80G of the Income Tax Act, 1961. Amount donated: ₹{data.Amount === undefined ? "No Data Found" : data.Amount.toLocaleString()}. Authorized by "The Full Gospel Trust Of India"</p>
+                                <p className='bg-[#c0bebe] text-black p-2 rounded-[10px] text-[14px]'>Donations made to "B
+alkrishnam International Foundation" are eligible for the benefit of deduction under Section 80G of the Income Tax Act, 1961. Amount donated: ₹{data.Amount === undefined ? "No Data Found" : data.Amount.toLocaleString()}. Authorized by "Balkrishnam International Foundation"</p>
                             </section>
 
 

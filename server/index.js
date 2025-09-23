@@ -14,9 +14,10 @@ app.use(cookieParser())
 app.use('/uploads', express.static('uploads'));
 
 app.use(cors({
-    origin: "http://194.238.22.240:3001",
-    credentials: true
-}))
+  origin: ["https://balkrishnam.org", "https://www.balkrishnam.org"], 
+credentials: true
+}));
+
 
 
 const server = http.createServer(app)
@@ -57,7 +58,7 @@ app.use('/user', websitesession, websiteroutes)
 // websocket connection 
 const io = new Server(server, {
     cors: {
-        origin: "http://194.238.22.240:3001",
+     origin: ["https://www.balkrishnam.org","https://balkrishnam.org"],
         methods: ["GET", "POST"],
     }
 })
