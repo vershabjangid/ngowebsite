@@ -8,7 +8,7 @@ import { ContactInfo } from './ContactInfo'
 export function Footer() {
     return (
         <>
-            <footer className='w-[100%] p-[20px] py-[40px] bg-[black] text-white flex justify-between flex-wrap'>
+            <footer className='w-[100%] p-[20px] py-[40px] bg-[black] text-white flex justify-between items-start flex-wrap'>
                 <section className='flex justify-center  flex-col'>
                     <section className='w-[250px]'>
                         <section className='w-[200px]'>
@@ -20,26 +20,26 @@ export function Footer() {
                     <p className='mt-[20px] text-[20px]'>Follow US ON</p>
                     <section className='mt-[10px]'>
                         <section className='flex'>
-                            <a href="https://www.facebook.com/balkrishnamIF#">
+                            {/* <a href="https://www.facebook.com/balkrishnamIF#">
                                 <FaFacebook className='text-[25px]' />
                             </a>
 
                             <a href="https://twitter.com/BalkrishnamIF">
                                 <FaTwitter className='text-[25px] ms-5' />
-                            </a>
+                            </a> */}
 
 
-                            <a href="https://www.instagram.com/balkrishnam.international.fnd/?igshid=ZDdkNTZiNTM%3D">
-                                <FaInstagram className='text-[25px] ms-5' />
+                            <a href="https://www.instagram.com/raghav_leela/">
+                                <FaInstagram className='text-[25px] ms-0' />
                             </a>
 
                             {/* <a href="https://www.linkedin.com/in/the-full-gospel-trust-of-india/">
                                 <FaLinkedin className='text-[25px] ms-5' />
                             </a> */}
 
-                             <a href="https://www.youtube.com/@balkrishnaminternational-fnd">
+                             {/* <a href="https://www.youtube.com/@balkrishnaminternational-fnd">
                                 <FaYoutube className='text-[25px] mx-5' />
-                            </a> 
+                            </a>  */}
 
                         </section>
                     </section>

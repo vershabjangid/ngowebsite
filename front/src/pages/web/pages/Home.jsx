@@ -397,10 +397,10 @@ export function Home() {
                                                                                 status === index ?
                                                                                     <section className='home_our_goals_outer_section w-[100%] flex justify-between rounded-[20px] mb-[20px] mt-3'>
                                                                                         <section className='home_our_goals_section w-[100%] flex justify-between items-start rounded-[20px]'>
-                                                                                            <section className='w-[40%] h-[auto] shadow rounded-[10px] flex bg-[white] p-4'>
+                                                                                            <section className='w-[30%] h-[auto] shadow rounded-[10px] flex bg-[white] p-4'>
                                                                                                 <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className=' w-[100%] h-[auto] rounded-[10px]' />
                                                                                             </section>
-                                                                                            <section className='w-[58%] text-start'>
+                                                                                            <section className='w-[68%] text-start'>
                                                                                                 <p className='my-[5px] text-[18px] font-[600]'>
                                                                                                     {items.Home_Goals_Heading}
                                                                                                 </p>

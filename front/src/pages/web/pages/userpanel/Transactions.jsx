@@ -169,7 +169,7 @@ export function Transactions() {
                         <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                             <Header />
                         
-                            <section className='flex h-[calc(100%-110px)] border-t-[1px] mt-2 overflow-y-scroll'>
+                            <section className='flex h-[calc(100%-93px)] border-t-[1px] mt-2 overflow-y-scroll'>
                                 <Sidebar />
                                 <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                                     <section className=' w-[100%] px-3'>

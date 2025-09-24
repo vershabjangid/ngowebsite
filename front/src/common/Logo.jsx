@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/logo-YBgElV8EwDtMxKQb.avif'
+import logo from '../images/logo.png'
 export function Logo() {
     
     return (

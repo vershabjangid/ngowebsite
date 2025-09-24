@@ -14,7 +14,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static('uploads'));
 
 app.use(cors({
-  origin: ["https://balkrishnam.org", "https://www.balkrishnam.org"], 
+  origin: "http://localhost:3000", 
 credentials: true
 }));
 
@@ -58,7 +58,7 @@ app.use('/user', websitesession, websiteroutes)
 // websocket connection 
 const io = new Server(server, {
     cors: {
-     origin: ["https://www.balkrishnam.org","https://balkrishnam.org"],
+     origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     }
 })
@@ -78,7 +78,7 @@ io.on("connection", (socket) => {
 })
 
 
-mongoose.connect('mongodb://localhost:27017/balkrishnam')
+mongoose.connect('mongodb://localhost:27017/rcmicci')
     .then(() => {
         server.listen('5500', () => {
             console.log("Server listening at 5500")

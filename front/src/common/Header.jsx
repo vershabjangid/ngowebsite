@@ -80,7 +80,7 @@ export function Header() {
                     <section className='fixed z-[999999] w-[100%] bg-[#ffffffe2]  backdrop-blur-[5px]'>
                         <header className='flex items-center justify-between py-3 px-3 border-b-[1px]'>
                             <section className='flex items-center'>
-                                <section className='Logo_section w-[100px] '>
+                                <section className='Logo_section w-[70px] '>
                                     <Logo />
                                 </section>
                             </section>
@@ -534,7 +534,7 @@ export function Header() {
                     </section >
             }
 
-            <section className='pt-[101px]'>
+            <section className='pt-[85px]'>
             </section>
         </>
     )

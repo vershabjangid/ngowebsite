@@ -10,7 +10,7 @@ const hometeammembermodel = require("../model/HomeTeamMemberDataModel")
 const hometeamprofiledatamodel = require("../model/HomeTeamProfileModel")
 const homedonationmodel = require("../model/HomeDonationModal")
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.balkrishnam.org/uploads/"
+let imageurl = "http://localhost:5500/uploads/"
 
 
 exports.addhomebanner = async (req, res) => {

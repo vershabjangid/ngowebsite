@@ -10,7 +10,7 @@ const membershippaymentsmodel = require('../model/MembershipPaymentModal');
 const { isNumber } = require('razorpay/dist/utils/razorpay-utils');
 let finalpath = path.join(__dirname, "../../../uploads")
 require('dotenv').config();
-let imageurl = "https://api.balkrishnam.org/uploads/"
+let imageurl = "http://localhost:5500/uploads/"
 
 
 

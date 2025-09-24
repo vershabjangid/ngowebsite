@@ -13,7 +13,7 @@ export function ContactInfo() {
                     </li> */}
 
                     <li className='flex items-center'>
-                        <IoIosMail className='me-2  text-[20px]' /> <a href="mailto:info@balkrishnam.org"> info@balkrishnam.org</a>
+                        <IoIosMail className='me-2  text-[20px]' /> <a href="mailto: info@shriraghavleela.org">  info@shriraghavleela.org</a>
                     </li>
 
                     <li className='flex items-center'>
@@ -24,7 +24,7 @@ export function ContactInfo() {
                         <FaMobile className='me-2  text-[20px]' />  (+91) 11-35565726
                     </li> */}
 
-                    <li className='flex items-start leading-6'>
+                    <li className='flex items-start'>
                         <FaLocationPin className='me-2 text-[20px] mt-2' />Jalori Gate, Jodhpur, Rajasthan, India
                     </li>
                 </ul>
