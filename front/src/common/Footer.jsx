@@ -129,8 +129,8 @@ export function Footer() {
 
 
             </footer>
-            <section className=' w-[100%] bg-[black] text-white py-3 border-t-[1px] text-center flex items-start justify-center'>
-                <FaRegCopyright className='me-1'/> <p>Designed, Developed & Maintained by <a href="https://secureworldtech.com/" className='border-b-[1px]'>SecureworldTech</a></p>
+            <section className=' w-[100%] bg-[black] text-white py-3 border-t-[1px] text-center '>
+                <p className='flex items-start justify-center'> <FaRegCopyright className='me-2' /> Designed, Developed & Maintained by <a href="https://secureworldtech.com/" className='border-b-[1px]'>SecureworldTech</a></p>
             </section>
         </>
     )
