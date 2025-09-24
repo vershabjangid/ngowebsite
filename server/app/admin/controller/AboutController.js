@@ -4,7 +4,7 @@ const aboutparagraphmodel = require("../model/about/AboutAddParagraph")
 const fs = require('fs')
 let path = require('path')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.shriraghavleela.org/uploads//uploads/"
+let imageurl = "https://api.shriraghavleela.org/uploads/"
 
 
 exports.addaboutbannercontroller = async (req, res) => {
