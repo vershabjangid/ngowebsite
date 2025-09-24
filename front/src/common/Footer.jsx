@@ -37,7 +37,7 @@ export function Footer() {
                                 <FaLinkedin className='text-[25px] ms-5' />
                             </a> */}
 
-                             {/* <a href="https://www.youtube.com/@balkrishnaminternational-fnd">
+                            {/* <a href="https://www.youtube.com/@balkrishnaminternational-fnd">
                                 <FaYoutube className='text-[25px] mx-5' />
                             </a>  */}
 
@@ -129,8 +129,8 @@ export function Footer() {
 
 
             </footer>
-            <section className='footer_company_label w-[100%] bg-[black] text-white py-3 border-t-[1px] text-center'>
-                <p>Developed by <a href="https://secureworldtech.com/" className='border-b-[1px]'>SecureworldTech</a></p>
+            <section className=' w-[100%] bg-[black] text-white py-3 border-t-[1px] text-center'>
+                <p>Designed, Developed & Maintained by <a href="https://secureworldtech.com/" className='border-b-[1px]'>SecureworldTech</a></p>
             </section>
         </>
     )
