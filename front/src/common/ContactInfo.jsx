@@ -32,11 +32,11 @@ export function ContactInfo() {
                         <FaMobile className='me-2  text-[20px]' />  (+91) 11-35565726
                     </li> */}
 
-                    <li className='flex items-start leading-[30px]'>
+                    <li className='flex items-start leading-[30px] mt-2'>
                         <FaLocationPin className='me-2 text-[20px] mt-2' /> Plot. No. Cyb-6, Cyber Park, Near Saras Dairy, Shastri Nagar, Jodhpur (Raj.)
                     </li>
 
-                    <li className='flex items-start leading-[30px]'>
+                    <li className='flex items-start leading-[30px] mt-2'>
                         <FaLocationPin className='me-2 text-[20px] mt-2  ' /> SECURE E-TECHNO WORLD PVT.LTD. Office No. 232 ,  IIND FLOOR RAZDAN MANSION JALORI GATE JODHPUR – 342 001 RAJASTHAN
                     </li>
                 </ul>
