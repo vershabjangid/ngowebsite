@@ -404,7 +404,7 @@ export function Home() {
                                                                                                 <p className='my-[5px] text-[18px] font-[600]'>
                                                                                                     {items.Home_Goals_Heading}
                                                                                                 </p>
-                                                                                                <p className='text-[14px]'>
+                                                                                                <p className='text-[16px] font-[600] mt-5 capitalize'>
                                                                                                     {items.Home_Goals_Description}
                                                                                                 </p>
 
