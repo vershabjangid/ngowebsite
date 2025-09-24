@@ -7,7 +7,7 @@ export function ContactInfo() {
     return (
         <>
             <section className=''>
-                <ul className=' leading-[35px]'>
+                <ul className=' leading-[40px]'>
                     {/* <li className='flex items-center'>
                         <IoIosMail className='me-2  text-[20px]' /> <a href="mailto:tfgtrust@gmail.com">tfgtrust@gmail.com</a>
                     </li> */}
@@ -24,8 +24,8 @@ export function ContactInfo() {
                         <FaPhoneAlt className='me-2  text-[20px]' /> <a href="tel:+917849830667">+91 78498 30667</a>
                     </li>
 
-                    <li className='flex items-center'>
-                        <FaMobile className='me-2  text-[20px]' /> <a href="tel:+918560026002">+91 85600 26002</a>
+                       <li className='flex items-center'>
+                        <FaPhoneAlt className='me-2  text-[20px]' /> <a href="tel:+918560026002">+91 85600 26002</a>
                     </li>
 
                     {/* <li className='flex items-center'>
@@ -33,11 +33,11 @@ export function ContactInfo() {
                     </li> */}
 
                     <li className='flex items-start leading-[30px]'>
-                        Plot. No. Cyb-6, Cyber Park, Near Saras Dairy, Shastri Nagar, Jodhpur (Raj.)
+                        <FaLocationPin className='me-2 text-[20px] mt-2' /> Plot. No. Cyb-6, Cyber Park, Near Saras Dairy, Shastri Nagar, Jodhpur (Raj.)
                     </li>
 
                     <li className='flex items-start leading-[30px]'>
-                        SECURE E-TECHNO WORLD PVT.LTD. Office No. 232 ,  IIND FLOOR RAZDAN MANSION JALORI GATE JODHPUR – 342 001 RAJASTHAN
+                        <FaLocationPin className='me-2 text-[20px] mt-2  ' /> SECURE E-TECHNO WORLD PVT.LTD. Office No. 232 ,  IIND FLOOR RAZDAN MANSION JALORI GATE JODHPUR – 342 001 RAJASTHAN
                     </li>
                 </ul>
             </section>
