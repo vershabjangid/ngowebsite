@@ -205,7 +205,7 @@ export function Home() {
                                 null :
                                 <section className='home_about_us w-[100%] py-[20px] px-[10px] flex justify-evenly items-center mt-8'>
 
-                                    <section className='w-[45%] flex flex-col items-start'>
+                                    <section className='w-[55%] flex flex-col items-start'>
                                         <h2 className='home_about_heading text-[var(--primary-color--)] text-[35px] font-[700] capitalize w-auto '>
                                             {aboutdata.Home_About_Heading}
 
@@ -221,7 +221,7 @@ export function Home() {
                                     </section>
 
 
-                                    <section className='w-[47%] flex justify-center items-center py-2'>
+                                    <section className='w-[35%] flex justify-center items-center py-2'>
                                         <section className='w-[100%] flex'>
                                             <img src={imgurl + aboutdata.Home_About_Image} alt="" className=' w-[100%]  rounded-[20px]' />
                                         </section>
