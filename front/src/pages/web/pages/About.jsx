@@ -137,7 +137,7 @@ export function About() {
                                                             }>
 
 
-                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] text-[black] capitalize'>
+                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] text-[black] capitalize w-[100%]'>
                                                                     {items.About_Description}
                                                                 </p>
                                                             </section>
@@ -278,7 +278,10 @@ export function About() {
                                                                     null
                                                             }
 
-                                                            <section className='mb-[10px] w-[73%] text-start'>
+                                                            <section className={
+                                                                items.About_Image !== null ? 'mb-[10px] w-[73%] text-start' :
+                                                                    'mb-[10px] w-[100%] text-start'
+                                                            }>
                                                                 <p className='mb-[20px] mt-2 text-[16px] font-[500]  text-[black] capitalize'>
                                                                     {items.About_Description}
                                                                 </p>
