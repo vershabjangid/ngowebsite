@@ -3,7 +3,7 @@ let path = require('path')
 const newsbannermodel = require('../model/news/NewsBannerModel')
 const newsmodel = require('../model/news/NewsModel')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.shriraghavleela.org"
+let imageurl = "https://api.shriraghavleela.org/uploads/"
 
 exports.addnewsbannercontroller = async (req, res) => {
     try {

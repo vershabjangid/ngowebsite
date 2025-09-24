@@ -3,7 +3,7 @@ let path = require('path')
 const homegalleryimagesdatamodel = require('../model/gallery/HomeGalleryModal')
 const gallerybannermodel = require('../model/gallery/AboutAddGallery')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.shriraghavleela.org"
+let imageurl = "https://api.shriraghavleela.org/uploads/"
 
 
 
