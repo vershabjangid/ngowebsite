@@ -2,7 +2,7 @@ const fs = require('fs')
 let path = require('path')
 const countermodel = require("../model/CounterModel")
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.shriraghavleela.org/uploads//uploads/"
+let imageurl = "https://api.shriraghavleela.org/uploads/"
 
 
 exports.addcounters = async (req, res) => {

@@ -3,7 +3,7 @@ let path = require('path')
 const contactbannermodel = require('../model/contact/ContactBannerModel')
 const queriesmodel = require('../model/contact/DashQueries')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.shriraghavleela.org/uploads//uploads/"
+let imageurl = "https://api.shriraghavleela.org/uploads/"
 
 exports.addcontactbannercontroller = async (req, res) => {
     try {

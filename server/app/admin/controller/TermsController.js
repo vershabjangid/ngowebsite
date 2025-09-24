@@ -4,7 +4,7 @@ const termsbannermodel = require("../model/terms/TermsAddBanner")
 const termsparagraphmodel = require("../model/terms/TermsAddParagraph")
 const termsextraparagraphmodel = require("../model/terms/TermsAddExtraParagraph")
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "https://api.shriraghavleela.org/uploads//uploads/"
+let imageurl = "https://api.shriraghavleela.org/uploads/"
 
 
 exports.addtermsbannercontroller = async (req, res) => {
