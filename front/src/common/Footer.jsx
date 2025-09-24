@@ -14,7 +14,7 @@ export function Footer() {
                         <section className='w-[200px]'>
                             <Logo />
                         </section>
-                        <p className='text-[14px] w-[100%] decoration-none mt-5 p-0'>Creating sustainable change in communities worldwide through education, healthcare, clean water access, and disaster relief programs.</p>
+                        {/* <p className='text-[14px] w-[100%] decoration-none mt-5 p-0'>Creating sustainable change in communities worldwide through education, healthcare, clean water access, and disaster relief programs.</p> */}
                     </section>
 
                     <p className='mt-[20px] text-[20px]'>Follow US ON</p>
