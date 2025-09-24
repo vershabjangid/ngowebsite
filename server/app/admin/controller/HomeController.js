@@ -10,7 +10,7 @@ const hometeammembermodel = require("../model/HomeTeamMemberDataModel")
 const hometeamprofiledatamodel = require("../model/HomeTeamProfileModel")
 const homedonationmodel = require("../model/HomeDonationModal")
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "http://194.238.22.240/uploads/"
+let imageurl = "https://api.shriraghavleela.org"
 
 
 exports.addhomebanner = async (req, res) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 // http://194.238.22.240:5500
 export const apiurl = axios.create({
-    baseURL: 'http://194.238.22.240:5500',
+    baseURL: 'https://api.shriraghavleela.org',
     withCredentials: true
 })
 

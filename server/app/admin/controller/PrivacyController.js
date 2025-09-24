@@ -4,7 +4,7 @@ const privacybannermodel = require('../model/privacypolicy/PrivacyAddBanner')
 const privacyparagraphmodel = require('../model/privacypolicy/PrivacyAddParagraph')
 const privacyextraparagraphmodel = require('../model/privacypolicy/PrivacyAddExtraParagraph')
 let finalpath = path.join(__dirname, '../../../uploads')
-let imageurl = "http://194.238.22.240/uploads/"
+let imageurl = "https://api.shriraghavleela.org"
 
 
 exports.addprivacybannercontroller = async (req, res) => {

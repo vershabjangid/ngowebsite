@@ -14,7 +14,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static('uploads'));
 
 app.use(cors({
-  origin: "http://194.238.22.240:3001", 
+  origin: ["https://www.shriraghavleela.org","https://shriraghavleela.org"], 
 credentials: true
 }));
 
@@ -58,7 +58,7 @@ app.use('/user', websitesession, websiteroutes)
 // websocket connection 
 const io = new Server(server, {
     cors: {
-     origin: "http://194.238.22.240:3001",
+     origin: ['https://www.shriraghavleela.org','https://shriraghavleela.org'],
         methods: ["GET", "POST"],
     }
 })
