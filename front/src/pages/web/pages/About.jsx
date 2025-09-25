@@ -194,6 +194,10 @@ export function About() {
                                                                         null
                                                                 }
 
+                                                                <p className='mb-[20px] mt-2 text-[16px] font-[500] text-[black] w-[100%] text-start'>
+                                                                    {items.About_Description}
+                                                                </p>
+
                                                                 <section className='w-[100%] mb-[10px]'>
                                                                     {
                                                                         aboutextraparagraph.length === 0 ? null :
@@ -224,6 +228,11 @@ export function About() {
                                                                             <img src={imageurl + items.About_Image} alt="" className='rounded-[10px]' /> :
                                                                             null
                                                                     }
+
+                                                                    <p className='mb-[20px] mt-2 text-[16px] font-[500] text-[black] w-[100%] text-start'>
+                                                                        {items.About_Description}
+                                                                    </p>
+                                                                    
                                                                     <section className='w-[100%] mb-[10px]'>
                                                                         {
                                                                             aboutextraparagraph.length === 0 ? null :

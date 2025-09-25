@@ -16,7 +16,7 @@ export function Footer() {
                         </section>
                         <p className='text-[14px] w-[100%] decoration-none mt-5 p-0'>✨ “Har Ghar Raghav – Ghar Ghar Raghav” ✨
                             <br />
-Let the light of Shri Ram’s ideals guide every home, every heart, and every generation.</p>
+                            Let the light of Shri Ram’s ideals guide every home, every heart, and every generation.</p>
                     </section>
 
                     <p className='mt-[20px] text-[20px]'>Follow US ON</p>

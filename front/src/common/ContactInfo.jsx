@@ -33,11 +33,11 @@ export function ContactInfo() {
                     </li> */}
 
                     <li className='flex items-start leading-[30px] mt-2'>
-                        Regional Office: Plot. No. Cyb-6, Cyber Park, Near Saras Dairy, Shastri Nagar, Jodhpur (Raj.)
+                        Regional Office : Plot. No. Cyb-6, Cyber Park, Near Saras Dairy, Shastri Nagar, Jodhpur (Raj.)
                     </li>
 
                     <li className='flex items-start leading-[30px] mt-2'>
-                        Corporate Office:  Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)
+                        Corporate Office :  Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)
                     </li>
                 </ul>
             </section>

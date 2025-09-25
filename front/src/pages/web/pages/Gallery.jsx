@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Header } from '../../../common/Header'
 import { Footer } from '../../../common/Footer'
 import { apiurl } from '../../../apiurl/Apiurl'
-import { FixedOptionHeader } from '../../../common/FixedOptionHeader';
 import { Logo } from '../../../common/Logo';
 import { FaChevronRight } from 'react-icons/fa6';
 import { Loader } from '../../../common/Loader';
