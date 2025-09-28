@@ -74,7 +74,7 @@ exports.websiteregister = async (req, res) => {
         let viewregister = await registermodel.findOne({ Email: data.Email, Is_Verified: false })
 
         if (viewregister !== null) {
-            let updatedata = await registermodel.updateOne({ _id: viewregister._id }, { Password: data.Password, Phone: data.Phone, OTP_Value: data.OTP_Value })
+            let updatedata = await registermodel.updateOne({ _id: viewregister._id }, { Password: data.Password, Phone: data.Phone, OTP_Value: data.OTP_Value, Expired_In: data.Expired_In })
             if (updatedata.modifiedCount > 0) {
                 res.send({
                     Status: 1,
@@ -288,9 +288,10 @@ exports.createprofilecontroller = async (req, res) => {
                                 Aadhar_NO: req.body.Aadhar_NO,
                                 Upload_Aadhar: req.files[0].filename,
                                 City: req.body.City,
-                                Select_Designation: req.body.Select_Designation,
+                                Select_Designation: "null",
                                 Profile_Picture: req.files[1].filename,
-                                Shapath: req.body.Shapath
+                                Shapath: req.body.Shapath,
+                                Ward: req.body.Ward
                             }
 
                             let insertdata = await createprofilemodel(data)

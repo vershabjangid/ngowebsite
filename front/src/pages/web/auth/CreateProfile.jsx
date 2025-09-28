@@ -12,10 +12,10 @@ import { Loader } from '../../../common/Loader'
 
 
 export function CreateProfile() {
-    let labelname = ["FULL NAME", "FATHER NAME", "OCCUPATION", "DATE OF BIRTH", "ADDRESS", "AADHAR.NO", "UPLOAD AADHAR", "CITY", "SELECT DESIGNATION", "PROFILE PICTURE"]
-    let [placeholder, setplaceholder] = useState(["FULL NAME", "FATHER NAME", "OCCUPATION", "DATE OF BIRTH", "ADDRESS", "AADHAR.NO", "............UPLOAD AADHAR", "CITY", "SELECT DESIGNATION", "............UPLOAD PROFILE PICTURE"])
-    let inputname = ["Full_Name", "Father_Name", "Occupation", "Date_Of_Birth", "Address", "Aadhar_NO", "Upload_Aadhar", "City", "Select_Designation", "Profile_Picture"]
-    let inputtype = ["text", "text", "text", "date", "text", "number", "file", "text", "select", "file"]
+    let labelname = ["FULL NAME", "FATHER NAME", "OCCUPATION", "DATE OF BIRTH", "ADDRESS", "AADHAR.NO", "UPLOAD AADHAR", "CITY", "WARD.NO", "PROFILE PICTURE"]
+    let [placeholder, setplaceholder] = useState(["FULL NAME", "FATHER NAME", "OCCUPATION", "DATE OF BIRTH", "ADDRESS", "AADHAR.NO", "............UPLOAD AADHAR", "CITY", "WARD", "............UPLOAD PROFILE PICTURE"])
+    let inputname = ["Full_Name", "Father_Name", "Occupation", "Date_Of_Birth", "Address", "Aadhar_NO", "Upload_Aadhar", "City", "Ward", "Profile_Picture"]
+    let inputtype = ["text", "text", "text", "date", "text", "number", "file", "text", 'number', "file"]
     let location = useLocation();
     let data = location.state
     let [loader, setloader] = useState(false)
@@ -33,7 +33,8 @@ export function CreateProfile() {
             City: "",
             Select_Designation: "",
             Profile_Picture: "",
-            Shapath: ""
+            Shapath: "",
+            Ward: ""
         },
         validationSchema: Yup.object().shape({
             Full_Name: Yup.string().required("Full Name is required"),
@@ -48,7 +49,7 @@ export function CreateProfile() {
                 value => value.type.includes('png') || value.type.includes('jpg') || value.type.includes('jpeg')
             ).required("Aadhar card is required"),
             City: Yup.string().required("City is required"),
-            Select_Designation: Yup.string().required("Designation is required"),
+            Ward: Yup.number().required("Ward is required"),
             Profile_Picture: Yup.mixed().test(
                 'fileFormat',
                 'Only png, jpg, jpeg is required',
@@ -67,7 +68,6 @@ export function CreateProfile() {
                 Aadhar_NO: "",
                 Upload_Aadhar: "",
                 City: "",
-                Select_Designation: "",
                 Profile_Picture: "",
                 Shapath: ""
             })

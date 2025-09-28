@@ -56,6 +56,10 @@ let createproofileschema = mongoose.Schema({
         type: String,
         required: true
     },
+    Ward: {
+        type: Number,
+        required: true
+    },
     CreatedOn: {
         type: String,
         default: Date.now()
