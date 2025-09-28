@@ -6,7 +6,6 @@ let path = require('path')
 let finalpath = path.join(__dirname, '../../../uploads')
 let imageurl = "https://api.shriraghavleela.org/uploads/"
 
-
 exports.addaboutbannercontroller = async (req, res) => {
     try {
         let viewdata = await aboutbannermodel.find()
