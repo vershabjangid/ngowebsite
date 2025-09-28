@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static('uploads'));
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: ['https://shriraghavleela.org', 'https://www.shriraghavleela.org'],
     credentials: true
 }));
 
@@ -57,7 +57,7 @@ app.use('/user', websitesession, websiteroutes)
 // websocket connection 
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: ['https://shriraghavleela.org', 'https://www.shriraghavleela.org'],
         methods: ["GET", "POST"],
     }
 })
