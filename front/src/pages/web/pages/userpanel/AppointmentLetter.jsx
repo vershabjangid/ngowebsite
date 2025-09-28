@@ -50,8 +50,8 @@ export function AppointmentLetter() {
                                         </section>
                                         <section className=''>
                                             {/* <p className=' text-[18px] font-[600]'>RCMICCI</p> */}
-                                            <p className='font-[500] text-[16px] mt-1'>info@balkrishnam.org</p>
-                                            <p className='font-[500] text-[16px] mt-1 px-1'>Jalori Gate, Jodhpur, Rajasthan, India</p>
+                                            <p className='font-[500] text-[16px] mt-1'>info@shriraghavleela.org</p>
+                                            <p className='font-[500] text-[16px] mt-1 px-1'>Corporate Office : Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)</p>
                                         </section>
                                     </section>
 
@@ -60,7 +60,7 @@ export function AppointmentLetter() {
                                             null :
                                             <section className='w-[95px] h-[95px]  me-2 rounded-[5px]  mt-3 flex items-center justify-center'>
                                                 <QRCode
-                                                    value={`http://194.238.22.240:3001/qr-appointment-letter/${user[0].Full_Name}/${user[0].Address}`}
+                                                    value={`https://shriraghavleela.org/qr-appointment-letter/${user[0].Full_Name}/${user[0].Address}`}
                                                     width={100}
                                                     height={100}
                                                     bgColor='white'
@@ -96,12 +96,12 @@ export function AppointmentLetter() {
                                     <p className='text-[14px] mt-[10px]'>Yours’ sincerely</p>
                                     <p className='text-[14px] mt-[5px]'>Dr.Prakash Singaria</p>
                                     <p className='text-[14px] mt-[5px]'>( Director / Founder )</p>
-                                    <p className='text-[14px] mt-[5px]'>Balkrishnam International Foundation</p>
+                                    <p className='text-[14px] mt-[5px]'>shriraghavleela.org</p>
                                 </section>
 
                                 <div className=' flex justify-evenly items-end mt-[40px]'>
                                     <div className=' text-[15px] font-[700] flex px-2 text-center'>
-                                        <p> Jalori Gate, Jodhpur, Rajasthan, India</p>
+                                        <p> Corporate Office : Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)</p>
                                     </div>
                                 </div>
 
@@ -114,7 +114,7 @@ export function AppointmentLetter() {
 
                                         <div className=' text-[15px] font-[700] flex items-center  mt-2'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
+                                            <p>&nbsp;&nbsp;info@shriraghavleela.org</p>
                                         </div>
                                     </div>
                                 </section>

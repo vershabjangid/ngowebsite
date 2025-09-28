@@ -109,7 +109,7 @@ export function Notices() {
                                         data.map((items, index) => {
                                             return (
                                                 <section key={index} className='dashboard_notice w-[100%] mt-5'>
-                                                    <section className='mt-[10px] border-[1px] border-[var(--primary-color--)] bg-[#c4e0ffa3] p-4 rounded-[10px]'>
+                                                    <section className='mt-[10px] border-[1px] border-[var(--primary-color--)] bg-[var(--card-background--)] p-4 rounded-[10px]'>
                                                         <div className='flex'>
                                                             <IoMdNotificationsOutline className='text-[25px] text-[var(--primary-color--)]' /> <p className='text-[18px] font-[600] ms-1'>{items.Notice_Heading}</p>
                                                         </div>

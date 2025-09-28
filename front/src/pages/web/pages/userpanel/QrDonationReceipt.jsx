@@ -20,7 +20,7 @@ export function QrDonationReceipt() {
                     <section className='w-[100%] rounded-t-[10px] px-3 py-2'>
                         <section className='border-[1px] rounded-[10px]  border-[black]'>
                             <section className='border-b-[1px]  border-[black] p-2 flex items-center justify-between'>
-                                <section className='w-[300px]'>
+                                <section className='w-[120px]'>
                                     <Logo />
                                 </section>
                             </section>
@@ -120,7 +120,7 @@ export function QrDonationReceipt() {
 
 
                             <section className='w-[100%] flex justify-between py-1 px-3 mt-[20px] '>
-                                <p className='bg-[#c0bebe] text-black p-2 rounded-[10px] text-[14px]'>Donations made to "Balkrishnam International Foundation" are eligible for the benefit of deduction under Section 80G of the Income Tax Act, 1961. Amount donated: ₹{Amount.toLocaleString()}. Authorized by "Balkrishnam International Foundation"</p>
+                                <p className='bg-[#c0bebe] text-black p-2 rounded-[10px] text-[14px]'>Donations made to " www.shriraghavleela.org" are eligible for the benefit of deduction under Section 80G of the Income Tax Act, 1961. Amount donated: ₹{Amount.toLocaleString()}. Authorized by " www.shriraghavleela.org"</p>
                             </section>
 
 
@@ -131,11 +131,11 @@ export function QrDonationReceipt() {
                                     </p>
 
                                     <p className='flex items-center text-white'>
-                                        <IoIosMail className='me-2 text-[20px]' />info@balkrishnam.org
+                                        <IoIosMail className='me-2 text-[20px]' />info@shriraghavleela.org
                                     </p>
 
                                     <p className='flex items-center text-white'>
-                                        <FaGlobe className='me-2' />  www.balkrishnam.org
+                                        <FaGlobe className='me-2' />  www.shriraghavleela.org
                                     </p>
                                 </div>
                             </section>

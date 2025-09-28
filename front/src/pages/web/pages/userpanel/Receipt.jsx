@@ -28,7 +28,7 @@ export function Receipt() {
                     <section className='w-[100%] rounded-t-[10px] px-3 py-2' ref={contentRef}>
                         <section className='border-[1px] rounded-[10px]  border-[black]'>
                             <section className='border-b-[1px]  border-[black] p-2 flex items-center justify-between'>
-                                <section className='w-[300px]'>
+                                <section className='w-[120px]'>
                                     <Logo />
                                 </section>
 
@@ -38,7 +38,7 @@ export function Receipt() {
                                         null :
                                         <section className='w-[95px] h-[95px]  ms-2 rounded-[5px] overflow-hidden flex items-center justify-center'>
                                             <QRCode
-                                                value={`http://194.238.22.240:3001/qr-donation-receipt/${user[0].Full_Name}/${user[0].Address}/${data.Receipt_No}/${data.Amount}/${data.Payment_Id}/${data.Status}/${data.CreatedOn}/${data.Bank_Name}/${data.Branch_Name}/${data.Pan_No}`}
+                                                value={`http://shriraghavleela.org/qr-donation-receipt/${user[0].Full_Name}/${user[0].Address}/${data.Receipt_No}/${data.Amount}/${data.Payment_Id}/${data.Status}/${data.CreatedOn}/${data.Bank_Name}/${data.Branch_Name}/${data.Pan_No}`}
                                                 width={100}
                                                 height={100}
                                                 bgColor='white'
@@ -143,7 +143,7 @@ export function Receipt() {
 
 
                             <section className='w-[100%] flex justify-between py-1 px-3 mt-[20px] '>
-                                <p className='bg-[#c0bebe] text-black p-2 rounded-[10px] text-[14px]'>Donations made to "Balkrishnam International Foundation" are eligible for the benefit of deduction under Section 80G of the Income Tax Act, 1961. Amount donated: ₹{data.Amount === undefined ? "No Data Found" : data.Amount.toLocaleString()}. Authorized by "Balkrishnam International Foundation"</p>
+                                <p className='bg-[#c0bebe] text-black p-2 rounded-[10px] text-[14px]'>Donations made to " www.shriraghavleela.org" are eligible for the benefit of deduction under Section 80G of the Income Tax Act, 1961. Amount donated: ₹{data.Amount === undefined ? "No Data Found" : data.Amount.toLocaleString()}. Authorized by " www.shriraghavleela.org"</p>
                             </section>
 
 
@@ -154,11 +154,11 @@ export function Receipt() {
                                     </p>
 
                                     <p className='flex items-center text-white'>
-                                        <IoIosMail className='me-2 text-[20px]' />   info@balkrishnam.org
+                                        <IoIosMail className='me-2 text-[20px]' />   info@shriraghavleela.org
                                     </p>
 
                                     <p className='flex items-center text-white'>
-                                        <FaGlobe className='me-2' />  www.balkrishnam.org
+                                        <FaGlobe className='me-2' />  www.shriraghavleela.org
                                     </p>
                                 </div>
                             </section>

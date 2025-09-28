@@ -7,6 +7,7 @@
 
 :root {
   --primary-color--: #ff641c;
+  --card-background--: #ffdec4a3;
 }
 
 
@@ -190,7 +191,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 
 .id_card {
-  background-image: url("../src/images/ombre-blue-curve-light-blue-background-vector.jpg");
+  background-image: url("../src/images/17539354_5804273.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

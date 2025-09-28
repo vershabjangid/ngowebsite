@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Header } from '../../../../common/Header'
 import { Sidebar } from '../../../../common/Sidebar'
-import { FaDownload, FaEnvelope, FaLocationPin, FaRegAddressCard, FaUser } from 'react-icons/fa6'
+import { FaDownload, FaEnvelope, FaRegAddressCard, FaUser } from 'react-icons/fa6'
 import { UserContext } from '../Context/UserDataContext'
 import { Logo } from '../../../../common/Logo'
 import { FaPhoneAlt } from 'react-icons/fa'
@@ -84,7 +84,7 @@ export function IdCard() {
                                                     null :
                                                     <section className='w-[95px] h-[95px]  ms-2 rounded-[5px] overflow-hidden  mt-3 flex items-center justify-center'>
                                                         <QRCode
-                                                            value={`http://194.238.22.240:3000/qr-id-card/${user[0].Full_Name}/${user[0].Profile_Picture}/${user[0].Select_Designation}/${user[0].User_ID}/${user[1].Phone}/${user[1].Email}/${user[0].City}`}
+                                                            value={`https://shriraghavleela.org/qr-id-card/${user[0].Full_Name}/${user[0].Profile_Picture}/${user[0].Select_Designation}/${user[0].User_ID}/${user[1].Phone}/${user[1].Email}/${user[0].City}`}
                                                             width={100}
                                                             height={100}
                                                             bgColor='white'
@@ -138,6 +138,10 @@ export function IdCard() {
                                             </div>
                                         </section>
 
+                                        <section className='h-[90px]'>
+
+                                        </section>
+
                                         <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white absolute bottom-0'>
                                             <div className=' flex justify-evenly items-end'>
                                                 <div className=' text-[11px]  font-[700] flex items-center'>
@@ -148,14 +152,13 @@ export function IdCard() {
 
                                                 <div className=' text-[11px] font-[700] flex items-center'>
                                                     <FaEnvelope />
-                                                    <p>&nbsp;&nbsp;info@balkrishnam.org</p>
+                                                    <p>&nbsp;&nbsp;info@shriraghavleela.org</p>
                                                 </div>
                                             </div>
 
                                             <div className=' flex justify-evenly items-end mt-1'>
                                                 <div className=' text-[11px] font-[700] flex px-2'>
-                                                    <FaLocationPin className='me-1' />
-                                                    <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
+                                                    <p>Corporate Office : Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)</p>
                                                 </div>
                                             </div>
 
@@ -169,7 +172,7 @@ export function IdCard() {
                                         </section>
                                         <section className='text-center '>
                                             {/* <p className=' text-[16px] font-[600]'>RCMICCI</p> */}
-                                            <p className='font-[500] text-[13px]'>info@balkrishnam.org</p>
+                                            <p className='font-[500] text-[13px]'>info@shriraghavleela.org</p>
                                             <p className='font-[600] text-[16px] mt-1'>TERMS & CONDITIONS</p>
                                         </section>
 
@@ -190,7 +193,12 @@ export function IdCard() {
                                             </div>
                                         </section>
 
-                                        <section className='w-[100%] bg-[var(--primary-color--)] py-[14.5px] rounded-b-[10px] text-white absolute bottom-0'>
+
+                                        <section className='h-[90px]'>
+
+                                        </section>
+
+                                        <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white absolute bottom-0'>
                                             <div className=' flex justify-evenly items-end'>
                                                 <div className=' text-[11px]  font-[700] flex items-center'>
                                                     <FaPhoneAlt />
@@ -200,17 +208,15 @@ export function IdCard() {
 
                                                 <div className=' text-[11px] font-[700] flex items-center'>
                                                     <FaEnvelope />
-                                                    <p>&nbsp;&nbsp;info@balkrishnam.org</p>
+                                                    <p>&nbsp;&nbsp;info@shriraghavleela.org</p>
                                                 </div>
                                             </div>
 
                                             <div className=' flex justify-evenly items-end mt-1'>
                                                 <div className=' text-[11px] font-[700] flex px-2'>
-                                                    <FaLocationPin className='me-1' />
-                                                    <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
+                                                    <p>Corporate Office : Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)</p>
                                                 </div>
                                             </div>
-
                                         </section>
                                     </section>
                                 </section>

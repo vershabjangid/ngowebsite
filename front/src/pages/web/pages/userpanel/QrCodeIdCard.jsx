@@ -9,7 +9,7 @@ export function QrCodeIdCard() {
     return (
         <>
             <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
-                <section className='flex h-[calc(100%-75px)] border-t-[1px]'>
+                <section className='flex h-[100%] border-t-[1px]'>
                     <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
                         <section className=' w-[100%] px-3'>
                             <div className='text-[25px] flex items-center'>
@@ -17,6 +17,7 @@ export function QrCodeIdCard() {
                                 <h1 className='font-[600] ms-2'>
                                     Id Card
                                 </h1>
+
                             </div>
                             <div className='font-[500] text-[15px]'>
                                 <p className='text-[var(--primary-color--)]'>Here you can see your Id Card</p>
@@ -24,10 +25,11 @@ export function QrCodeIdCard() {
                         </section>
 
                         <section className='mt-[30px] flex justify-evenly flex-wrap py-2 '>
-                            <section className='id_card w-[300px] rounded-[10px] bg-[white]  pt-2 mt-[10px]'>
-                                <section className='w-[165px] m-auto mt-2 text-center'>
+                            <section className='id_card w-[300px] rounded-[10px] bg-[white]  pt-2 mt-[10px] relative'>
+                                <section className='w-[120px] m-auto mt-2 text-center'>
                                     <Logo />
                                 </section>
+
                                 {/* <section>
                                     <p className='text-center text-[16px] font-[600]'>RCMICCI</p>
                                 </section> */}
@@ -35,7 +37,7 @@ export function QrCodeIdCard() {
                                 <section className='flex justify-center mt-3'>
                                     <section className='w-[100px] h-[100px] rounded-[10px] overflow-hidden mt-3 flex items-center justify-center'>
 
-                                        <img src={'http://194.238.22.240:5500/uploads/' + IdProfilePicture} alt="" className='w-[100%] h-[100%]' />
+                                        <img src={'https://api.shreeraghavleela.org/uploads/' + IdProfilePicture} alt="" className='w-[100%] h-[100%]' />
 
                                     </section>
                                 </section>
@@ -85,32 +87,35 @@ export function QrCodeIdCard() {
                                 </section>
 
 
-                                <section className='w-[100%] mt-2 bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white'>
+                                <section className='h-[90px]'>
+
+                                </section>
+
+                                <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white absolute bottom-0'>
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
+
                                             <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
+                                            <p>&nbsp;&nbsp;info@shriraghavleela.org</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
-                                            <FaLocationPin className='me-1' />
-                                            <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
+                                            <p>Corporate Office : Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)</p>
                                         </div>
                                     </div>
 
                                 </section>
-
                             </section>
 
-                            <section className='id_card w-[300px] rounded-[10px] bg-[white] mt-[10px]'>
-                                <section className='w-[130px] m-auto mt-5 mb-[9px]'>
+                            <section className='id_card w-[300px] rounded-[10px] bg-[white] mt-[10px] relative'>
+                                <section className='w-[120px] m-auto mt-5 mb-[9px]'>
                                     <Logo />
                                 </section>
                                 <section className='text-center '>
@@ -136,23 +141,29 @@ export function QrCodeIdCard() {
                                     </div>
                                 </section>
 
-                                <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white'>
+
+                                <section className='h-[90px]'>
+
+                                </section>
+
+
+                                <section className='w-[100%] bg-[var(--primary-color--)] py-2 rounded-b-[10px] text-white absolute bottom-0'>
                                     <div className=' flex justify-evenly items-end'>
                                         <div className=' text-[11px]  font-[700] flex items-center'>
                                             <FaPhoneAlt />
+
                                             <p>&nbsp;&nbsp;+91 85600 26002</p>
                                         </div>
 
                                         <div className=' text-[11px] font-[700] flex items-center'>
                                             <FaEnvelope />
-                                            <p>&nbsp;&nbsp;info@balkrishnam.org</p>
+                                            <p>&nbsp;&nbsp;info@shriraghavleela.org</p>
                                         </div>
                                     </div>
 
                                     <div className=' flex justify-evenly items-end mt-1'>
                                         <div className=' text-[11px] font-[700] flex px-2'>
-                                            <FaLocationPin className='me-1' />
-                                            <p>&nbsp;Jalori Gate, Jodhpur, Rajasthan, India</p>
+                                            <p>Corporate Office : Balkrishnam International Foundation Office No. 232 ,  2nd  Floor Razdhan Mansion. Jalori Gate, Jodhpur (Raj.)</p>
                                         </div>
                                     </div>
 

@@ -12,10 +12,9 @@ const websiteroutes = require('./app/web/routes/web/Auth');
 app.use(express.json())
 app.use(cookieParser())
 app.use('/uploads', express.static('uploads'));
-
 app.use(cors({
-  origin: ["https://www.shriraghavleela.org","https://shriraghavleela.org"], 
-credentials: true
+    origin: "http://localhost:3000",
+    credentials: true
 }));
 
 
@@ -58,7 +57,7 @@ app.use('/user', websitesession, websiteroutes)
 // websocket connection 
 const io = new Server(server, {
     cors: {
-     origin: ['https://www.shriraghavleela.org','https://shriraghavleela.org'],
+        origin: 'http://localhost:3000',
         methods: ["GET", "POST"],
     }
 })
@@ -78,7 +77,7 @@ io.on("connection", (socket) => {
 })
 
 
-mongoose.connect('mongodb://localhost:27017/raghavleela')
+mongoose.connect('mongodb://localhost:27017/rcmicci')
     .then(() => {
         server.listen('5500', () => {
             console.log("Server listening at 5500")

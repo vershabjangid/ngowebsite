@@ -93,7 +93,7 @@ export function Certificates() {
                                                 data.map((items, index) => {
                                                     return (
                                                         <section key={index} className='dashboard_notice w-[30%] mt-5'>
-                                                            <section className='mt-[10px] border-[1px] border-[var(--primary-color--)] bg-[#c4e0ffa3] p-4 rounded-[10px]'>
+                                                            <section className='mt-[10px] border-[1px] border-[var(--primary-color--)] bg-[var(--card-background--)] p-4 rounded-[10px]'>
                                                                 <section className='flex justify-between'>
                                                                     <div className='flex justify-center items-center rounded-[10px] w-[50px] h-[50px] bg-[white]'>
                                                                         <LiaCertificateSolid className='text-[25px] text-[var(--primary-color--)]' /> <p className='text-[18px] font-[600] ms-1'>{items.Notice_Heading}</p>
@@ -125,8 +125,8 @@ export function Certificates() {
 
 
                                                                 <div className='flex items-center justify-between mt-5 text-[15px]'>
-                                                                    <a href={imgurl + items.Certificate_File} download={items.Certificate_File} className='flex w-[60%] py-2 bg-[skyblue] rounded-[10px] text-white justify-center items-center font-[600]'><FaDownload className='me-2' /> Download</a>
-                                                                    <a href={imgurl + items.Certificate_File} className='flex w-[38%] py-2 bg-[white] rounded-[10px] text-[skyblue] justify-center items-center font-[600]'>View</a>
+                                                                    <a href={imgurl + items.Certificate_File} download={imgurl+items.Certificate_File} className='flex w-[60%] py-2 bg-[var(--primary-color--)] rounded-[10px] text-white justify-center items-center font-[600]'><FaDownload className='me-2' /> Download</a>
+                                                                    <a href={imgurl + items.Certificate_File} className='flex w-[38%] py-2 bg-[white] rounded-[10px] text-[var(--primary-color--)] justify-center items-center font-[600]'>View</a>
                                                                 </div>
                                                             </section>
                                                         </section>
