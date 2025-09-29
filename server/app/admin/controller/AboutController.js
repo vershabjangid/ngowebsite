@@ -54,7 +54,7 @@ exports.addaboutbannercontroller = async (req, res) => {
                                 Status: 0,
                                 Message: "Data missing"
                             })
-                        }
+                        }   
                         fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
                     }
                     else {
@@ -569,3 +569,6 @@ exports.deleteaboutextraparagraphcontroller = async (req, res) => {
         })
     }
 }
+
+
+

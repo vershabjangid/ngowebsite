@@ -42,7 +42,7 @@ export function Profile() {
             Date_Of_Birth: user[0] === null || user[0] === undefined ? "" : user[0].Date_Of_Birth || "",
             Address: user[0] === null || user[0] === undefined ? "" : user[0].Address || "",
             City: user[0] === null || user[0] === undefined ? "" : user[0].City || "",
-            Select_Designation: user[0] === null || user[0] === undefined ? "" : user[0].Select_Designation || "",
+            Ward: user[0] === null || user[0] === undefined ? "" : user[0].Ward || "",
             Profile_Picture: user[0] === null || user[0] === undefined ? "" : user[0].Profile_Picture || ""
         },
         onSubmit: (value, { resetForm }) => {
@@ -56,7 +56,7 @@ export function Profile() {
                 Date_Of_Birth: user[0] === null || user[0] === undefined ? "" : user[0].Date_Of_Birth || "",
                 Address: user[0] === null || user[0] === undefined ? "" : user[0].Address || "",
                 City: user[0] === null || user[0] === undefined ? "" : user[0].City || "",
-                Select_Designation: user[0] === null || user[0] === undefined ? "" : user[0].Select_Designation || "",
+                Ward: user[0] === null || user[0] === undefined ? "" : user[0].Ward || "",
                 Profile_Picture: user[0] === null || user[0] === undefined ? "" : user[0].Profile_Picture || ""
             })
         }
@@ -104,7 +104,7 @@ export function Profile() {
                     :
                     <section className='w-[100%] h-[100vh] bg-[#f3f1f1]'>
                         <Header />
-                     
+
                         <section className='flex h-[calc(100%-93px)] border-t-[1px] mt-2 overflow-y-scroll'>
                             <Sidebar />
                             <section className='useradmin_content_section w-[100%]  p-5 text-[30px] overflow-y-scroll'>
@@ -238,7 +238,7 @@ export function Profile() {
 
                                                             <section>
                                                                 <p className='font-[700] uppercase text-[13px] text-[#7B7B7B] '>
-                                                                    {user[0] === null || user[0] === undefined || user[0].Address === undefined || user[0].City === undefined ? "No Data Found" : `${user[0].Address} , ${user[0].City}`}
+                                                                    {user[0] === null || user[0] === undefined || user[0].Address === undefined || user[0].City === undefined || user[0].Ward === undefined ? "No Data Found" : `${user[0].Address}, WARD ${user[0].Ward}, ${user[0].City}`}
                                                                 </p>
                                                             </section>
                                                         </section>
@@ -361,9 +361,9 @@ export function Profile() {
                                                             </p>
                                                         </section>
 
-                                                        <div className='mt-[10px] font-[700] uppercase'>
+                                                        {/* <div className='mt-[10px] font-[700] uppercase'>
                                                             <label htmlFor="designation" className='w-[100%]'>DESIGNATION</label>
-                                                            <select id='designation' className=' uppercase w-[100%] p-2 border-[1px] border-[black] rounded-[10px]' defaultValue={user[0] === undefined ? "No Data Found" : user[0].Select_Designation} onChange={(e) => formik.setFieldValue('Select_Designation', e.target.value)} >
+                                                            <select id='designation' className=' uppercase w-[100%] p-2 border-[1px] border-[black] rounded-[10px]' defaultValue={user[0] === undefined ? "No Data Found" : user[0].Ward} onChange={(e) => formik.setFieldValue('Ward', e.target.value)} >
                                                                 <option>Select Designation</option>
                                                                 <option value="Director">Director</option>
                                                                 <option value="Secretory">Secretory</option>
@@ -375,12 +375,12 @@ export function Profile() {
                                                                 <option value="Social Worker">Social Worker</option>
                                                             </select>
                                                         </div>
-
+ */}
 
 
                                                         <div className='mt-[15px] font-[700] uppercase'>
                                                             <label htmlFor="fathername" className='w-[100%]'>FATHER’S NAME</label>
-                                                            <input id="fathername" autoComplete='true' type="text" className=' uppercase w-[100%] p-2 border-[1px] border-[black] rounded-[10px]' defaultValue={user[0] === undefined || user[0].Select_Designation === undefined ? "No Data Found" : user[0].Father_Name} onChange={(e) => formik.setFieldValue('Father_Name', e.target.value)} />
+                                                            <input id="fathername" autoComplete='true' type="text" className=' uppercase w-[100%] p-2 border-[1px] border-[black] rounded-[10px]' defaultValue={user[0] === undefined || user[0].Ward === undefined ? "No Data Found" : user[0].Father_Name} onChange={(e) => formik.setFieldValue('Father_Name', e.target.value)} />
                                                         </div>
 
 
@@ -396,6 +396,11 @@ export function Profile() {
                                                             <input id="Address" autoComplete='true' type="text" className=' uppercase w-[100%] p-2 border-[1px] border-[black] rounded-[10px]' defaultValue={user[0] === undefined || user[0].Address === undefined ? "No Data Found" : user[0].Address} onChange={(e) => formik.setFieldValue('Address', e.target.value)} />
                                                         </div>
 
+
+                                                        <div className='mt-[15px] font-[700] uppercase'>
+                                                            <label htmlFor="Ward" className='w-[100%]'>Ward</label>
+                                                            <input id="Ward" autoComplete='true' type="number" className=' uppercase w-[100%] p-2 border-[1px] border-[black] rounded-[10px]' defaultValue={user[0] === undefined || user[0].Ward === undefined ? "No Data Found" : user[0].Ward} onChange={(e) => formik.setFieldValue('Ward', e.target.value)} />
+                                                        </div>
 
                                                         <div className='mt-[15px] font-[700] uppercase'>
                                                             <label htmlFor='city' className='w-[100%]'>CITY</label>

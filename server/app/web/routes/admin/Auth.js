@@ -13,7 +13,7 @@ const { addnewsbannercontroller, viewnewsbannercontroller, updatenewsbannercontr
 const { addcontactbannercontroller, viewcontactbannercontroller, updatecontactbannercontroller, AddQueriescontroller, ViewQueriescontroller, deletequeries } = require('../../../admin/controller/ContactController')
 const { addtermsbannercontroller, updatetermsbannercontroller, viewtermsbannercontroller, addtermsparagraphsection, viewtermsparagraphsection, updatetermsparagraphsection, deletetermsparagraphsection, addtermsextraparagraphcontroller, viewtermsextraparagraphcontroller, updatetermsextraparagraphcontroller, deletetermsextraparagraphcontroller } = require('../../../admin/controller/TermsController')
 const { addprivacybannercontroller, viewprivacybannercontroller, updateprivacybannercontroller, addprivacyparagraphsection, viewprivacyparagraphsection, updateprivacyparagraphsection, deleteprivacyparagraphsection, addprivacyextraparagraphcontroller, viewprivacyextraparagraphcontroller, updateprivacyextraparagraphcontroller, deleteprivacyextraparagraphcontroller } = require('../../../admin/controller/PrivacyController')
-const { viewallusers } = require('../../controller/AuthController')
+const { viewallusers, deleteuserprofile, updateuserstatus } = require('../../controller/AuthController')
 const { addnotice, updateadminnotice, viewadminnotice, deletenotice } = require('../../controller/noticecontroller')
 const { addcertificates, viewadmincertificate, deletecertificate, updatecertificate } = require('../../controller/certificatecontroller')
 const { viewadminmembershiptransactions } = require('../../controller/MembershipController')
@@ -269,6 +269,9 @@ adminroutes.get('/view-query', verifytoken, webadminsession, upload, ViewQueries
 adminroutes.delete('/delete-query', verifytoken, webadminsession, upload, deletequeries)
 
 adminroutes.get('/view-users', verifytoken, webadminsession, upload, viewallusers)
+adminroutes.delete('/delete-users', verifytoken, webadminsession, upload, deleteuserprofile)
+adminroutes.put('/update-users-status', verifytoken, webadminsession, upload, updateuserstatus)
+
 
 adminroutes.post('/add-notice', verifytoken, webadminsession, upload, addnotice)
 adminroutes.get('/view-notice', verifytoken, webadminsession, upload, viewadminnotice)

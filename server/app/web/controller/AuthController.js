@@ -301,7 +301,7 @@ exports.createprofilecontroller = async (req, res) => {
                                         Status: 1,
                                         Message: 'Profile Created Successfully'
                                     })
-                                    updateverification(data.Sub_Id)
+                                    // updateverification(data.Sub_Id)
                                 })
                                 .catch((error) => {
                                     if (error.code === 11000) {
@@ -443,10 +443,10 @@ exports.logincontroller = async (req, res) => {
                 }
                 else {
                     res.send({
-                        Status: 2,
-                        Message: "OTP Sended Successfully "
+                        Status: 0,
+                        Message: "Data in review"
                     })
-                    loginresend(req.body.Email)
+                    // loginresend(req.body.Email)
                 }
             }
         }
@@ -695,7 +695,7 @@ exports.updateprofile = async (req, res) => {
                         Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
                         Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
                         City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
-                        Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation
+                        Ward: req.body.Ward === "" || req.body.Ward === null ? finddata.Ward : req.body.Ward
                     }
 
                     let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
@@ -705,7 +705,7 @@ exports.updateprofile = async (req, res) => {
                         Date_Of_Birth: data.Date_Of_Birth,
                         Address: data.Address,
                         City: data.City,
-                        Select_Designation: data.Select_Designation
+                        Ward: data.Ward
                     })
 
 
@@ -757,7 +757,7 @@ exports.updateprofile = async (req, res) => {
                         Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
                         Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
                         City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
-                        Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation,
+                        Ward: req.body.Ward === "" || req.body.Ward === null ? finddata.Ward : req.body.Ward,
                         Profile_Picture: req.files[0].filename
                     }
 
@@ -768,7 +768,7 @@ exports.updateprofile = async (req, res) => {
                         Date_Of_Birth: data.Date_Of_Birth,
                         Address: data.Address,
                         City: data.City,
-                        Select_Designation: data.Select_Designation,
+                        Ward: data.Ward,
                         Profile_Picture: data.Profile_Picture
                     })
 
@@ -819,68 +819,91 @@ exports.updateprofile = async (req, res) => {
 
 
 
-//  if (req.files[0] === undefined) {
-//             let updatedata = await registermodel.findOne({ _id: req.session.user })
-//             if (updatedata === null) {
-//                 res.send({
-//                     Status: 0,
-//                     Message: "Data Not Found"
-//                 })
-//             }
-//             else {
-//                 let data = {
-//
-//                 }
-//
+exports.deleteuserprofile = async (req, res) => {
+    try {
+        let viewdata = await createprofilemodel.findOne({ Sub_Id: req.body._id })
+        if (viewdata !== null) {
+            let finddata = await createprofilemodel.deleteOne({ Sub_Id: viewdata.Sub_Id })
+            if (finddata.deletedCount >= 1) {
+                fs.unlinkSync(`${finalpath}/${viewdata.Upload_Aadhar}`)
+                fs.unlinkSync(`${finalpath}/${viewdata.Profile_Picture}`)
+                let finduser = await registermodel.deleteOne({ _id: viewdata.Sub_Id })
+                if (finduser.deletedCount >= 1) {
+                    res.send({
+                        Status: 1,
+                        Message: "Data Deleted Successfully"
+                    })
+                }
+                else {
+                    res.send({
+                        Status: 0,
+                        Message: "Profile Data Doesn't Deleted"
+                    })
+                }
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data Doesn't Deleted"
+                })
+            }
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "No Data Found"
+            })
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something Went Wrong"
+        })
+    }
+}
 
-//             }
-//         }
-//         else {
-//             let updatedata = await registermodel.findOne({ _id: req.session.user })
-//             if (updatedata === null || req.files[0].filename.includes(".fake")) {
-//                 res.send({
-//                     Status: 0,
-//                     Message: "Data Not Found"
-//                 })
-//                 fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-//             }
-//             else {
-//                 let data = {
-//                     Sub_Id: updatedata._id,
-//                     Full_Name: req.body.Full_Name,
-//                     Father_Name: req.body.Father_Name,
-//                     Occupation: req.body.Occupation,
-//                     Date_Of_Birth: req.body.Date_Of_Birth,
-//                     Address: req.body.Address,
-//                     City: req.body.City,
-//                     Select_Designation: req.body.Select_Designation,
-//                     Profile_Picture: req.files[0].filename
-//                 }
-//                 let viewprofile = await createprofilemodel.findOne({ Sub_Id: data.Sub_Id })
-//                 let updateprofile = await createprofilemodel.updateOne({ Sub_Id: data.Sub_Id }, {
-//                     Full_Name: data.Full_Name,
-//                     Father_Name: data.Father_Name,
-//                     Occupation: data.Occupation,
-//                     Date_Of_Birth: data.Date_Of_Birth,
-//                     Address: data.Address,
-//                     City: data.City,
-//                     Select_Designation: data.Select_Designation,
-//                     Profile_Picture: data.Profile_Picture
-//                 })
 
-//                 if (updateprofile.modifiedCount > 0) {
-//                     res.send({
-//                         Status: 1,
-//                         Message: "Data Updated Successfully"
-//                     })
-//                     fs.unlinkSync(`${finalpath}/${viewprofile.Profile_Picture}`)
-//                 }
-//                 else {
-//                     res.send({
-//                         Status: 0,
-//                         Message: "Data Doesn't Updated"
-//                     })
-//                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-//                 }
-//             }
-//         }
+
+
+
+
+
+
+exports.updateuserstatus = async (req, res) => {
+    try {
+        let data = {
+            Sub_Id: req.body.Sub_Id,
+            Is_Verified: req.body.Is_Verified,
+            Select_Designation: req.body.Select_Designation === undefined ? null : req.body.Select_Designation === null ? null : req.body.Select_Designation === '' ? null : req.body.Select_Designation
+        }
+
+        let updatedata = await registermodel.updateOne({ _id: data.Sub_Id }, {
+            Is_Verified: data.Is_Verified
+        })
+
+        let updateprofile = await createprofilemodel.updateOne({ Sub_Id: data.Sub_Id }, {
+            Select_Designation: data.Select_Designation
+        })
+
+        if (updatedata.modifiedCount >= 1 || updateprofile.modifiedCount >= 1) {
+            res.send({
+                Status: 1,
+                Message: "Data Updated Successfully"
+            })
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "Data Doesn't Updated"
+            })
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something Went Wrong"
+        })
+    }
+}
+
