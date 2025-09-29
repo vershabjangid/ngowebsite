@@ -9,19 +9,23 @@ import { FaChevronRight } from 'react-icons/fa6'
 export function NewsEvents() {
     let [newsbannerdata, setnewsbannerdata] = useState([])
     let [newsparagraph, setnewsparagraph] = useState([])
+    let [newsextraparagraph, setnewsextraparagraph] = useState([])
     let [imageurl, setimageurl] = useState([])
     let [loader, setloader] = useState(false)
 
+    console.log(newsextraparagraph)
 
     let fetchalldata = async () => {
         try {
-            let [newsbanner, newsparagraphsection] = await Promise.all([
+            let [newsbanner, newsparagraphsection, newsextraparagraph] = await Promise.all([
                 apiurl.get('/admin/view-news-banner-section'),
                 apiurl.get('/admin/view-news'),
+                apiurl.get('/admin/view-news-extra-paragraph')
             ])
             return {
                 newsbannerdata: newsbanner.data.viewdata,
                 newsparagraphsectiondata: newsparagraphsection.data.viewdata,
+                newsextraparagraph: newsextraparagraph.data.viewdata,
                 imgurl: newsbanner.data.imgurl
             }
         }
@@ -36,6 +40,7 @@ export function NewsEvents() {
                 .then((res) => {
                     setnewsbannerdata(res.newsbannerdata)
                     setnewsparagraph(res.newsparagraphsectiondata)
+                    setnewsextraparagraph(res.newsextraparagraph)
                     setimageurl(res.imgurl)
                     setloader(false)
                 })
@@ -62,7 +67,7 @@ export function NewsEvents() {
                     :
                     <section className='main m-auto w-[100%]'>
                         <Header />
-            
+
                         {
                             newsbannerdata === null ?
                                 null :
@@ -106,14 +111,13 @@ export function NewsEvents() {
 
 
                         <section className=''>
-
                             {
                                 newsparagraph.length === 0 ? null
                                     :
                                     newsparagraph.map((items, index) => {
                                         return (
                                             <section key={index} className='news_report_section py-3 w-[100%] px-10'>
-                                                <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] border-e-[5px] shadow flex items-center justify-center p-2">
+                                                <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] border-e-[5px] shadow  p-2">
                                                     <section className='about_inner_section w-[100%] h-auto m-auto overflow-hidden rounded-[20px] flex justify-between ' >
                                                         <section className='backdrop-blur-[2] w-[350px] h-auto'>
                                                             <img src={imageurl + items.News_Image} alt="" className='h-[auto] rounded-[20px]' />
@@ -126,7 +130,7 @@ export function NewsEvents() {
                                                             </section>
 
                                                             <section>
-                                                                <p className='mt-5 text-[16px] font-[500] italic text-[grey] capitalize whitespace-pre-wrap'>
+                                                                <p className='mt-5 text-[15px] font-[500] italic text-[grey] capitalize whitespace-pre-wrap'>
                                                                     {items.News_Description}
                                                                 </p>
                                                             </section>
@@ -139,6 +143,38 @@ export function NewsEvents() {
                                                             }
                                                         </section>
                                                     </section>
+
+
+                                                    {
+                                                        newsextraparagraph.map((value, index) => {
+                                                            return (
+                                                                <section key={index} className='mt-4 w-[100%] '>
+                                                                    {
+                                                                        value.News_Section_Id === items._id ?
+                                                                            value.News_Image === null ?
+                                                                                <section className='w-[100%] '>
+                                                                                    <section className='p-3 backdrop-blur-[2] w-[calc(100%-370px)'>
+                                                                                        <p className=' capitalize text-[18px] font-[700] text-[#000000]'>{value.News_Sub_Heading}</p>
+                                                                                        <p className='mt-2 text-[15px] font-[500] italic text-[grey] capitalize whitespace-pre-wrap'>{value.News_Paragraph}</p>
+                                                                                    </section>
+                                                                                </section>
+                                                                                :
+                                                                                <section className='about_inner_section flex justify-between items-start w-[100%]'>
+                                                                                    <section className='backdrop-blur-[2] w-[350px] h-auto'>
+                                                                                        <img src={imageurl + value.News_Image} alt="" className='w-[100%] h-[auto] rounded-[20px]' />
+                                                                                    </section>
+                                                                                    <section className='p-3 backdrop-blur-[2] w-[calc(100%-370px)]'>
+                                                                                        <p className=' capitalize text-[18px] font-[700] text-[#000000]'>{value.News_Sub_Heading}</p>
+                                                                                        <p className='mt-2 text-[15px] font-[500] italic text-[grey] capitalize whitespace-pre-wrap'>{value.News_Paragraph}</p>
+                                                                                    </section>
+                                                                                </section>
+                                                                            :
+                                                                            null
+                                                                    }
+                                                                </section>
+                                                            )
+                                                        })
+                                                    }
                                                 </section>
                                             </section>
                                         )

@@ -2,6 +2,7 @@ const fs = require('fs')
 let path = require('path')
 const newsbannermodel = require('../model/news/NewsBannerModel')
 const newsmodel = require('../model/news/NewsModel')
+const newstextraparagraphmodel = require('../model/news/NewsAddExtraParagraph')
 let finalpath = path.join(__dirname, '../../../uploads')
 let imageurl = "https://api.shriraghavleela.org/uploads/"
 
@@ -416,3 +417,223 @@ exports.deletenewscontroller = async (req, res) => {
     }
 }
 
+
+
+
+
+
+exports.addnewsextraparagraphcontroller = async (req, res) => {
+    try {
+        let viewdata = await newsmodel.findOne({ _id: req.body.News_Section_Id })
+        if (viewdata.length === 0) {
+            res.send({
+                Status: 0,
+                Message: "News section required"
+            })
+        }
+        else {
+            let data = {
+                News_Section_Id: req.body.News_Section_Id,
+                News_Paragraph: req.body.News_Paragraph,
+                News_Sub_Heading: req.body.News_Sub_Heading,
+                News_Image: req.files[0] === undefined ? null : req.files[0].filename
+            }
+
+
+            let insertdata = await newstextraparagraphmodel(data)
+            insertdata.save()
+                .then(() => {
+                    res.send({
+                        Status: 1,
+                        Message: "Data inserted successfully"
+                    })
+                })
+                .catch((error) => {
+                    if (error.code === 11000) {
+                        res.send({
+                            Status: 0,
+                            Message: "Data already exists"
+                        })
+                    }
+                    else {
+                        res.send({
+                            Status: 0,
+                            Message: "Data missing"
+                        })
+                    }
+                })
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+exports.viewnewstextraparagraphcontroller = async (req, res) => {
+    try {
+        let viewdata = await newstextraparagraphmodel.find();
+        res.send({ viewdata, imageurl })
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+
+
+exports.deletenewsextraparagraphcontroller = async (req, res) => {
+    try {
+        let viewdata = await newstextraparagraphmodel.findOne({ _id: req.body._id })
+        if (viewdata.length === 0) {
+            res.send({
+                Status: 0,
+                Message: "Data doesn't exists"
+            })
+        }
+        else {
+            if (viewdata.News_Image === null) {
+                let deletedata = await newstextraparagraphmodel.deleteOne({ _id: viewdata._id })
+                if (deletedata.deletedCount >= 1) {
+                    res.send({
+                        Status: 1,
+                        Message: "Data deleted successfully"
+                    })
+                }
+                else {
+                    res.send({
+                        Status: 0,
+                        Message: "Data doesn't deleted"
+                    })
+                }
+            }
+            else {
+                let deletedata = await newstextraparagraphmodel.deleteOne({ _id: viewdata._id })
+                if (deletedata.deletedCount >= 1) {
+                    fs.unlinkSync(`${finalpath}/${viewdata.News_Image}`)
+                    res.send({
+                        Status: 1,
+                        Message: "Data deleted successfully"
+                    })
+                }
+                else {
+                    res.send({
+                        Status: 0,
+                        Message: "Data doesn't deleted"
+                    })
+                }
+            }
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+
+
+
+exports.updatenewsextraparagraphcontroller = async (req, res) => {
+    try {
+        if (req.files[0] === undefined) {
+            let viewdata = await newstextraparagraphmodel.findOne({ _id: req.body._id })
+            let data = {
+                _id: req.body._id,
+                News_Section_Id: req.body.News_Section_Id === null || req.body.News_Section_Id === '' ? viewdata.News_Section_Id : req.body.News_Section_Id,
+                News_Sub_Heading: req.body.News_Sub_Heading === null || req.body.News_Sub_Heading === '' ? viewdata.News_Sub_Heading : req.body.News_Sub_Heading,
+                News_Paragraph: req.body.News_Paragraph === null || req.body.News_Paragraph === '' ? viewdata.News_Paragraph : req.body.News_Paragraph,
+            }
+            console.log(data)
+            let updatedata = await newstextraparagraphmodel.updateOne({ _id: data._id }, {
+                News_Section_Id: data.News_Section_Id,
+                News_Sub_Heading: data.News_Sub_Heading,
+                News_Paragraph: data.News_Paragraph
+            })
+
+            if (updatedata.modifiedCount >= 1) {
+                res.send({
+                    Status: 1,
+                    Message: "Data Updated Successfully"
+                })
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data doesn't updated"
+                })
+            }
+        }
+        else {
+            let viewdata = await newstextraparagraphmodel.findOne({ _id: req.body._id })
+
+            let data = {
+                _id: req.body._id,
+                News_Section_Id: req.body.News_Section_Id === null || req.body.News_Section_Id === '' ? viewdata.News_Section_Id : req.body.News_Section_Id,
+                News_Sub_Heading: req.body.News_Sub_Heading === null || req.body.News_Sub_Heading === '' ? viewdata.News_Sub_Heading : req.body.News_Sub_Heading,
+                News_Paragraph: req.body.News_Paragraph === null || req.body.News_Paragraph === '' ? viewdata.News_Paragraph : req.body.News_Paragraph,
+                News_Image: req.files[0].filename
+            }
+
+
+            let updatedata = await newstextraparagraphmodel.updateOne({ _id: data._id }, {
+                News_Section_Id: data.News_Section_Id,
+                News_Sub_Heading: data.News_Sub_Heading,
+                News_Paragraph: data.News_Paragraph,
+                News_Image: data.News_Image
+            })
+
+
+            if (updatedata.modifiedCount >= 1) {
+                if (viewdata.News_Image === null) {
+                    res.send({
+                        Status: 1,
+                        Message: "Data Updated Successfully"
+                    })
+                }
+                else {
+                    fs.unlinkSync(`${finalpath}/${viewdata.News_Image}`)
+                    res.send({
+                        Status: 1,
+                        Message: "Data Updated Successfully"
+                    })
+                }
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data doesn't updated"
+                })
+                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            }
+        }
+    }
+    catch (error) {
+        if (req.files[0] === undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
+        else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
+    }
+}

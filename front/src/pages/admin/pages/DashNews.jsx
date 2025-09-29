@@ -4,6 +4,7 @@ import { AdminHeader } from '../../../common/AdminHeader'
 import { IoNewspaperOutline } from 'react-icons/io5'
 import { DashAddNewsBanner } from './dashboard news/add/DashAddNewsBanner'
 import { DashAddNews } from './dashboard news/add/DashAddNews'
+import { DashAddNewsParagraph } from './dashboard news/add/DashAddNewsParagraph'
 
 export function DashNews() {
     return (
@@ -28,6 +29,7 @@ export function DashNews() {
 
                         <DashAddNewsBanner />
                         <DashAddNews />
+                        <DashAddNewsParagraph />
                     </section>
                 </section>
             </section>

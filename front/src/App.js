@@ -84,6 +84,7 @@ import { QrCodeIdCard } from './pages/web/pages/userpanel/QrCodeIdCard';
 import { QrCodeAppointmentLetter } from './pages/web/pages/userpanel/QrCodeAppointmentLetter';
 import { QrDonationReceipt } from './pages/web/pages/userpanel/QrDonationReceipt';
 import { QrMembershipReceipt } from './pages/web/pages/userpanel/QrMembershipReceipt';
+import { DashViewNewsParagraph } from './pages/admin/pages/dashboard news/view/DashViewNewsParagraph';
 
 function App() {
   return (
@@ -161,7 +162,7 @@ function App() {
           <Route path='/dash-news' element={<DashNews />} />
           <Route path='/view-news-banner' element={<DashViewNewsBanner />} />
           <Route path='/view-news' element={<DashViewNews />} />
-          <Route path='/view-all-about-paragraph' element={<DashViewAboutParagraph />} />
+          <Route path='/view-all-news-paragraph' element={<DashViewNewsParagraph />} />
 
           {/* contact */}
           <Route path='/dash-contact' element={<DashContact />} />

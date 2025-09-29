@@ -9,7 +9,7 @@ let dotenv = require('dotenv')
 const { addhomegoalscard, viewgoalscarddata, deletehomegoalscard, updatehomegoalscard, addgoalsparagraphheading, viewgoalsparagraphheading, addgoalscardparagraph, viewgoalscardparagraph, deletegoalscardparagraph, deletegoalsparagraphheading, updategoalsparagraphheading, updategoalscardparagraph } = require('../../../admin/controller/GoalsController')
 const { addhomegallery, viewhomegallery, deletehomegallery, updatehomegallery, addgallerybannercontroller, viewgallerybannercontroller, updategallerybannercontroller } = require('../../../admin/controller/GalleryController')
 const { addaboutscontroller, addaboutbannercontroller, viewaboutbannercontroller, updateaboutbannercontroller, addaboutparagraphsection, viewaboutparagraphsection, updateaboutparagraphsection, deleteaboutparagraphsection, addaboutextraparagraphcontroller, viewaboutextraparagraphcontroller, updateaboutextraparagraphcontroller, deleteaboutextraparagraphcontroller } = require('../../../admin/controller/AboutController')
-const { addnewsbannercontroller, viewnewsbannercontroller, updatenewsbannercontroller, addnewscontroller, viewnewscontroller, updatenewscontroller, deletenewscontroller } = require('../../../admin/controller/NewsController')
+const { addnewsbannercontroller, viewnewsbannercontroller, updatenewsbannercontroller, addnewscontroller, viewnewscontroller, updatenewscontroller, deletenewscontroller, addnewsextraparagraphcontroller, viewnewstextraparagraphcontroller, deletenewsextraparagraphcontroller, updatenewsextraparagraphcontroller } = require('../../../admin/controller/NewsController')
 const { addcontactbannercontroller, viewcontactbannercontroller, updatecontactbannercontroller, AddQueriescontroller, ViewQueriescontroller, deletequeries } = require('../../../admin/controller/ContactController')
 const { addtermsbannercontroller, updatetermsbannercontroller, viewtermsbannercontroller, addtermsparagraphsection, viewtermsparagraphsection, updatetermsparagraphsection, deletetermsparagraphsection, addtermsextraparagraphcontroller, viewtermsextraparagraphcontroller, updatetermsextraparagraphcontroller, deletetermsextraparagraphcontroller } = require('../../../admin/controller/TermsController')
 const { addprivacybannercontroller, viewprivacybannercontroller, updateprivacybannercontroller, addprivacyparagraphsection, viewprivacyparagraphsection, updateprivacyparagraphsection, deleteprivacyparagraphsection, addprivacyextraparagraphcontroller, viewprivacyextraparagraphcontroller, updateprivacyextraparagraphcontroller, deleteprivacyextraparagraphcontroller } = require('../../../admin/controller/PrivacyController')
@@ -41,7 +41,7 @@ let storage = multer.diskStorage({
 })
 
 
-const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'CounterIcon', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image', 'Certificate_File'])
+const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'CounterIcon', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'News_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image', 'Certificate_File'])
 
 
 let verifytoken = (req, res, next) => {
@@ -208,11 +208,19 @@ adminroutes.post('/add-news-banner-section', verifytoken, adminsession, upload, 
 adminroutes.get('/view-news-banner-section', viewnewsbannercontroller)
 adminroutes.put('/update-news-banner-section', verifytoken, adminsession, upload, updatenewsbannercontroller)
 
-
 adminroutes.post('/add-news', verifytoken, adminsession, upload, addnewscontroller)
 adminroutes.get('/view-news', viewnewscontroller)
 adminroutes.put('/update-news', verifytoken, adminsession, upload, updatenewscontroller)
 adminroutes.delete('/delete-news', verifytoken, adminsession, upload, deletenewscontroller)
+
+
+adminroutes.post('/add-news-extra-paragraph', verifytoken, adminsession, upload, addnewsextraparagraphcontroller)
+adminroutes.get('/view-news-extra-paragraph', viewnewstextraparagraphcontroller)
+adminroutes.delete('/delete-news-extra-paragraph', verifytoken, adminsession, upload, deletenewsextraparagraphcontroller)
+adminroutes.put('/update-news-extra-paragraph', verifytoken, adminsession, upload, updatenewsextraparagraphcontroller)
+
+
+
 
 adminroutes.post('/add-contact-banner', verifytoken, adminsession, upload, addcontactbannercontroller)
 adminroutes.get('/view-contact-banner', viewcontactbannercontroller)
@@ -271,7 +279,6 @@ adminroutes.delete('/delete-query', verifytoken, webadminsession, upload, delete
 adminroutes.get('/view-users', verifytoken, webadminsession, upload, viewallusers)
 adminroutes.delete('/delete-users', verifytoken, webadminsession, upload, deleteuserprofile)
 adminroutes.put('/update-users-status', verifytoken, webadminsession, upload, updateuserstatus)
-
 
 adminroutes.post('/add-notice', verifytoken, webadminsession, upload, addnotice)
 adminroutes.get('/view-notice', verifytoken, webadminsession, upload, viewadminnotice)
